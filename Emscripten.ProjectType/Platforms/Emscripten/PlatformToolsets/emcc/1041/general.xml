@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="ConfigurationGeneral" DisplayName="全般" Description="全般" PageTemplate="generic" xmlns="http://schemas.microsoft.com/build/2009/properties">
+
+  <Rule.Categories>
+    <Category Name="General" DisplayName="全般" Description="全般" />
+    <Category Name="ProjectDefaults" DisplayName="プロジェクトの既定値" Description="プロジェクトの既定値" />
+  </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" Label="Configuration" />
+  </Rule.DataSource>
+
+  <!-- General -->
+
+  <StringProperty Name="OutDir" Category="General" DisplayName="出力ディレクトリ" Description="出力ファイル ディレクトリへの相対パスを指定します。環境変数を含めることができます。" Default="$(SolutionDir)$(Configuration)\" Subtype="folder" F1Keyword="VC.Project.VCConfiguration.OutputDirectory">
+    <StringProperty.DataSource>
+      <DataSource Persistence="ProjectFile" Label="" />
+    </StringProperty.DataSource>
+  </StringProperty>
+  <StringProperty Name="IntDir" Category="General" DisplayName="中間ディレクトリ" Description="中間ファイル ディレクトリへの相対パスを指定します。環境変数を含めることができます。" Default="$(Configuration)\" Subtype="folder" F1Keyword="VC.Project.VCConfiguration.IntermediateDirectory">
+    <StringProperty.DataSource>
+      <DataSource Persistence="ProjectFile" Label="" />
+    </StringProperty.DataSource>
+  </StringProperty>
+
+  <StringProperty Name="TargetName" Category="General" DisplayName="ターゲット名" Description="このプロジェクトにより生成されるファイル名を指定します。" F1Keyword="VC.Project.VCConfiguration.TargetName" Default="$(ProjectName)">
+    <StringProperty.DataSource>
+      <DataSource Persistence="ProjectFile" Label="" />
+    </StringProperty.DataSource>
+  </StringProperty>
+  <StringProperty Name="TargetExt" Category="General" DisplayName="ターゲットの拡張子" Description="このプロジェクトにより生成されるファイル拡張子を指定します。(例: .o, .bc, .js, .wasm または .html)" F1Keyword="VC.Project.VCConfiguration.TargetExt">
+    <StringProperty.DataSource>
+      <DataSource Persistence="ProjectFile" Label="" />
+    </StringProperty.DataSource>
+  </StringProperty>
+
+  <StringListProperty Name="ExtensionsToDeleteOnClean" Category="General" DisplayName="クリーン時に削除する拡張子" Description="クリーンまたはリビルドの実行時に中間ディレクトリから削除するファイルをセミコロンで区切って指定します。ワイルドカードを指定できます。" Separator=";" F1Keyword="VC.Project.VCConfiguration.DeleteExtensionsOnClean">
+    <StringListProperty.DataSource>
+      <DataSource Persistence="ProjectFile" Label="" />
+    </StringListProperty.DataSource>
+  </StringListProperty>
+
+  <StringProperty Name="BuildLogFile" Category="General" DisplayName="ビルド ログ ファイル" Description="ビルドのログが有効になっている場合に、書き込むビルド ログ ファイルを指定します。" F1Keyword="VC.Project.VCConfiguration.BuildLogFile" Default="$(ProjectDir)\$(MSBuildProjectName).log" Subtype="file">
+    <StringProperty.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="BuildLog" PersistedName="Path" />
+    </StringProperty.DataSource>
+  </StringProperty>
+
+  <EnumProperty Name="PlatformToolset" DisplayName="プラットフォーム ツールセット" Description="現在の構成の作成に使用するツールセットを指定します。設定しない場合は、既定のツールセットが使用されます。" Category="General">
+    <EnumValue Name="emcc" DisplayName="Emscripten Compiler Frontend (emcc)" />
+  </EnumProperty>
+
+  <!-- Project Defaults -->
+
+  <EnumProperty Name="ConfigurationType" Category="ProjectDefaults" DisplayName="構成の種類" Description="この構成が生成する出力の種類を指定します。" F1Keyword="VC.Project.VCConfiguration.ConfigurationType">
+    <EnumValue Name="HTMLPage" DisplayName="HTML + JavaScript (.html)" />
+    <EnumValue Name="JSApplication" DisplayName="JavaScript (.js)" />
+    <EnumValue Name="StaticLibrary" DisplayName="Static LLVM Bitcode Library (.a)" />
+    <EnumValue Name="WebAssembly" DisplayName="WebAssembly (.wasm)" />
+  </EnumProperty>
+
+</Rule>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="Lib" DisplayName="ライブラリアン" PageTemplate="tool" Order="40" SwitchPrefix="-" xmlns="http://schemas.microsoft.com/build/2009/properties" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <Rule.Categories>
+    <Category Name="General" DisplayName="全般" />
+    <Category Name="All Options" DisplayName="すべてのオプション" Subtype="Search" />
+    <Category Name="Command Line" DisplayName="コマンド ライン" Subtype="CommandLine" />
+  </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" ItemType="Lib" Label="" HasConfigurationCondition="true" />
+  </Rule.DataSource>
+
+  <!-- General -->
+
+  <StringProperty Subtype="file" Name="OutputFile" DisplayName="出力ファイル" Category="General" Switch="o " />
+
+  <BoolProperty Name="EchoCommandLines" DisplayName="コマンド ラインの表示" Description="ビルド中のコマンドラインを表示します。" Category="General" /> 
+
+  <!-- Command Line -->
+
+  <StringProperty Name="AdditionalOptions" DisplayName="Additional Options" Description="Additional Options" Category="Command Line" />
+
+</Rule>

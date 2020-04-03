@@ -1,0 +1,8 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PlatformShortName>emcc</PlatformShortName>
+    <PlatformArchitecture>64</PlatformArchitecture>
+    <DefaultPlatformToolset>emcc</DefaultPlatformToolset>
+    <PlatformToolset>$(DefaultPlatformToolset)</PlatformToolset>
+  </PropertyGroup>
+</Project>

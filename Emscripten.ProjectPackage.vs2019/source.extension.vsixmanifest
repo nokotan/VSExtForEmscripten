@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="Emscripten.ProjectType.2cbc1fa0-f08f-4807-94ea-0a03e83a08b3" Version="0.1" Language="en-US" Publisher="KamenokoSoft" />
+        <DisplayName>Emscripten.ProjectType</DisplayName>
+        <Description xml:space="preserve">Emscripten Visual Studio Support</Description>
+    </Metadata>
+    <Installation AllUsers="true">
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
+        <InstallationTarget Version="[16.0, 17.0)" Id="Microsoft.VisualStudio.Pro" />
+        <InstallationTarget Version="[16.0, 17.0)" Id="Microsoft.VisualStudio.Enterprise" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Emscripten.ProjectTemplate" Path="ProjectTemplates" d:TargetPath="|Emscripten.ProjectTemplate;TemplateProjectOutputGroup|" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="Emscripten.ProjectType" Path="|Emscripten.ProjectType;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Emscripten.ProjectType" Path="|Emscripten.ProjectType|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$MSBuild\Microsoft\VC\v160\Platforms\Emscripten" />
+    </Assets>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,17.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+</PackageManifest>

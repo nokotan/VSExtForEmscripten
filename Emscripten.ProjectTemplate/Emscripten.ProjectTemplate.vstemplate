@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
+  <TemplateData>
+    <Name>Emscripten.ProjectTemplate</Name>
+    <Description>Emscripten.ProjectTemplate</Description>
+    <Icon>Emscripten.ProjectTemplate.ico</Icon>
+    <ProjectType>VC</ProjectType>
+    <SortOrder>1000</SortOrder>
+    <TemplateID>4aa7d94d-4f86-42a0-82cf-66c56048e49c</TemplateID>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>Emscripten.ProjectTemplate</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ProjectTemplate.vcxproj" File="ProjectTemplate.vcxproj" ReplaceParameters="true">
+      <ProjectItem OpenInEditor="true">Main.cpp</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

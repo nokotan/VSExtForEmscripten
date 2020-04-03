@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Rule Name="Link" DisplayName="Emscripten リンカ" PageTemplate="tool" Order="20" SwitchPrefix="-" xmlns="http://schemas.microsoft.com/build/2009/properties" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <Rule.Categories>
+    <Category Name="General" DisplayName="全般" />
+    <Category Name="Input" DisplayName="入力" />
+    <Category Name="Optimization" DisplayName="最適化" />
+    <Category Name="Advanced" DisplayName="詳細設定" />
+    <Category Name="All Options" DisplayName="すべての設定" Subtype="Search" />
+    <Category Name="Command Line" DisplayName="コマンド ライン" Subtype="CommandLine" />
+  </Rule.Categories>
+  <Rule.DataSource>
+    <DataSource Persistence="ProjectFile" ItemType="Link" Label="" HasConfigurationCondition="true" />
+  </Rule.DataSource>
+
+  <!-- General -->
+  
+  <StringProperty Subtype="file" Name="OutputFile" DisplayName="出力ファイル" Category="General" Switch="o" Separator=" " />
+
+  <!--<StringListProperty Subtype="folder" Name="AdditionalLibraryDirectories" DisplayName="Additional Library Directories (-L)" Category="General" Switch="L" />-->
+
+  <BoolProperty Name="LinkLibraryDependencies" DisplayName="ライブラリ依存関係のリンク" Description="プロジェクト依存関係からのライブラリ出力を自動的にリンクするかどうかを指定します。" Category="General" IncludeInCommandLine="false" F1Keyword="VC.Project.VCLinkerTool.LinkLibraryDependencies">
+    <BoolProperty.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="ProjectReference" Label="" HasConfigurationCondition="true" />
+    </BoolProperty.DataSource>
+  </BoolProperty>
+  <BoolProperty Name="UseLibraryDependencyInputs" DisplayName="ライブラリ依存関係の入力の使用" Description="プロジェクト依存関係のライブラリ出力にリンクする時に、ライブラリ ファイル自体にではなく、ライブラリアン ツールへの入力を使用するかどうかを指定します。" Category="General" IncludeInCommandLine="false" F1Keyword="VC.Project.VCLinkerTool.UseLibraryDependencyInputs">
+    <BoolProperty.DataSource>
+      <DataSource Persistence="ProjectFile" ItemType="ProjectReference" Label="" HasConfigurationCondition="true" />
+    </BoolProperty.DataSource>
+  </BoolProperty>
+
+  <EnumProperty Name="Warnings" DisplayName="警告" Description="コード エラーに対するコンパイラの警告を指定します。(-w, -Wall)" Category="General">
+    <EnumValue Name="DisableAllWarnings" DisplayName="すべての警告を抑制する" Description="すべての警告を抑制します。" Switch="w" />
+    <EnumValue Name="NormalWarnings" DisplayName="一般的な警告を有効にする" Description="規定の警告レベルを使用します。" />
+    <EnumValue Name="AllWarnings" DisplayName="すべての警告を有効にする" Description="既定で無効にされている警告を含む、すべての警告を有効にします。" Switch="Wall" />
+  </EnumProperty>
+
+  <BoolProperty Name="IgnoreDynamicLinking" DisplayName="ダイナミック リンクを無効にする" Description="ダイナミックリンク ライブラリをリンクするとき、emcc はダイナミックリンク ライブラリをスタティックライブラリとして取り扱います。これは、同じダイナミックリンクライブラリが複数回リンクされると失敗します。このオプションを有効にすることで、ダイナミック リンクが無視され、ビルドエラーを抑制することができます。その代わり、共有ライブラリを手動で読み込む必要があります。ダイナミックリンク ライブラリの最適化プロセスは生成される JavaScript コードに対して行われます。(-ignore-dynamic-linking)" Category="General" Switch="-ignore-dynamic-linking" />
+
+  <!-- Input -->
+
+  <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="追加の依存ファイル" Description="リンク コマンド ラインに追加する項目を指定します。" Category="Input" />
+
+  <StringListProperty Subtype="file" Name="PreJsFile" DisplayName="Pre-Add JavaScript File (--pre-js)" Description="生成されるスクリプトファイルの冒頭に埋め込まれる JavaScript ファイルを指定します。これは、実行時の最適化が行われる前に読み込まれます。" Category="Input" Switch="-pre-js " />
+  <StringListProperty Subtype="file" Name="PostJsFile" DisplayName="Post-Add JavaScript File (--post-js)" Description="生成されるスクリプトファイルの末尾に埋め込まれる JavaScript ファイルを指定します。これは、実行時の最適化が行われた後に読み込まれます。" Category="Input" Switch="-post-js " />
+  <StringListProperty Subtype="file" Name="EmbedFile" DisplayName="埋め込む リソースファイル (--embed-file)" Description="生成される JavaScript ファイル内に埋め込まれるリソースファイルを指定します。" Category="Input" Switch="-embed-file " />
+  <StringListProperty Subtype="file" Name="PreloadFile" DisplayName="プリロードされる リソースファイル (--preload-file)" Description="コンパイルされた JavaScript コードが実行される前に読み込まれるリソースファイルを指定します。" Category="Input" Switch="-preload-file " />
+
+  <StringListProperty Subtype="file" Name="HtmlShellFile" DisplayName="HTML テンプレート (--shell-file)" Description="コンパイルされた JavaScript コードが埋め込まれる HTML テンプレートファイルを指定します。" Category="Input" Switch="-shell-file " />
+  <StringListProperty Subtype="file" Name="JsLibrary" DisplayName="追加の JavaScript ライブラリ (--js-library)" Description="生成されたコードにリンクされる追加の JavaScript ライブラリファイルを指定します。" Category="Input" Switch="-js-library " />
+
+  <!-- Optimization -->
+
+  <EnumProperty Name="LinkerOptimizationLevel" DisplayName="最適化" Category="Optimization">
+    <EnumValue Name="Custom" DisplayName="カスタム" Description="カスタムの最適化。" />
+    <EnumValue Name="O0" DisplayName="無効 (-O0)" Switch="O0" />
+    <EnumValue Name="O1" DisplayName="最小限の最適化 (-O1)" Description="asm.js、relooping、例外の無効化、アサーションの無効化、関数ポインタの別名化" Switch="O1" />
+    <EnumValue Name="O2" DisplayName="一般的な最適化 (-O2)" Switch="O2" />
+    <EnumValue Name="O3" DisplayName="最大限の最適化 (-O3)" Description="LLVM リンク時最適化 (LTO)、closure コンパイラ、メモリの整列、double から float への変換、int64 から double への変換" Switch="O3" />
+  </EnumProperty>
+
+  <BoolProperty Name="RunClosureCompiler" DisplayName="Closure コンパイラを使用する (--closure)" Description="ビルド時に Closure コンパイラを使用します。" Category="Optimization" Switch="-closure 1" ReverseSwitch="-closure 0" />
+  <BoolProperty Name="RunMinify" DisplayName="JavaScript ミニファイアを使用する (--minify)" Description="ビルド時に JavaScript ミニファイアを使用します。" Category="Optimization" Switch="-minify 1" ReverseSwitch="-minify 0" />
+
+  <!-- Advanced -->
+
+  <EnumProperty Name="TypedArrays" DisplayName="型付き配列の使用" Description="型付き配列のコンパイル方法を指定します。https://github.com/kripken/emscripten/wiki/Code-Generation-Modes を参照してください。" Category="Advanced">
+    <EnumValue Name="Default" DisplayName="既定" />
+    <EnumValue Name="NoTypedArrays" DisplayName="使用しない (--typed-arrays=0)" Switch="-typed-arrays=0" />
+    <EnumValue Name="ParallelTypedArrays" DisplayName="並列化された型付き配列を使用する (--typed-arrays=1)" Switch="-typed-arrays=1" />
+    <EnumValue Name="SharedTypedArrays" DisplayName="共有された型付き配列を使用する (--typed-arrays=2)" Switch="-typed-arrays=2" />
+  </EnumProperty>
+
+  <StringListProperty Subtype="folder" Name="EnableWarnings" DisplayName="指定のエラーを有効にする" Description="指定した警告を有効にします。複数指定する場合は、セミコロンで区切ってください。(-W[エラー名])" Category="Advanced" Switch="W" />
+  <StringListProperty Subtype="folder" Name="DisableWarnings" DisplayName="指定のエラーを無効にする" Description="指定した警告を無効にします。複数指定する場合は、セミコロンで区切ってください。(-Wno-[エラー名])" Category="Advanced" Switch="Wno-" />
+  <BoolProperty Name="TreatWarningAsError" DisplayName="警告をエラーとして扱う" Description="コンパイラ警告をエラーとして扱います。(-Werror)" Category="Advanced" Switch="Werror" />
+
+  <BoolProperty Name="EchoCommandLines" DisplayName="コマンド ラインの表示" Description="ビルド中のコマンドラインを表示します。" Category="Advanced" />
+
+  <!-- Command Line -->
+
+  <StringProperty Name="AdditionalOptions" DisplayName="追加のオプション" Description="追加のオプション" Category="Command Line" />
+
+</Rule>
