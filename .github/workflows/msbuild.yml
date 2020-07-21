@@ -1,4 +1,4 @@
-name: Build Visual Studio Extension
+name: Visual Studio Extension for Emscripten
 
 on:
   [ push, pull_request ]
@@ -27,4 +27,4 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
-      run: msbuild $env:Solution_Name /p:Configuration=$env:Release
+      run: msbuild $env:Solution_Name /p:Configuration=Release
