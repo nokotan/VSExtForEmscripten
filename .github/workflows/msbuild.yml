@@ -21,7 +21,7 @@ jobs:
         fetch-depth: 0
 
     - name: Install newer VSWhere.exe
-      run: choco install vswhere
+      run: choco install vswhere -y
       
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
