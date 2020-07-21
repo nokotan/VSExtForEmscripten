@@ -20,11 +20,17 @@ jobs:
       with:
         fetch-depth: 0
 
+    - name: Install newer VSWhere.exe
+      run: choco install vswhere
+      
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
       uses: microsoft/setup-msbuild@v1.0.0
+      with:
+        vswhere-path: vswhere
 
-    - uses: nuget/setup-nuget@v1
+    - name: Setup Nuget
+      uses: nuget/setup-nuget@v1
       with:
         nuget-version: '5.x'
 
