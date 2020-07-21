@@ -54,10 +54,10 @@
 
   <EnumProperty Name="LinkerOptimizationLevel" DisplayName="最適化" Category="Optimization">
     <EnumValue Name="Custom" DisplayName="カスタム" Description="カスタムの最適化。" />
-    <EnumValue Name="O0" DisplayName="無効 (-O0)" Switch="O0" />
-    <EnumValue Name="O1" DisplayName="最小限の最適化 (-O1)" Description="asm.js、relooping、例外の無効化、アサーションの無効化、関数ポインタの別名化" Switch="O1" />
-    <EnumValue Name="O2" DisplayName="一般的な最適化 (-O2)" Switch="O2" />
-    <EnumValue Name="O3" DisplayName="最大限の最適化 (-O3)" Description="LLVM リンク時最適化 (LTO)、closure コンパイラ、メモリの整列、double から float への変換、int64 から double への変換" Switch="O3" />
+    <EnumValue Name="O0" DisplayName="無効" Switch="O0" />
+    <EnumValue Name="O1" DisplayName="最小限の最適化" Description="asm.js、relooping、例外の無効化、アサーションの無効化、関数ポインタの別名化" Switch="O1" />
+    <EnumValue Name="O2" DisplayName="一般的な最適化" Switch="O2" />
+    <EnumValue Name="O3" DisplayName="最大限の最適化" Description="LLVM リンク時最適化 (LTO)、closure コンパイラ、メモリの整列、double から float への変換、int64 から double への変換" Switch="O3" />
   </EnumProperty>
 
   <BoolProperty Name="RunClosureCompiler" DisplayName="Closure コンパイラを使用する (--closure)" Description="ビルド時に Closure コンパイラを使用します。" Category="Optimization" Switch="-closure 1" ReverseSwitch="-closure 0" />
@@ -67,9 +67,9 @@
 
   <EnumProperty Name="TypedArrays" DisplayName="型付き配列の使用" Description="型付き配列のコンパイル方法を指定します。https://github.com/kripken/emscripten/wiki/Code-Generation-Modes を参照してください。" Category="Advanced">
     <EnumValue Name="Default" DisplayName="既定" />
-    <EnumValue Name="NoTypedArrays" DisplayName="使用しない (--typed-arrays=0)" Switch="-typed-arrays=0" />
-    <EnumValue Name="ParallelTypedArrays" DisplayName="並列化された型付き配列を使用する (--typed-arrays=1)" Switch="-typed-arrays=1" />
-    <EnumValue Name="SharedTypedArrays" DisplayName="共有された型付き配列を使用する (--typed-arrays=2)" Switch="-typed-arrays=2" />
+    <EnumValue Name="NoTypedArrays" DisplayName="使用しない" Switch="-typed-arrays=0" />
+    <EnumValue Name="ParallelTypedArrays" DisplayName="並列化された型付き配列を使用する" Switch="-typed-arrays=1" />
+    <EnumValue Name="SharedTypedArrays" DisplayName="共有された型付き配列を使用する" Switch="-typed-arrays=2" />
   </EnumProperty>
 
   <StringListProperty Subtype="folder" Name="EnableWarnings" DisplayName="指定のエラーを有効にする" Description="指定した警告を有効にします。複数指定する場合は、セミコロンで区切ってください。(-W[エラー名])" Category="Advanced" Switch="W" />
