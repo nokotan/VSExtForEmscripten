@@ -20,6 +20,9 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+        
+    - name: Add MSBuild to PATH
+      run: Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
 
     - name: Setup Nuget
       uses: nuget/setup-nuget@v1
@@ -30,4 +33,4 @@ jobs:
       run: nuget restore $env:Solution_Name
       
     - name: Build the application
-      run: $env:MSBuild_Path $env:Solution_Name /p:Configuration=Release
+      run: msbuild $env:Solution_Name /p:Configuration=Release
