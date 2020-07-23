@@ -33,16 +33,10 @@ jobs:
       run: |
         Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
         msbuild $env:Solution_Name /p:Configuration=Release
-
-    - name: Save Bundles (for VS2017)
-      uses: actions/upload-artifact@v2
-      with:
-        name: VS2017-Emscripten
-        path: .\Emscripten.ProjectType\bin\Release\*.vsix
     
-    - name: Save Bundles (for VS2019)
+    - name: Save Bundles
       uses: actions/upload-artifact@v2
       with:
-        name: VS2019-Emscripten
-        path: .\Emscripten.ProjectPackage.vs2019\bin\Release\*.vsix    
-  
+        name: VSExt-Emscripten
+        path: .\Emscripten.ProjectPackage\bin\Release\*.vsix    
+ 
