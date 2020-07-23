@@ -1,4 +1,4 @@
-# Visul Studio Project Support for emscripten
+# Visual Studio Project Support for emscripten
 
 ## Introduction
 
