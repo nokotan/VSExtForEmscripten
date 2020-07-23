@@ -4,16 +4,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectType", "Emscripten.ProjectType\Emscripten.ProjectType.csproj", "{66908FCE-3A52-477B-87B5-ACDE7984DE68}"
-	ProjectSection(ProjectDependencies) = postProject
-		{ABAFBE38-79B0-4E2A-8358-4B508AEA142A} = {ABAFBE38-79B0-4E2A-8358-4B508AEA142A}
-		{9B55BA92-5129-41E5-ABF3-CFB220E1672B} = {9B55BA92-5129-41E5-ABF3-CFB220E1672B}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectTemplate", "Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj", "{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.CppTasks", "Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj", "{9B55BA92-5129-41E5-ABF3-CFB220E1672B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectPackage.vs2019", "Emscripten.ProjectPackage.vs2019\Emscripten.ProjectPackage.vs2019.csproj", "{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectPackage", "Emscripten.ProjectPackage\Emscripten.ProjectPackage.csproj", "{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

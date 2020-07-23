@@ -14,8 +14,8 @@
     <ProjectGuid>{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Emscripten.ProjectPackage.vs2019</RootNamespace>
-    <AssemblyName>Emscripten.ProjectPackage.vs2019</AssemblyName>
+    <RootNamespace>Emscripten.ProjectPackage</RootNamespace>
+    <AssemblyName>Emscripten.ProjectPackage</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>false</IncludeAssemblyInVSIXContainer>
@@ -132,7 +132,7 @@
     <ProjectReference Include="..\Emscripten.ProjectType\Emscripten.ProjectType.csproj">
       <Project>{66908FCE-3A52-477B-87B5-ACDE7984DE68}</Project>
       <Name>Emscripten.ProjectType</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3bPkgdefProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
   </ItemGroup>
