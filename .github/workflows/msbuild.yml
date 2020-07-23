@@ -1,4 +1,4 @@
-name: Build Visual Studio Extension
+name: Visual Studio Extension for Emscripten
 
 on:
   [ push, pull_request ]
@@ -7,11 +7,12 @@ jobs:
 
   build:
 
-    runs-on: windows-2019  # For a list of available runner types, refer to
+    runs-on: windows-2016  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: Emscripten                                 # Replace with your solution name, i.e. MyWpfApp.sln.
+      Solution_Name: Emscripten.sln
+      MSBuild_Path: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\bin"
 
 
     steps:
@@ -20,11 +21,28 @@ jobs:
       with:
         fetch-depth: 0
 
-    # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@2008f912f56e61277eefaac6d1888b750582aa16
+    - name: Setup Nuget
+      uses: nuget/setup-nuget@v1
+      with:
+        nuget-version: '5.x'
 
+    - name: Restore the package
+      run: nuget restore $env:Solution_Name
+      
+    - name: Build the application
+      run: |
+        Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
+        msbuild $env:Solution_Name /p:Configuration=Release
 
-    # Restore the application to populate the obj folder with RuntimeIdentifiers
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /p:Configuration=$env:Release
+    - name: Save Bundles (for VS2017)
+      uses: actions/upload-artifact@v2
+      with:
+        name: VS2017-Emscripten
+        path: .\Emscripten.ProjectType\bin\Release\*.vsix
+    
+    - name: Save Bundles (for VS2019)
+      uses: actions/upload-artifact@v2
+      with:
+        name: VS2019-Emscripten
+        path: .\Emscripten.ProjectPackage.vs2019\bin\Release\*.vsix    
+  
