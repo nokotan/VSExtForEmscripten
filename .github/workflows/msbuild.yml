@@ -26,15 +26,15 @@ jobs:
       with:
         nuget-version: '5.x'
 
-	- name: Cache Nuget packages
-	  uses: actions/cache@v1
-	  id: cache
-	  with:
-		path: ./packages
-		key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+    - name: Cache Nuget packages 
+      uses: actions/cache@v1
+      id: cache
+      with:
+        path: ./packages
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
 
     - name: Restore Nuget package
-	  if: steps.cache.outputs.cache-hit != 'true'
+      if: steps.cache.outputs.cache-hit != 'true'
       run: nuget restore $env:Solution_Name
       
     - name: Build the application
