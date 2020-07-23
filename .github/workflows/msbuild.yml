@@ -7,6 +7,7 @@ jobs:
 
   build:
 
+    if: ${{ !contains(github.event.head_commit.message, '[ci skip]') }}
     runs-on: windows-2016  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
@@ -49,15 +50,18 @@ jobs:
         path: .\Emscripten.ProjectPackage\bin\Release\*.vsix    
  
   deploy:
+
     if: ${{ contains(github.ref, 'tags/v') }}
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Restore Bundles
         uses: actions/download-artifact@v2
         with:
           name: VSExt-Emscripten
           path: .
+
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
@@ -66,6 +70,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
+
       - name: Upload Release Asset
         id: upload-release-asset
         uses: actions/upload-release-asset@v1
@@ -76,4 +81,3 @@ jobs:
           asset_path: Emscripten.ProjectPackage.vsix
           asset_name: Emscripten.ProjectPackage.vsix
           asset_content_type: application/vsix
-  
