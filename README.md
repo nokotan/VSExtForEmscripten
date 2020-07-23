@@ -28,6 +28,10 @@ This extension is developed with [Visual Studio Project System](https://github.c
 |Before Visual Studio 2015|not supported|
 |Visual Studio 2017, Visual Studio 2019|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscriptenproj1>|
 
+## From GitHub Releases (Cutting Edge)
+
+- <https://github.com/nokotan/VSExtForEmscripten/releases/>
+
 ## Requirements
 
 - Visual Studio 2017 or Visual Studio 2019
