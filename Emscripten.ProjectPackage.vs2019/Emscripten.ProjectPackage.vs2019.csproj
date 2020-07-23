@@ -48,32 +48,32 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Platforms\Emscripten\Platform.Common.props">
+    <Content Include="vs2019\Platforms\Emscripten\Platform.Common.props">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\Platform.Default.props">
+    <Content Include="vs2019\Platforms\Emscripten\Platform.Default.props">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\Platform.props">
+    <Content Include="vs2019\Platforms\Emscripten\Platform.props">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\Platform.targets">
+    <Content Include="vs2019\Platforms\Emscripten\Platform.targets">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\Toolset.props">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.props">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\Toolset.targets">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.targets">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
@@ -81,6 +81,38 @@
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="vs2017\Platforms\Emscripten\Platform.Common.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\Platform.Default.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\Platform.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\Platform.targets">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.targets">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
@@ -105,55 +137,107 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_lib.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_lib.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_link.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_link.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1033\general.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1033\general.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_lib.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_lib.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_link.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_link.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
-    <Content Include="Platforms\Emscripten\PlatformToolsets\emcc\1041\general.xml">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\general.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_lib.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_link.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1033\general.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_lib.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_link.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1041\general.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
