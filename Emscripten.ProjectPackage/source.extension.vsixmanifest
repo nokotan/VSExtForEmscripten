@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Emscripten.ProjectType.2cbc1fa0-f08f-4807-94ea-0a03e83a08b3" Version="0.2" Language="en-US" Publisher="KamenokoSoft" />
+        <Identity Id="Emscripten.ProjectType.80c9bedd-1988-42d3-a4c8-d6be759abab6" Version="0.2" Language="en-US" Publisher="KamenokoSoft" />
         <DisplayName>Emscripten.ProjectType</DisplayName>
         <Description xml:space="preserve">Emscripten Visual Studio Support</Description>
     </Metadata>
