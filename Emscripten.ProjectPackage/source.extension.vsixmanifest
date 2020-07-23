@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Emscripten.ProjectType.80c9bedd-1988-42d3-a4c8-d6be759abab6" Version="0.2" Language="en-US" Publisher="KamenokoSoft" />
+        <Identity Id="Emscripten.ProjectType.80c9bedd-1988-42d3-a4c8-d6be759abab6" Version="0.2.1" Language="en-US" Publisher="KamenokoSoft" />
         <DisplayName>Emscripten.ProjectType</DisplayName>
         <Description xml:space="preserve">Emscripten Visual Studio Support</Description>
     </Metadata>
@@ -18,6 +18,7 @@
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$MSBuild\Microsoft\VC\v160\Platforms\Emscripten" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="Emscripten.ProjectType" Path="|Emscripten.ProjectType;PkgdefProjectOutputGroup|" />
         <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Emscripten.ProjectType" Path="|Emscripten.ProjectType|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" d:VsixSubPath="$VCTargets\Platforms\Emscripten" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" />
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,17.0)" DisplayName="Visual Studio core editor" />
