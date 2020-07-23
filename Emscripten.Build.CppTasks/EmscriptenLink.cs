@@ -222,10 +222,7 @@ namespace Emscripten.Build.CPPTasks
             get
             {
                 return new string[] {
-                    m_toolFileName + "-collect2.read.*.tlog",
-                    m_toolFileName + "-collect2.*.read.*.tlog",
-                    m_toolFileName + "-collect2-ld.read.*.tlog",
-                    m_toolFileName + "-collect2-ld.*.read.*.tlog"
+                    "*.read.1.tlog"
                 };
             }
         }
@@ -235,10 +232,7 @@ namespace Emscripten.Build.CPPTasks
             get
             {
                 return new string[] {
-                    m_toolFileName + "-collect2.write.*.tlog",
-                    m_toolFileName + "-collect2.*.write.*.tlog",
-                    m_toolFileName + "-collect2-ld.write.*.tlog",
-                    m_toolFileName + "-collect2-ld.*.write.*.tlog"
+                     "*.write.1.tlog"
                 };
             }
         }

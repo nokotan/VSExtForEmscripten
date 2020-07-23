@@ -177,7 +177,7 @@ namespace Emscripten.Build.CPPTasks
         {
             get
             {
-                return (m_toolFileName + ".command.1.tlog");
+                return (m_toolFileName + "-lib.command.1.tlog");
             }
         }
 
@@ -185,7 +185,9 @@ namespace Emscripten.Build.CPPTasks
         {
             get
             {
-                return new string[] { (m_toolFileName + ".read.*.tlog"), (m_toolFileName + ".*.read.*.tlog") };
+                return new string[] {
+                    "*.read.1.tlog"
+                };
             }
         }
 
@@ -193,7 +195,9 @@ namespace Emscripten.Build.CPPTasks
         {
             get
             {
-                return new string[] { (m_toolFileName + ".write.*.tlog"), (m_toolFileName + ".*.write.*.tlog") };
+                return new string[] {
+                    "*.write.1.tlog"
+                };
             }
         }
     }
