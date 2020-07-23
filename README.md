@@ -25,13 +25,13 @@ This extension is developed with [Visual Studio Project System](https://github.c
 
 |Visual Studio Version|.vsix Download Page|
 |:--:|:--:|
-|Visual Studio 2017|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscriptenproj1>|
-|Visual Studio 2019|TBA|
+|Before Visual Studio 2015|not supported|
+|Visual Studio 2017, Visual Studio 2019|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscriptenproj1>|
 
 ## Requirements
 
 - Visual Studio 2017 or Visual Studio 2019
-- emscripten
+- emscripten Installation
 
 ## Projects in this repository
 
@@ -46,8 +46,7 @@ This extension is developed with [Visual Studio Project System](https://github.c
 ### Emscripten.ProjectType
 
 - TestDebugger (under construction)
-- .vsix manifest for Visual Studio 2017
 
-### Emscripten.ProjectPackage.vs2019
+### Emscripten.ProjectPackage
 
-- .vsix manifest for Visual Studio 2019
+- .vsix package manifest
