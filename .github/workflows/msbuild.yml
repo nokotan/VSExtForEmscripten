@@ -35,7 +35,7 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.config') }}
 
     - name: Restore Nuget package
-      if: steps.cache.outputs.cache-hit != 'true'
+      if: ${{ !steps.cache.outputs.cache-hit }}
       run: nuget restore $env:Solution_Name
       
     - name: Build the application
