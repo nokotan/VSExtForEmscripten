@@ -6,8 +6,8 @@
     <WebBrowserDebuggerHttpUrl Condition="'$(WebBrowserDebuggerHttpUrl)' == ''">$(TargetPath)</WebBrowserDebuggerHttpUrl>
   </PropertyGroup>
 
-  <UsingTask TaskName="EmscriptenCompile" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CPPTasks.dll" />
-  <UsingTask TaskName="EmscriptenLink" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CPPTasks.dll" />
+  <UsingTask TaskName="EmscriptenCompile" AssemblyFile="$(MSBuildThisFileDirectory)..\..\..\..\Emscripten.Build.CPPTasks.dll" />
+  <UsingTask TaskName="EmscriptenLink" AssemblyFile="$(MSBuildThisFileDirectory)..\..\..\..\Emscripten.Build.CPPTasks.dll" />
 
   <!-- Compile -->
   <Target Name="ClCompile" Condition="'@(ClCompile)' != ''" DependsOnTargets="SelectClCompile">

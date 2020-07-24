@@ -121,14 +121,14 @@
       <Name>Emscripten.Build.CppTasks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-      <VSIXSubPath>%24VCTargets\Platforms\Emscripten</VSIXSubPath>
+      <VSIXSubPath>%24VCTargets</VSIXSubPath>
     </ProjectReference>
     <ProjectReference Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
       <Project>{9B55BA92-5129-41E5-ABF3-CFB220E1672B}</Project>
       <Name>Emscripten.Build.CppTasks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-      <VSIXSubPath>$MSBuild\Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
+      <VSIXSubPath>$MSBuild\Microsoft\VC\v160</VSIXSubPath>
     </ProjectReference>
     <ProjectReference Include="..\Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj">
       <Project>{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}</Project>
