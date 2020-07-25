@@ -25,7 +25,7 @@ This extension is developed with [Visual Studio Project System](https://github.c
 
 |Visual Studio Version|.vsix Download Page|
 |:--:|:--:|
-|Before Visual Studio 2015|not supported|
+|Visual Studio 2013, 2015|(Not .vsix, but <https://github.com/crosire/vs-toolsets> will help)|
 |Visual Studio 2017, Visual Studio 2019|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscriptenproj1>|
 
 ## From GitHub Releases (Cutting Edge)
