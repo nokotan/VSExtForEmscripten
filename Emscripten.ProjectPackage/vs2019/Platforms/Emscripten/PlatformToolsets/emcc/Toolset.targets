@@ -4,10 +4,12 @@
 
   <PropertyGroup>
     <WebBrowserDebuggerHttpUrl Condition="'$(WebBrowserDebuggerHttpUrl)' == ''">$(TargetPath)</WebBrowserDebuggerHttpUrl>
+    <PropertyXmlDirectory Condition="Exists('$(MSBuildThisFileDirectory)$(LangID)')">$(MSBuildThisFileDirectory)$(LangID)</PropertyXmlDirectory>
+    <PropertyXmlDirectory Condition="'$(PropertyXmlDirectory)' == ''">$(MSBuildThisFileDirectory)1033</PropertyXmlDirectory>
   </PropertyGroup>
 
-  <UsingTask TaskName="EmscriptenCompile" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CPPTasks.dll" />
-  <UsingTask TaskName="EmscriptenLink" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CPPTasks.dll" />
+  <UsingTask TaskName="EmscriptenCompile" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
+  <UsingTask TaskName="EmscriptenLink" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
 
   <!-- Compile -->
   <Target Name="ClCompile" Condition="'@(ClCompile)' != ''" DependsOnTargets="SelectClCompile">
@@ -36,7 +38,7 @@
         ToolArchitecture = "$(CLToolArchitecture)"
         AcceptableNonZeroExitCodes = "%(ClCompile.AcceptableNonZeroExitCodes)"
         EchoCommandLines = "%(ClCompile.EchoCommandLines)"
-        PropertyXmlFile = "$(MSBuildThisFileDirectory)$(LangID)\emcc.xml">
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml">
     </EmscriptenCompile>
 
   </Target>
@@ -67,7 +69,7 @@
         ToolArchitecture = "$(LibToolArchitecture)"
         AcceptableNonZeroExitCodes = "%(Lib.AcceptableNonZeroExitCodes)"
         EchoCommandLines = "%(Lib.EchoCommandLines)"
-        PropertyXmlFile = "$(MSBuildThisFileDirectory)$(LangID)\emcc_lib.xml">
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc_lib.xml">
         <Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
     </EmscriptenLink>
 
@@ -98,7 +100,7 @@
         ToolArchitecture = "$(LinkToolArchitecture)"
         AcceptableNonZeroExitCodes = "%(Link.AcceptableNonZeroExitCodes)"
         EchoCommandLines = "%(Link.EchoCommandLines)"     
-        PropertyXmlFile = "$(MSBuildThisFileDirectory)$(LangID)\emcc_link.xml">
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc_link.xml">
       <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
     </EmscriptenLink>
 
@@ -124,17 +126,17 @@
     <UseDefaultDebuggersPropertyPageSchemas>false</UseDefaultDebuggersPropertyPageSchemas>
   </PropertyGroup>
   <ItemGroup>
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangID)\general.xml">
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\general.xml">
       <Context>Project</Context>
     </PropertyPageSchema>
     <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_general.xml;" />
     <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_local_windows.xml;" />
     <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_remote_windows.xml;" />
     <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_web_browser.xml;" />
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangID)\directories.xml;" />
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangID)\emcc.xml" />
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangID)\emcc_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary' or '$(ConfigurationType)' == 'WebAssembly'" />
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangID)\emcc_link.xml" Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication'" />
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\directories.xml;" />
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc.xml" />
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary'" />
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_link.xml" Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication'" />
   </ItemGroup>
 
 </Project>
