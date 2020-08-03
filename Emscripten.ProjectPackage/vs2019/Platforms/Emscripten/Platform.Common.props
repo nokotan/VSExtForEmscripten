@@ -39,14 +39,6 @@
     <PostBuildEvent Include="$(ProjectName)" />
   </ItemGroup>
 
-  <!-- Debugging -->
-  <PropertyGroup>
-    <DebuggerFlavor>WebBrowserDebugger</DebuggerFlavor>
-
-    <WebBrowserDebuggerHttpUrl>$(TargetPath)</WebBrowserDebuggerHttpUrl>
-    <WebBrowserDebuggerDebuggerType>Script</WebBrowserDebuggerDebuggerType>
-  </PropertyGroup>
-
   <!-- Configuration types -->
   <PropertyGroup Condition="'$(ConfigurationType)' == 'HTMLPage'">
     <TargetExt>.html</TargetExt>
@@ -63,6 +55,23 @@
   <PropertyGroup Condition="'$(ConfigurationType)' == 'WebAssembly'">
     <TargetExt>.wasm</TargetExt>
     <LibCompiled>true</LibCompiled>
+  </PropertyGroup>
+
+  <!-- TargetDir -->
+  <PropertyGroup>
+    <TargetPath     Condition=" '$(TargetPath)' == ''"   >$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
+    <TargetFileName Condition=" '$(TargetFileName)'=='' ">$([System.IO.Path]::GetFileName('$(TargetPath)'))</TargetFileName>
+    <TargetDir      Condition=" '$(TargetDir)'==''"      >$([System.IO.Path]::GetDirectoryName('$(TargetPath)'))</TargetDir>
+  </PropertyGroup>
+
+  <!-- Debugging -->
+  <PropertyGroup>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerCommand>$(EmscriptenDir)\emrun.bat</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments>--serve_after_close $(TargetFileName)</LocalDebuggerCommandArguments>
+    <LocalDebuggerDebuggerType>Auto</LocalDebuggerDebuggerType>
+    <LocalDebuggerAttach>false</LocalDebuggerAttach>
+    <LocalDebuggerWorkingDirectory>$(TargetDir)</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
 
   <!-- Project tools defaults -->
