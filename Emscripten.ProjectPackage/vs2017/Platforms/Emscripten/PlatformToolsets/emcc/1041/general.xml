@@ -3,6 +3,7 @@
 
   <Rule.Categories>
     <Category Name="General" DisplayName="全般" Description="全般" />
+    <Category Name="Toolchain" DisplayName="emscripten ツールチェイン" Description="emscripten ツールチェインディレクトリ" />
     <Category Name="ProjectDefaults" DisplayName="プロジェクトの既定値" Description="プロジェクトの既定値" />
   </Rule.Categories>
   <Rule.DataSource>
@@ -48,6 +49,10 @@
   <EnumProperty Name="PlatformToolset" DisplayName="プラットフォーム ツールセット" Description="現在の構成の作成に使用するツールセットを指定します。設定しない場合は、既定のツールセットが使用されます。" Category="General">
     <EnumValue Name="emcc" DisplayName="Emscripten Compiler Frontend (emcc)" />
   </EnumProperty>
+
+  <!-- Toolchain Paths -->
+
+  <StringProperty Name="EmscriptenDir" DisplayName="emscripten インストールディレクトリ" Description="emscripten がインストールされているディレクトリを指定します。詳細は https://github.com/kripken/emscripten を参照してください。環境変数 EMSCRIPTEN と一致します。" Category="Toolchain" />
 
   <!-- Project Defaults -->
 

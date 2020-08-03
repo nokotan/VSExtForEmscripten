@@ -3,6 +3,7 @@
 
   <Rule.Categories>
     <Category Name="General" DisplayName="General" Description="General" />
+    <Category Name="Toolchain" DisplayName="Toolchain Paths" Description="Toolchain Paths" />
     <Category Name="ProjectDefaults" DisplayName="Project Defaults" Description="Project Defaults" />
   </Rule.Categories>
   <Rule.DataSource>
@@ -48,6 +49,10 @@
   <EnumProperty Name="PlatformToolset" DisplayName="Platform Toolset" Category="General">
     <EnumValue Name="emcc" DisplayName="Emscripten Compiler Frontend (emcc)" />
   </EnumProperty>
+
+  <!-- Toolchain Paths -->
+
+  <StringProperty Name="EmscriptenDir" DisplayName="Emscripten" Description="Specify the directory where Emscripten is located. See https://github.com/kripken/emscripten.  Corresponds to environment variable EMSCRIPTEN." Category="Toolchain" />
 
   <!-- Project Defaults -->
 
