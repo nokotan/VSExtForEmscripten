@@ -297,10 +297,17 @@ namespace Emscripten.Build.CPPTasks
 
                 // Remove rtti stuff from plain C builds. -Wall generates warnings otherwise.
                 string compileAs = m_currentSourceItem.GetMetadata("CompileAs");
-                if ((compileAs != null) && (compileAs == "CompileAsC"))
+                string sourceExtension = Path.GetExtension(sourcePath);
+                
+                if (compileAs != null && (compileAs == "CompileAsC" || (compileAs != "CompileAsCpp" && sourceExtension == ".c")))
                 {
                     templateStr.Replace("-fno-rtti", "");
                     templateStr.Replace("-frtti", "");
+                    templateStr.Replace("-std=c++98", "");
+                    templateStr.Replace("-std=c++03", "");
+                    templateStr.Replace("-std=c++11", "");
+                    templateStr.Replace("-std=c++14", "");
+                    templateStr.Replace("-std=c++1z", "");
                 }
             }
 
