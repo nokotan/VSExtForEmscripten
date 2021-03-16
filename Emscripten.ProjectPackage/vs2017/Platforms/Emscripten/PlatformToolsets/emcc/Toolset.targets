@@ -10,6 +10,7 @@
 
   <UsingTask TaskName="EmscriptenCompile" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
   <UsingTask TaskName="EmscriptenLink" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
+  <UsingTask TaskName="EmscriptenLib" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
 
   <!-- Compile -->
   <Target Name="ClCompile" Condition="'@(ClCompile)' != ''" DependsOnTargets="SelectClCompile">
@@ -56,7 +57,7 @@
       <LibToolArchitecture Condition="'$(LibToolArchitecture)' == ''">$(VCToolArchitecture)</LibToolArchitecture>
     </PropertyGroup>
 
-    <EmscriptenLink
+    <EmscriptenLib
         BuildingInIDE = "$(BuildingInsideVisualStudio)"
         Sources = "@(Lib)"
         OutputFile = "%(Lib.OutputFile)"
@@ -71,7 +72,7 @@
         EchoCommandLines = "%(Lib.EchoCommandLines)"
         PropertyXmlFile = "$(PropertyXmlDirectory)\emcc_lib.xml">
         <Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
-    </EmscriptenLink>
+    </EmscriptenLib>
 
     <Message Condition="'$(LibSkippedExecution)' == 'false'" Text="$(MSBuildProjectFile) -&gt; $(TargetPath)" Importance="High" />
 
