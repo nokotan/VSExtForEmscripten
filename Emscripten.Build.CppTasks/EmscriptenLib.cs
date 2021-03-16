@@ -56,22 +56,25 @@ namespace Emscripten.Build.CPPTasks
             return base.ValidateParameters();
         }
 
-        //#if !VS2010DLL
-        //		protected override string GenerateResponseFileCommands(VCToolTask.CommandLineFormat format)
-        //		{
-        //			return GenerateResponseFileCommands();
-        //		}
-        //#endif
+#if !VS2010DLL
+        protected override string GenerateResponseFileCommands(CommandLineFormat format, EscapeFormat escapeFormat)
+        {
+            return GenerateResponseFileCommands();
+        }
+#endif
 
         protected override string GenerateResponseFileCommands()
         {
-            StringBuilder builder = new StringBuilder(Utils.EST_MAX_CMDLINE_LEN);
-            builder.Append("rcs " + Utils.PathSanitize(OutputFile) + " ");
-            foreach (ITaskItem item in Sources)
+            StringBuilder templateStr = new StringBuilder(Utils.EST_MAX_CMDLINE_LEN);
+            templateStr.Append("rcs " + Utils.PathSanitize(OutputFile) + " ");
+
+            foreach (ITaskItem sourceFile in Sources)
             {
-                builder.Append(Utils.PathSanitize(item.ToString()) + " ");
+                templateStr.Append(Utils.PathSanitize(sourceFile.GetMetadata("Identity")));
+                templateStr.Append(" ");
             }
-            return builder.ToString();
+
+            return templateStr.ToString();
         }
 
         protected override int ExecuteTool(string pathToTool, string responseFileCommands, string commandLineCommands)
