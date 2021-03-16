@@ -63,7 +63,7 @@
         TrackerLogDirectory = "%(Lib.TrackerLogDirectory)"
         TLogReadFiles = "@(LIBTLogReadFiles)"
         TLogWriteFiles = "@(LIBTLogWriteFiles)"
-        EmscriptenToolPath = "$(EmscriptenDir)\emcc.bat"
+        EmscriptenToolPath = "$(EmscriptenDir)\emar.bat"
         TrackFileAccess = "$(TrackFileAccess)"
         MinimalRebuildFromTracking = "%(Lib.MinimalRebuildFromTracking)"
         ToolArchitecture = "$(LibToolArchitecture)"
