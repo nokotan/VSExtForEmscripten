@@ -222,7 +222,7 @@ namespace Emscripten.Build.CPPTasks
             get
             {
                 return new string[] {
-                    "*.read.1.tlog"
+                    m_toolFileName + "-link.command.1.tlog"
                 };
             }
         }
@@ -232,7 +232,7 @@ namespace Emscripten.Build.CPPTasks
             get
             {
                 return new string[] {
-                     "*.write.1.tlog"
+                     m_toolFileName + "-link.command.1.tlog"
                 };
             }
         }

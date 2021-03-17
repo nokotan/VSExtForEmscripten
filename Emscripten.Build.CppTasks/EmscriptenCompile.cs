@@ -412,6 +412,8 @@ namespace Emscripten.Build.CPPTasks
                         {
                             writer.WriteLine(dep);
                         }
+
+                        writer.Flush();
                     }
                     catch (Exception)
                     {
