@@ -222,7 +222,7 @@ namespace Emscripten.Build.CPPTasks
             get
             {
                 return new string[] {
-                    m_toolFileName + "-link.command.1.tlog"
+                    "cmd-python.read.1.tlog"
                 };
             }
         }
@@ -232,7 +232,7 @@ namespace Emscripten.Build.CPPTasks
             get
             {
                 return new string[] {
-                     m_toolFileName + "-link.command.1.tlog"
+                    "cmd-python.write.1.tlog"
                 };
             }
         }
