@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <VSTemplate Version="3.0.0" Type="Project" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:sdk="http://schemas.microsoft.com/developer/vstemplate-sdkextension/2010">
   <TemplateData>
-    <Name>Emscripten.ProjectTemplate</Name>
-    <Description>Visual Studio Extension for developing with emscripten</Description>
+    <Name>Plain Emscripten Project</Name>
+    <Description>Hello world with emscripten</Description>
     <Icon>Emscripten.ProjectTemplate.ico</Icon>
     <ProjectType>VC</ProjectType>
     <SortOrder>1000</SortOrder>
