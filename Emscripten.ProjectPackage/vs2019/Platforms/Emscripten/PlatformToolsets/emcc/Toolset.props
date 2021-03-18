@@ -64,4 +64,19 @@
     </Link>    
   </ItemDefinitionGroup>
 
+  <!-- Project tools defaults for intellisense - debug builds -->
+  <ItemDefinitionGroup Condition="'$(DesignTimeBuild)'=='true' and '$(Configuration)|$(Platform)'=='Debug|Emscripten'">
+    <ClCompile>
+      <ForcedIncludeFiles>$(MSBuildThisFileDirectory)\EmscriptenPlatform.h</ForcedIncludeFiles>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <!-- Project tools defaults for intellisense - non-debug builds -->
+  <ItemDefinitionGroup Condition="'$(DesignTimeBuild)'=='true' and '$(Configuration)|$(Platform)'=='Release|Emscripten'">
+    <ClCompile>
+      <ForcedIncludeFiles>$(MSBuildThisFileDirectory)\EmscriptenPlatform.h</ForcedIncludeFiles>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+
 </Project>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
@@ -49,6 +49,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+      <InstallRoot>VCTargets</InstallRoot>
+    </Content>
     <Content Include="vs2019\Platforms\Emscripten\Platform.Common.props">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
@@ -77,6 +82,11 @@
     <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.targets">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+    </Content>
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
+      <InstallRoot>MSBuild</InstallRoot>
+      <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
     </Content>
     <None Include="source.extension.vsixmanifest">

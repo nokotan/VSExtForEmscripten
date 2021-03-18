@@ -10,7 +10,7 @@
   <PropertyGroup>
     <ExecutablePath Condition="'$(ExecutablePath)' == ''">$(PATH);$(EmscriptenDir);$(EmscriptenDir)\system\bin</ExecutablePath>
     <SourcePath Condition="'$(SourcePath)' == ''">$(EmscriptenDir)\system\lib\libc\musl\src;$(EmscriptenDir)\system\lib\libcxx</SourcePath>
-    <IncludePath Condition="'$(IncludePath)' == ''">$(EmscriptenDir)\system\local\include;$(EmscriptenDir)\system\include;$(EmscriptenDir)\system\include\compat;$(EmscriptenDir)\system\include\libc;$(EmscriptenDir)\system\include\libcxx;$(EmscriptenDir)\system\lib\libc\musl\arch\emscripten;$(EmscriptenDir)\system\lib\libcxx\include</IncludePath>
+    <IncludePath Condition="'$(IncludePath)' == ''">$(EmscriptenDir)\system\include\libcxx;$(EmscriptenDir)\system\lib\libcxxabi\include;$(EmscriptenDir)\system\include;$(EmscriptenDir)\system\include\libc;$(EmscriptenDir)\system\lib\libc\musl\arch\emscripten;$(EmscriptenDir)\system\lib\libcxx\include</IncludePath>
   </PropertyGroup>
 
   <!-- Project tools defaults -->
@@ -64,4 +64,19 @@
     </Link>    
   </ItemDefinitionGroup>
 
+  <!-- Project tools defaults for intellisense - debug builds -->
+  <ItemDefinitionGroup Condition="'$(DesignTimeBuild)'=='true' and '$(Configuration)|$(Platform)'=='Debug|Emscripten'">
+    <ClCompile>
+      <ForcedIncludeFiles>$(MSBuildThisFileDirectory)\EmscriptenPlatform.h</ForcedIncludeFiles>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <!-- Project tools defaults for intellisense - non-debug builds -->
+  <ItemDefinitionGroup Condition="'$(DesignTimeBuild)'=='true' and '$(Configuration)|$(Platform)'=='Release|Emscripten'">
+    <ClCompile>
+      <ForcedIncludeFiles>$(MSBuildThisFileDirectory)\EmscriptenPlatform.h</ForcedIncludeFiles>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  
 </Project>
