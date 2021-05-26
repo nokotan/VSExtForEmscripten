@@ -7,6 +7,7 @@
     <Category Name="Preprocessor" DisplayName="Preprocessor" />
     <Category Name="Code Generation" DisplayName="Code Generation" />
     <Category Name="Language" DisplayName="Language" />
+    <Category Name="Precompiled Headers" DisplayName="Precompiled Headers" />
     <Category Name="Output Files" DisplayName="Output Files" />
     <Category Name="Advanced" DisplayName="Advanced" />
     <Category Name="All Options" DisplayName="All Options" Subtype="Search" />
@@ -112,6 +113,25 @@
 
   <IntProperty Name="ConstExprLimit" DisplayName="Recursive Const Expression Invocation Limit" Description="Sets the limit for recursive constexpr function invocations. The default value is 512." Category="Language" Switch="fconstexpr-depth=" />
   <IntProperty Name="TemplateRecursionLimit" DisplayName="Recursive Template Instantiation Limit" Description="Sets the limit for recursively nested template instantiations. The default value is 1024." Category="Language" Switch="ftemplate-depth=" />
+
+  <!-- PreCompiled Headers -->
+
+  <EnumProperty Name="PrecompiledHeader" DisplayName="Precompiled Header" Description="Create/Use Precompiled Header:Enables creation or use of a precompiled header during the build." Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeader">
+    <EnumValue Name="Use" Switch="" DisplayName="Use" Description="Use a Precompiled Header.">
+    </EnumValue>
+    <EnumValue Name="NotUsing" Switch="" DisplayName="Not using Precompiled Headers" Description="Not using a Precompiled Header.">
+    </EnumValue>
+  </EnumProperty>
+  <StringProperty Subtype="file" Name="PrecompiledHeaderFile" DisplayName="Precompiled Header File" Description="Specifies header file name to use for precompiled header file. This file will be also added to 'Forced Include Files' during build" Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeaderFile">
+  </StringProperty>
+  <StringProperty Name="PrecompiledHeaderOutputFileDirectory" DisplayName="Precompiled Header Output File Directory" Description="Specifies the directory for the generated precompiled header. This directory will be also added to 'Additional Include Directories' during build" Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeaderOutputFileDirectory">
+  </StringProperty>
+  <EnumProperty Name="PrecompiledHeaderCompileAs" DisplayName="Compile Precompiled Header As" Description="Select compile language option for precompiled header file (-x c-header, -x c++-header)." Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeaderCompileAs">
+    <EnumValue Name="CompileAsC" Switch="x c-header" DisplayName="Compile as C Code" Description="Compile as C Code.">
+    </EnumValue>
+    <EnumValue Name="CompileAsCpp" Switch="x c++-header" DisplayName="Compile as C++ Code" Description="Compile as C++ Code.">
+    </EnumValue>
+  </EnumProperty>
 
   <!-- Output Files -->
 

@@ -24,6 +24,9 @@
       <EchoCommandLines Condition="'%(ClCompile.EchoCommandLines)' == ''">false</EchoCommandLines>
       <ProgramDataBaseFileName Condition="'%(ClCompile.ProgramDataBaseFileName)' == ''"></ProgramDataBaseFileName>
       <TrackerLogDirectory Condition="'%(ClCompile.TrackerLogDirectory)' == ''">$(TLogLocation)</TrackerLogDirectory>
+      <PrecompiledHeaderOutputFileDirectory>$(IntDir)</PrecompiledHeaderOutputFileDirectory>
+      <PrecompiledHeaderOutputFile></PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderCompileAs>CompileAsCpp</PrecompiledHeaderCompileAs>
     </ClCompile>
     <Lib>      
       <OutputFile Condition="'%(Lib.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
