@@ -34,6 +34,7 @@
 
       <ClCompilePCH>
         <ObjectFileName>%(ClCompilePCH.PrecompiledHeaderOutputFileDirectory)%(FileName)%(Extension).pch</ObjectFileName>
+        <PrecompiledHeaderOutputFile>%(PrecompiledHeaderOutputFileDirectory)%(ClCompile.PrecompiledHeaderFile).pch</PrecompiledHeaderOutputFile>
       </ClCompilePCH>
 
       <!-- Add PCH to the force include, and remove from PCH related flags. -->
@@ -45,9 +46,7 @@
       </ClCompile>
 
       <ClCompile Condition="'%(ClCompile.PrecompiledHeader)' == 'Use' and '$(DesignTimeBuild)' != 'true' and '%(Identity)' != ''">
-        <ForcedIncludeFiles>@(ClCompile->Metadata(PrecompiledHeaderFile)->'%(PrecompiledHeaderOutputFileDirectory)%(FileName)%(Extension)');%(ClCompile.ForcedIncludeFiles)</ForcedIncludeFiles>
-        <!-- Set MultiToolTask scheduler to wait for the PCH to finish. -->
-        <MultiToolTaskDependency>@(ClCompile->Metadata(PrecompiledHeaderFile)->Fullpath()->Distinct()->ClearMetadata())</MultiToolTaskDependency>
+        <PrecompiledHeaderOutputFile>%(PrecompiledHeaderOutputFileDirectory)%(ClCompile.PrecompiledHeaderFile).pch</PrecompiledHeaderOutputFile>
       </ClCompile>
 
       <!-- Done processing PCH, blank out the unused metadata. -->
