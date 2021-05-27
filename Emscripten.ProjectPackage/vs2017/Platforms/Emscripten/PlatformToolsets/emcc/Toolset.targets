@@ -46,7 +46,7 @@
       </ClCompile>
 
       <ClCompile Condition="'%(ClCompile.PrecompiledHeader)' == 'Use' and '$(DesignTimeBuild)' != 'true' and '%(Identity)' != ''">
-        <PrecompiledHeaderOutputFile>%(PrecompiledHeaderOutputFileDirectory)%(ClCompile.PrecompiledHeaderFile).pch</PrecompiledHeaderOutputFile>
+        <PrecompiledHeaderOutputFile>@(ClCompile->Metadata(PrecompiledHeaderFile)->'%(PrecompiledHeaderOutputFileDirectory)%(FileName)%(Extension)').pch</PrecompiledHeaderOutputFile>
       </ClCompile>
 
       <!-- Done processing PCH, blank out the unused metadata. -->

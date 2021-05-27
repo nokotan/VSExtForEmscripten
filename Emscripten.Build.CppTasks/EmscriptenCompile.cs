@@ -222,7 +222,6 @@ namespace Emscripten.Build.CPPTasks
                     string pchSetting = sourceFile.GetMetadata("PrecompiledHeader").ToLowerInvariant();
                     if (pchSetting == "create")
                     {
-                        Log.LogMessageFromText("CompileWithEmscripten: " + sourceFile.GetMetadata("PrecompiledHeaderOutputFile"), MessageImportance.High);
                         string pchOutputH = Path.GetFullPath(sourceFile.GetMetadata("PrecompiledHeaderOutputFile"));
 
                         using (StreamWriter writer = new StreamWriter(pchOutputH, false, Encoding.ASCII))
@@ -281,7 +280,6 @@ namespace Emscripten.Build.CPPTasks
                 string pchSetting = m_currentSourceItem.GetMetadata("PrecompiledHeader").ToLowerInvariant();
                 if (pchSetting == "use")
                 {
-                    Log.LogMessageFromText("GenerateResponseFileCommands: " + m_currentSourceItem.GetMetadata("PrecompiledHeaderOutputFile"), MessageImportance.High);
                     string pchOutputH = Utils.PathSanitize(m_currentSourceItem.GetMetadata("PrecompiledHeaderOutputFile"));
 
                     templateStr.Append(" -include-pch ");
