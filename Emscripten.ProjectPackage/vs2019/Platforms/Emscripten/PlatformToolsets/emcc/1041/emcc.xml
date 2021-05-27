@@ -7,6 +7,7 @@
     <Category Name="Preprocessor" DisplayName="プリプロセッサ" />
     <Category Name="Code Generation" DisplayName="コード生成" />
     <Category Name="Language" DisplayName="言語" />
+    <Category Name="Precompiled Headers" DisplayName="プリコンパイル済みヘッダー"/>
     <Category Name="Output Files" DisplayName="出力ファイル" />
     <Category Name="Advanced" DisplayName="詳細設定" />
     <Category Name="All Options" DisplayName="すべてのオプション" Subtype="Search" />
@@ -112,6 +113,25 @@
 
   <IntProperty Name="ConstExprLimit" DisplayName="ConstExpr 関数の再帰回数の上限" Description="ConstExpr 関数の再帰回数の上限を設定します。既定値は 512 です。(-fconstexpr-depth=[N])" Category="Language" Switch="fconstexpr-depth=" />
   <IntProperty Name="TemplateRecursionLimit" DisplayName="テンプレートの実体化の再帰回数の上限" Description="テンプレートの実体化の再帰回数の上限を設定します。既定値は 1024 です。(-ftemplate-depth=[N])" Category="Language" Switch="ftemplate-depth=" />
+
+  <!-- PreCompiled Headers -->
+
+  <EnumProperty Name="PrecompiledHeader" DisplayName="プリコンパイル済みヘッダー" Description="プリコンパイル済みヘッダーを作成/使用する: プリコンパイル済みヘッダーをビルド中に作成または使用できるようになります。" Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeader">
+    <EnumValue Name="Use" Switch="" DisplayName="使用" Description="プリコンパイル済みヘッダーを使用します。">
+    </EnumValue>
+    <EnumValue Name="NotUsing" Switch="" DisplayName="プリコンパイル済みヘッダーを使用しない" Description="プリコンパイル済みヘッダーを使用しません。">
+    </EnumValue>
+  </EnumProperty>
+  <StringProperty Subtype="file" Name="PrecompiledHeaderFile" DisplayName="プリコンパイル済みヘッダー ファイル" Description="プリコンパイル済みヘッダー ファイルに使用するヘッダー ファイル名を指定します。このファイルは、ビルド中に '必ず使用されるインクルード ファイル' にも追加されます" Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeaderFile">
+  </StringProperty>
+  <StringProperty Name="PrecompiledHeaderOutputFileDirectory" DisplayName="プリコンパイル済みヘッダーの出力ファイルディレクトリ" Description="生成されたプリコンパイル済みヘッダー用のディレクトリを指定します。このディレクトリは、ビルド中に '追加のインクルード ディレクトリ' にも追加されます" Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeaderOutputFileDirectory">
+  </StringProperty>
+  <EnumProperty Name="PrecompiledHeaderCompileAs" DisplayName="プリコンパイル済みヘッダーのコンパイル言語の選択" Description="プリコンパイル済みヘッダー ファイルのコンパイル言語オプションを選択します (-x c-header、-x c++-header)。" Category="Precompiled Headers" F1Keyword="VC.Project.VCClangCompilerTool.PrecompiledHeaderCompileAs">
+    <EnumValue Name="CompileAsC" Switch="x c-header" DisplayName="C コードとしてコンパイル" Description="C コードとしてコンパイルします。">
+    </EnumValue>
+    <EnumValue Name="CompileAsCpp" Switch="x c++-header" DisplayName="C++ コードとしてコンパイル" Description="C++ コードとしてコンパイルします。">
+    </EnumValue>
+  </EnumProperty>
 
   <!-- Output Files -->
 

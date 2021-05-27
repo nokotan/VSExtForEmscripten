@@ -12,6 +12,59 @@
   <UsingTask TaskName="EmscriptenLink" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
   <UsingTask TaskName="EmscriptenLib" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
 
+  <Target Name="FixupCLCompileOptions"
+          Condition="'@(ClCompile)' != ''">
+    <ItemGroup>
+      <ClCompile>
+        <PrecompiledHeaderOutputFileDirectory Condition="'%(ClCompile.PrecompiledHeaderOutputFileDirectory)' != '' and !HasTrailingSlash('%(ClCompile.PrecompiledHeaderOutputFileDirectory)')">%(ClCompile.PrecompiledHeaderOutputFileDirectory)\</PrecompiledHeaderOutputFileDirectory>
+      </ClCompile>
+
+      <!-- Add PCH to the list of compiles -->
+      <ClCompilePCH Condition="'%(ClCompile.PrecompiledHeaderFile)' != '' and '%(ClCompile.PrecompiledHeader)' == 'Use'" Include="@(ClCompile->Metadata(PrecompiledHeaderFile)->Fullpath()->Distinct()->ClearMetadata())">
+        <CompileAs/>
+        <ForcedIncludeFiles/>
+        <PrecompiledHeaderFile/>
+        <PrecompiledHeader>Create</PrecompiledHeader>
+        <PrecompiledHeaderCompileAs>%(ClCompile.PrecompiledHeaderCompileAs)</PrecompiledHeaderCompileAs>
+        <PrecompiledHeaderOutputFileDirectory>%(ClCompile.PrecompiledHeaderOutputFileDirectory)</PrecompiledHeaderOutputFileDirectory>
+        <!-- PCH are not part of the build, so exclude the output from the link step. -->
+        <LibCompiled>false</LibCompiled>
+        <LinkCompiled>false</LinkCompiled>
+      </ClCompilePCH>
+
+      <ClCompilePCH>
+        <ObjectFileName>%(ClCompilePCH.PrecompiledHeaderOutputFileDirectory)%(FileName)%(Extension).pch</ObjectFileName>
+        <PrecompiledHeaderOutputFile>%(PrecompiledHeaderOutputFileDirectory)%(ClCompile.PrecompiledHeaderFile).pch</PrecompiledHeaderOutputFile>
+      </ClCompilePCH>
+
+      <!-- Add PCH to the force include, and remove from PCH related flags. -->
+      <ClCompile Condition="'%(ClCompile.PrecompiledHeader)' == 'Use' and '$(DesignTimeBuild)' == 'true'">
+        <!-- Clang expect the output pch.h, which it will deduce pch.h.gch) -->
+        <!-- VC intellisense expect the source pch.h -->
+        <ForcedIncludeFiles>%(ClCompile.PrecompiledHeaderFile);%(ClCompile.ForcedIncludeFiles)</ForcedIncludeFiles>
+        <PrecompiledHeaderOutputFile>%(PrecompiledHeaderOutputFileDirectory)%(ClCompile.PrecompiledHeaderFile).pch</PrecompiledHeaderOutputFile>
+      </ClCompile>
+
+      <ClCompile Condition="'%(ClCompile.PrecompiledHeader)' == 'Use' and '$(DesignTimeBuild)' != 'true' and '%(Identity)' != ''">
+        <PrecompiledHeaderOutputFile>@(ClCompile->Metadata(PrecompiledHeaderFile)->'%(PrecompiledHeaderOutputFileDirectory)%(FileName)%(Extension)').pch</PrecompiledHeaderOutputFile>
+      </ClCompile>
+
+      <!-- Done processing PCH, blank out the unused metadata. -->
+      <ClCompile>
+        <PrecompiledHeaderFile />
+        <PrecompiledHeaderCompileAs />
+        <PrecompiledHeaderOutputFileDirectory />
+      </ClCompile>
+      
+      <ClCompilePCH>
+        <PrecompiledHeaderOutputFileDirectory />
+        <RuntimeTypeInfo Condition="'%(ClCompilePCH.PrecompiledHeaderCompileAs)' == 'CompileAsC'" />
+      </ClCompilePCH>
+
+      <ClCompile Condition="'$(DesignTimeBuild)' != 'true'" Include="@(ClCompilePCH)" />
+    </ItemGroup>
+  </Target>
+
   <!-- Compile -->
   <Target Name="ClCompile" Condition="'@(ClCompile)' != ''" DependsOnTargets="SelectClCompile">
 
@@ -27,7 +80,23 @@
     </PropertyGroup>
 
     <EmscriptenCompile
-        Condition = "'%(ClCompile.ExcludedFromBuild)' != 'true'"
+        Condition="'%(ClCompile.PrecompiledHeader)' == 'Create'"
+        BuildingInIDE = "$(BuildingInsideVisualStudio)"
+        Sources = "@(ClCompile)"
+        TrackerLogDirectory = "%(ClCompile.TrackerLogDirectory)"
+        TLogReadFiles = "@(CLTLogReadFiles)"
+        TLogWriteFiles = "@(CLTLogWriteFiles)"
+        EmscriptenToolPath = "$(EmscriptenDir)\emcc.bat"
+        TrackFileAccess = "$(TrackFileAccess)"
+        MinimalRebuildFromTracking = "%(ClCompile.MinimalRebuildFromTracking)"
+        ToolArchitecture = "$(CLToolArchitecture)"
+        AcceptableNonZeroExitCodes = "%(ClCompile.AcceptableNonZeroExitCodes)"
+        EchoCommandLines = "%(ClCompile.EchoCommandLines)"
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml">
+    </EmscriptenCompile>
+
+    <EmscriptenCompile
+        Condition = "'%(ClCompile.PrecompiledHeader)' != 'Create' and '%(ClCompile.ExcludedFromBuild)' != 'true'"
         BuildingInIDE = "$(BuildingInsideVisualStudio)"
         Sources = "@(ClCompile)"
         TrackerLogDirectory = "%(ClCompile.TrackerLogDirectory)"
