@@ -12,7 +12,7 @@
     <SourcePath Condition="'$(SourcePath)' == ''">$(EmscriptenDir)\system\lib\libc\musl\src;$(EmscriptenDir)\system\lib\libcxx</SourcePath>
     
     <SysRoot>$(EmscriptenDir)\cache\sysroot</SysRoot>
-    <IncludePath Condition="Exists($(SysRoot))">$(SysRoot)\include;$(SysRoot)\include\compat\;$(SysRoot)\include\c++\v1</IncludePath>
+    <IncludePath Condition="Exists($(SysRoot))">$(SysRoot)\include\c++\v1;$(SysRoot)\include\compat\;$(SysRoot)\include</IncludePath>
     <IncludePath Condition="'$(IncludePath)' == ''">$(EmscriptenDir)\system\include\libcxx;$(EmscriptenDir)\system\lib\libcxxabi\include;$(EmscriptenDir)\system\include;$(EmscriptenDir)\system\include\libc;$(EmscriptenDir)\system\lib\libc\musl\arch\emscripten;$(EmscriptenDir)\system\lib\libcxx\include</IncludePath>
   </PropertyGroup>
 
