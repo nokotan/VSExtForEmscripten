@@ -152,7 +152,7 @@ namespace Emscripten.Build.CPPTasks
         {
             get
             {
-                return new UTF8Encoding(encoderShouldEmitUTF8Identifier: false);
+                return Encoding.Default;
             }
         }
 
