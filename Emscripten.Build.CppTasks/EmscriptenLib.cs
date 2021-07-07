@@ -119,7 +119,7 @@ namespace Emscripten.Build.CPPTasks
         {
             get
             {
-                return Encoding.ASCII;
+                return Encoding.Unicode;
             }
         }
 
