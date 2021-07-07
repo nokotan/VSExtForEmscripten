@@ -57,13 +57,6 @@
     <LibCompiled>true</LibCompiled>
   </PropertyGroup>
 
-  <!-- TargetDir -->
-  <PropertyGroup>
-    <TargetPath     Condition=" '$(TargetPath)' == ''"   >$([System.IO.Path]::Combine($(ProjectDir),$(OutDir)$(TargetName)$(TargetExt)))</TargetPath>
-    <TargetFileName Condition=" '$(TargetFileName)'=='' ">$([System.IO.Path]::GetFileName('$(TargetPath)'))</TargetFileName>
-    <TargetDir      Condition=" '$(TargetDir)'==''"      >$([System.IO.Path]::GetDirectoryName('$(TargetPath)'))</TargetDir>
-  </PropertyGroup>
-
   <!-- Debugging -->
   <PropertyGroup>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
