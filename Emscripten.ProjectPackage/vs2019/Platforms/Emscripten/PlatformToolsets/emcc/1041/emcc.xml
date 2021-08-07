@@ -88,7 +88,8 @@
     <EnumValue Name="stdcpp03" DisplayName="C++03 言語標準" Description="ISO/IEC 14882:2003" Switch="std=c++03" />
     <EnumValue Name="stdcpp11" DisplayName="C++11 言語標準" Description="ISO/IEC 14882:2011" Switch="std=c++11" />
     <EnumValue Name="stdcpp14" DisplayName="C++14 言語標準" Description="ISO/IEC 14882:2014" Switch="std=c++14" />
-    <EnumValue Name="stdcpp17" DisplayName="C++17 言語標準" Description="ISO/IEC 14882:2017" Switch="std=c++1z" />
+    <EnumValue Name="stdcpp17" DisplayName="C++17 言語標準" Description="ISO/IEC 14882:2017" Switch="std=c++17" />
+    <EnumValue Name="stdcpplatest" DisplayName="C++20 言語標準" Description="ISO/IEC 14882:2020" Switch="std=c++2a" />
     <EnumValue Name="gnucpp98" DisplayName="C++98 言語標準 (GNU 拡張)" Switch="std=gnu++98" />
     <EnumValue Name="gnucpp11" DisplayName="C++11 言語標準 (GNU 拡張)" Switch="std=gnu++11" />
   </EnumProperty>
