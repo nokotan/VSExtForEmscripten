@@ -18,4 +18,4 @@
 
 ; Launch Info 
 "Adapter"="%EMSDK%\node\14.15.5_64bit\bin\node.exe" 
-"AdapterArgs"="--inspect $PackageFolder$\lib\dapServerLauncher.js" 
+"AdapterArgs"="--inspect "$PackageFolder$\lib\dapServerLauncher.js"" 

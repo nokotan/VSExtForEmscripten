@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectType", "Emscripten.ProjectType\Emscripten.ProjectType.csproj", "{66908FCE-3A52-477B-87B5-ACDE7984DE68}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger.Definition", "Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.csproj", "{66908FCE-3A52-477B-87B5-ACDE7984DE68}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectTemplate", "Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj", "{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.CppTasks", "Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj", "{9B55BA92-5129-41E5-ABF3-CFB220E1672B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectPackage", "Emscripten.ProjectPackage\Emscripten.ProjectPackage.csproj", "{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.Definition", "Emscripten.Build.Definition\Emscripten.Build.Definition.csproj", "{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debug.VSCode", "Emscripten.Debug.VSCode\Emscripten.Debug.VSCode.csproj", "{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger", "Emscripten.Debugger\Emscripten.Debugger.csproj", "{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ExtensionPack", "Emscripten.ExtensionPack\Emscripten.ExtensionPack.csproj", "{9608F800-0957-4679-AFA6-99E45DCE9034}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9608F800-0957-4679-AFA6-99E45DCE9034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9608F800-0957-4679-AFA6-99E45DCE9034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9608F800-0957-4679-AFA6-99E45DCE9034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9608F800-0957-4679-AFA6-99E45DCE9034}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="Emscripten.Debugger.db0b9864-52e2-4c42-94d1-2c7279a2c57a" Version="0.5.0.2" Language="en-US" Publisher="Kamenokosoft" />
+        <DisplayName>Emscripten Debugger for Visual Studio</DisplayName>
+        <Description xml:space="preserve">WebAssembly Debugger Stub based on Debug Adapter Protocol for Visual Studio</Description>
+    </Metadata>
+    <Installation AllUsers="true">
+        <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.Community"/>
+        <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.Pro" />
+        <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.Enterprise" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,17.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+</PackageManifest>
