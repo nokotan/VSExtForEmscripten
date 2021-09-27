@@ -78,6 +78,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Emscripten.ProjectPackage.vsix
-          asset_name: Emscripten.ProjectPackage.vsix
+          asset_path: Emscripten.Build.Definition.vsix
+          asset_name: Emscripten.Build.Definition.vsix
+          asset_content_type: application/vsix
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: Emscripten.Debugger.vsix
+          asset_name: Emscripten.Debugger.vsix
           asset_content_type: application/vsix
