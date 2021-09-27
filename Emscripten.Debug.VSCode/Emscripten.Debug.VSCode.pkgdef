@@ -1,0 +1,21 @@
+﻿[$RootKey$\AD7Metrics\Engine\{A18E581E-F120-4E9F-A0D4-D284EB773257}]
+"Name"="WebAssembly Debugger"
+
+; Boilerplate 
+"CLSID"="{DAB324E9-7B35-454C-ACA8-F6BB0D5C8673}" 
+"AlwaysLoadLocal"=dword:00000001 
+"AddressBP"=dword:00000000 
+"AutoSelectPriority"=dword:00000004 
+"CallstackBP"=dword:00000000 
+
+; Capabilities 
+"Attach"=dword:00000000 
+"Exceptions"=dword:00000000 
+"ExceptionConditions"=dword:00000000 
+
+; Language Info 
+"Language"="webassembly" 
+
+; Launch Info 
+"Adapter"="%EMSDK%\node\14.15.5_64bit\bin\node.exe" 
+"AdapterArgs"="--inspect $PackageFolder$\lib\dapServerLauncher.js" 

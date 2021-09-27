@@ -10,8 +10,8 @@ using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 
 namespace Emscripten.ProjectType
 {
-    [ExportDebugger(TestDebugger.SchemaName)]
-    [AppliesTo("")]
+    [ExportDebugger(WasmDebugger.SchemaName)]
+    [AppliesTo(WasmDebugger.SchemaName)]
     public class DebuggerLaunchProvider : DebugLaunchProviderBase
     {
         [ImportingConstructor]
@@ -20,23 +20,42 @@ namespace Emscripten.ProjectType
         {
         }
 
-        [ExportPropertyXamlRuleDefinition("Emscripten.ProjectType, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:TestDebugger.xaml", "Project")]
-        [AppliesTo("")]
+        [ExportPropertyXamlRuleDefinition("Emscripten.ProjectType, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:WasmDebugger.xaml", "Project")]
+        [AppliesTo(WasmDebugger.SchemaName)]
         private object DebuggerXaml { get { throw new NotImplementedException(); } }
+
+        [Import]
+        private ProjectProperties ProjectProperties { get; set; }
 
         public override Task<bool> CanLaunchAsync(DebugLaunchOptions launchOptions)
         {
             return Task.FromResult(true);
         }
 
-        public override Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
+        public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
         {
             var settings = new DebugLaunchSettings(launchOptions);
+            var debuggerProperties = await ProjectProperties.GetWasmDebuggerPropertiesAsync();
+            var launchedPage = await debuggerProperties.ExecutedPage.GetEvaluatedValueAtEndAsync();
 
             settings.LaunchOperation = DebugLaunchOperation.CreateProcess;
-            settings.LaunchDebugEngineGuid = DebuggerEngines.ScriptEngine;
 
-            return Task.FromResult<IReadOnlyList<IDebugLaunchSettings>>(new IDebugLaunchSettings[] { settings });
+            settings.Executable = @"C:\Windows\System32\cmd.exe"; // dummy
+
+            settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
+            settings.Options = $@"{{ type: ""wasm"", url: ""{launchedPage}"" }}";
+
+            var serverProcessSetting = new DebugLaunchSettings(launchOptions);
+
+            serverProcessSetting.LaunchOperation = DebugLaunchOperation.CreateProcess;
+
+            serverProcessSetting.Executable = await debuggerProperties.RunServerCommandExecutable.GetEvaluatedValueAtEndAsync();
+            serverProcessSetting.CurrentDirectory = await debuggerProperties.RunWorkingDirectory.GetEvaluatedValueAtEndAsync();
+            serverProcessSetting.Arguments = await debuggerProperties.RunServerCommandArguments.GetEvaluatedValueAtEndAsync();
+
+            serverProcessSetting.LaunchDebugEngineGuid = DebuggerEngines.NativeOnlyEngine;
+
+            return new IDebugLaunchSettings[] { settings, serverProcessSetting };
         }
     }
 }

@@ -199,10 +199,9 @@
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\general.xml">
       <Context>Project</Context>
     </PropertyPageSchema>
-    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_general.xml;" />
-    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_local_windows.xml;" />
-    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_remote_windows.xml;" />
-    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_web_browser.xml;" />
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_general.xml" />
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_local_windows.xml" />
+    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangID)\WasmDebugger.xaml" />
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\directories.xml;" />
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc.xml" />
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary'" />

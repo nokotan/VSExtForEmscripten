@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule
+	Name="WasmDebugger"
+	DisplayName="WebAssembly Debugger"
+	PageTemplate="debugger"
+	Description="WebAssembly Debugger options"
+	xmlns="http://schemas.microsoft.com/build/2009/properties">
+    
+    <Rule.DataSource>
+        <DataSource Persistence="UserFileWithXamlDefaults" HasConfigurationCondition="True"/>
+    </Rule.DataSource>
+
+    <StringProperty Name="ExecutedPage" DisplayName="実行ファイル"
+                Default="$(TargetFileName)"
+                Description="The debugged page.">
+    </StringProperty>
+
+    <StringProperty Name="RunServerCommandExecutable" DisplayName="サーバ実行可能ファイル"
+                  Description="The executable during run debugging.">
+    </StringProperty>
+
+    <StringProperty Name="RunServerCommandArguments" DisplayName="サーバ実行可能ファイル コマンドライン引数"
+                  Description="The command line arguments to pass to the application.">
+        <Argument Property="ScriptDebuggerCommand" />
+    </StringProperty>
+    
+    <StringProperty Name="RunWorkingDirectory" DisplayName="実行ディレクトリ"
+              Default="$(MSBuildProjectDirectory)"
+              Description="The application's working directory. By default, the directory containing the project file."
+              Subtype="folder"/>
+</Rule>

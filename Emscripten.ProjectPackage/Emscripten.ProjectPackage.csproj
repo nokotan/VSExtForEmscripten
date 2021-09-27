@@ -43,7 +43,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DeployExtension>False</DeployExtension>
+    <DeployExtension>True</DeployExtension>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,6 +180,11 @@
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1033\WasmDebugger.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
     <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
@@ -201,6 +206,11 @@
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
     <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\general.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\1041\WasmDebugger.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
@@ -232,6 +242,11 @@
       <InstallRoot>VCTargets</InstallRoot>
       <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1033\WasmDebugger.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
     <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>VCTargets</InstallRoot>
@@ -256,6 +271,11 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>VCTargets</InstallRoot>
       <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1041\WasmDebugger.xaml">
+      <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

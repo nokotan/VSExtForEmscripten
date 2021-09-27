@@ -1,0 +1,107 @@
+{
+  "name": "cdp-gdb-bridge",
+  "displayName": "WebAssembly on Chrome Debugger",
+  "version": "1.0.12",
+  "description": "WebAssembly on Chrome cli debugger & vscode extension",
+  "author": "kamenokonokotan",
+  "publisher": "kamenokosoft",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nokotan/cdp-gdb-bridge"
+  },
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -r dist/*",
+    "build": "tsc --module commonjs",
+    "build-crate": "cd crates/dwarf && wasm-pack build --out-name index --target nodejs",
+    "prepack": "npm run build-crate && npm run build && rm crates/dwarf/pkg/.gitignore",
+    "run": "node dist/cli/index.js",
+    "vscode:clean": "rm packed/* || true",
+    "vscode:pack": "npm run vscode:clean && vsce package -o dist/",
+    "vscode:prepublish": "webpack --mode=production --config-name extension && webpack --mode=production --config-name dapServerLauncher"
+  },
+  "bin": {
+    "cdp-gdb-bridge": "dist/cli/index.js"
+  },
+  "keywords": [
+    "webassembly",
+    "chrome",
+    "debugger"
+  ],
+  "categories": [
+    "Debuggers"
+  ],
+  "dependencies": {
+    "chrome-launcher": "^0.14.0",
+    "chrome-remote-interface": "^0.31.0",
+    "vscode-debugadapter": "^1.48.0",
+    "wabt": "^1.0.24"
+  },
+  "devDependencies": {
+    "@types/chrome-remote-interface": "^0.31.2",
+    "@types/node": "^16.6.1",
+    "@types/vscode": "^1.59.0",
+    "@wasm-tool/wasm-pack-plugin": "^1.5.0",
+    "ts-loader": "^9.2.5",
+    "typescript": "^4.3.5",
+    "vsce": "^1.96.1",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "activationEvents": [
+    "onDebugResolve:wasm",
+    "onDebugDynamicConfigurations:wasm"
+  ],
+  "engines": {
+    "vscode": "^1.59.0"
+  },
+  "main": "./lib/dapServerLauncher.js",
+  "browser": "./lib/dapServerLauncher.js",
+  "contributes": {
+    "debuggers": [
+      {
+        "type": "wasm",
+        "languages": [
+          "webassembly"
+        ],
+        "label": "WebAssembly Debug",
+        "program": "./lib/dapServerLauncher.js",
+        "runtime": "node",
+        "configurationAttributes": {
+          "launch": {
+            "required": [
+              "url"
+            ],
+            "properties": {
+              "url": {
+                "type": "string",
+                "description": "path to inspected webpage.",
+                "default": "http://localhost:8080/"
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "type": "wasm",
+            "request": "launch",
+            "name": "WebAssembly Debug",
+            "url": "http://localhost:8080/"
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "WebAssembly Debug: Launch",
+            "description": "A new configuration for 'debugging' wasm.",
+            "body": {
+              "type": "wasm",
+              "request": "launch",
+              "name": "WebAssembly Debug",
+              "url": "http://localhost:8080/"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

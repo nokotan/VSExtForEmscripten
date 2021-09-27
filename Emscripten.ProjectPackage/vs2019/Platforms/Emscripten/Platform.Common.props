@@ -59,12 +59,18 @@
 
   <!-- Debugging -->
   <PropertyGroup>
-    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <DebuggerFlavor>WasmDebugger</DebuggerFlavor>
+
     <LocalDebuggerCommand>$(EmscriptenDir)\emrun.bat</LocalDebuggerCommand>
-    <LocalDebuggerCommandArguments>--serve_after_close $(TargetFileName)</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>--serve_after_close $(TargetName)$(TargetExt)</LocalDebuggerCommandArguments>
     <LocalDebuggerDebuggerType>Auto</LocalDebuggerDebuggerType>
     <LocalDebuggerAttach>false</LocalDebuggerAttach>
-    <LocalDebuggerWorkingDirectory>$(TargetDir)</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
+
+    <ExecutedPage>http://localhost:6931/$(TargetName)$(TargetExt)</ExecutedPage>
+    <RunServerCommandExecutable>$(EMSDK)\upstream\emscripten/emrun.bat</RunServerCommandExecutable>
+    <RunServerCommandArguments>--serve_after_close --no_browser $(TargetName)$(TargetExt)</RunServerCommandArguments>
+    <RunWorkingDirectory>$(OutDir)</RunWorkingDirectory>
   </PropertyGroup>
 
   <!-- Project tools defaults -->
