@@ -8,23 +8,23 @@
 	xmlns="http://schemas.microsoft.com/build/2009/properties">
     
     <Rule.DataSource>
-        <DataSource Persistence="UserFileWithXamlDefaults" HasConfigurationCondition="True"/>
+        <DataSource Persistence="ProjectFile"/>
     </Rule.DataSource>
 
-    <StringProperty Name="ExecutedPage" DisplayName="実行ファイル"
-                Description="The debugged page.">
+    <StringProperty Name="ExecutedPage" DisplayName="実行ページ"
+                Description="デバッグする Web ページ">
     </StringProperty>
 
     <StringProperty Name="RunServerCommandExecutable" DisplayName="サーバ実行可能ファイル"
-                  Description="The executable during run debugging.">
+                  Description="デバッグ中に実行する実行可能ファイル。Web サーバ などを起動します。">
     </StringProperty>
 
     <StringProperty Name="RunServerCommandArguments" DisplayName="サーバ実行可能ファイル コマンドライン引数"
-                  Description="The command line arguments to pass to the application.">
+                  Description="サーバ実行可能ファイルに渡されるコマンドライン引数">
         <Argument Property="ScriptDebuggerCommand" />
     </StringProperty>
     
     <StringProperty Name="RunWorkingDirectory" DisplayName="実行ディレクトリ"
-              Description="The application's working directory. By default, the directory containing the project file."
+              Description="サーバ実行可能ファイルを実行するときの、カレントディレクトリ"
               Subtype="folder"/>
 </Rule>
