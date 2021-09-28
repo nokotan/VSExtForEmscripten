@@ -16,6 +16,6 @@
         /// The default namespace this project compiles with, so that manifest
         /// resource names can be calculated for embedded resources.
         /// </summary>
-        internal const string DefaultNamespace = "Emscripten.ProjectType";
+        internal const string DefaultNamespace = "Emscripten.Debugger.Definition";
     }
 }

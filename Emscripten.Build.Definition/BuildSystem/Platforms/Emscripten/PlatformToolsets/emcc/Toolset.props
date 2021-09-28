@@ -57,6 +57,7 @@
     </ClCompile>
     <Link>
       <LinkerOptimizationLevel Condition="'%(Link.LinkerOptimizationLevel)' == ''">O0</LinkerOptimizationLevel>
+      <GenerateDebugInformation Condition="'%(Link.LinkerOptimizationLevel)'">MoreDebugInformation</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <!-- Project tools defaults - non-debug builds -->
@@ -67,6 +68,7 @@
     </ClCompile>
     <Link>
       <LinkerOptimizationLevel Condition="'%(Link.LinkerOptimizationLevel)' == ''">O3</LinkerOptimizationLevel>
+      <GenerateDebugInformation Condition="'%(Link.LinkerOptimizationLevel)'">NoDebugInformation</GenerateDebugInformation>
     </Link>    
   </ItemDefinitionGroup>
 
