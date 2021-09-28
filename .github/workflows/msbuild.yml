@@ -47,7 +47,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: VSExt-Emscripten
-        path: .\Emscripten.ProjectPackage\bin\Release\*.vsix    
+        path: .\Emscripten.Build.Definition\bin\Release\*.vsix    
  
   deploy:
 

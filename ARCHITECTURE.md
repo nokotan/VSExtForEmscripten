@@ -8,11 +8,11 @@
 
 - Implementation for project template
 
-## Emscripten.ProjectType
+## Emscripten.Debugger.Definition
 
-- TestDebugger (under construction)
+- WebAssembly Debugger (under construction)
 
-## Emscripten.ProjectPackage
+## Emscripten.Build.Definition
 
 - .vsix package manifest
 - Definitions of Toolset and project pages
