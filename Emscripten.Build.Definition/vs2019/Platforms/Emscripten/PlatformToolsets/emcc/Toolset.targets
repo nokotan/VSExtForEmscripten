@@ -2,6 +2,10 @@
 
   <Import Project="$(VCTargetsPath)Microsoft.CppCommon.targets" />
 
+  <ItemGroup>
+    <ProjectCapability Include="WasmDebugger"></ProjectCapability>
+  </ItemGroup>
+  
   <PropertyGroup>
     <WebBrowserDebuggerHttpUrl Condition="'$(WebBrowserDebuggerHttpUrl)' == ''">$(TargetPath)</WebBrowserDebuggerHttpUrl>
     <PropertyXmlDirectory Condition="Exists('$(MSBuildThisFileDirectory)$(LangID)')">$(MSBuildThisFileDirectory)$(LangID)</PropertyXmlDirectory>

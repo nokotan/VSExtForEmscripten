@@ -5,6 +5,15 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <TargetFrameworkProfile />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug VS2019|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug VS2019\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -19,8 +28,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
-    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
-    <IncludeDebugSymbolsInLocalVSIXDeployment>false</IncludeDebugSymbolsInLocalVSIXDeployment>
+    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInLocalVSIXDeployment>true</IncludeDebugSymbolsInLocalVSIXDeployment>
     <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
     <CopyOutputSymbolsToOutputDirectory>false</CopyOutputSymbolsToOutputDirectory>
     <StartAction>Program</StartAction>
@@ -45,14 +54,23 @@
     <WarningLevel>4</WarningLevel>
     <DeployExtension>True</DeployExtension>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release VS2019|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release VS2019\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DeployExtension>True</DeployExtension>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
+    <Content Include="vs2019\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
-      <InstallRoot>VCTargets</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+      <InstallRoot>MSBuild</InstallRoot>
     </Content>
     <Content Include="vs2019\Platforms\Emscripten\Platform.Common.props">
       <IncludeInVSIX>true</IncludeInVSIX>
@@ -94,7 +112,12 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' != 'Release VS2019' and '$(Configuration)' != 'Debug VS2019'">
+    <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+      <InstallRoot>VCTargets</InstallRoot>
+    </Content>
     <Content Include="vs2017\Platforms\Emscripten\Platform.Common.props">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>VCTargets</InstallRoot>
@@ -218,7 +241,7 @@
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' != 'Release VS2019' and '$(Configuration)' != 'Debug VS2019'">
     <Content Include="vs2017\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>VCTargets</InstallRoot>

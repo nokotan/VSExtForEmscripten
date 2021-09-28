@@ -20,7 +20,7 @@ namespace Emscripten.ProjectType
         {
         }
 
-        [ExportPropertyXamlRuleDefinition("Emscripten.ProjectType, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:WasmDebugger.xaml", "Project")]
+        [ExportPropertyXamlRuleDefinition("Emscripten.Debugger.Definition, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:WasmDebugger.xaml", "Project")]
         [AppliesTo(WasmDebugger.SchemaName)]
         private object DebuggerXaml { get { throw new NotImplementedException(); } }
 
