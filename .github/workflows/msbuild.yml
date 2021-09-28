@@ -43,11 +43,17 @@ jobs:
         Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
         msbuild $env:Solution_Name /p:Configuration=Release
     
+    - name: Save Build.Definition Bundles
+      uses: actions/upload-artifact@v2
+      with:
+        name: VSExt-Build.Definition
+        path: .\Emscripten.Build.Definition\bin\Release\*.vsix  
+        
     - name: Save Bundles
       uses: actions/upload-artifact@v2
       with:
-        name: VSExt-Emscripten
-        path: .\Emscripten.Build.Definition\bin\Release\*.vsix    
+        name: VSExt-Emscripten.Debugger
+        path: .\Emscripten.Debugger\bin\Release\*.vsix  
  
   deploy:
 
