@@ -72,7 +72,7 @@ jobs:
           release_name: Release ${{ github.ref }}
 
       - name: Upload Release Asset
-        id: upload-release-asset
+        id: upload-build-support-package
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -83,7 +83,7 @@ jobs:
           asset_content_type: application/vsix
 
       - name: Upload Release Asset
-        id: upload-release-asset
+        id: upload-debugger-package
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
