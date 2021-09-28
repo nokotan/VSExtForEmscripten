@@ -12,7 +12,6 @@
     </Rule.DataSource>
 
     <StringProperty Name="ExecutedPage" DisplayName="実行ファイル"
-                Default="$(TargetFileName)"
                 Description="The debugged page.">
     </StringProperty>
 
@@ -26,7 +25,6 @@
     </StringProperty>
     
     <StringProperty Name="RunWorkingDirectory" DisplayName="実行ディレクトリ"
-              Default="$(MSBuildProjectDirectory)"
               Description="The application's working directory. By default, the directory containing the project file."
               Subtype="folder"/>
 </Rule>

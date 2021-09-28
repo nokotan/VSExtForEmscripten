@@ -1,4 +1,4 @@
-namespace Emscripten.ProjectType
+namespace Emscripten.Debugger.Definition
 {
     using System;
     using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿namespace Emscripten.ProjectType
+﻿namespace Emscripten.Debugger.Definition
 {
     using Microsoft.VisualStudio.Shell;
     using System.Runtime.InteropServices;

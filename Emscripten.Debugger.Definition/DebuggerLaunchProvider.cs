@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.ProjectSystem.Debug;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 
-namespace Emscripten.ProjectType
+namespace Emscripten.Debugger.Definition
 {
     [ExportDebugger(WasmDebugger.SchemaName)]
     [AppliesTo(WasmDebugger.SchemaName)]

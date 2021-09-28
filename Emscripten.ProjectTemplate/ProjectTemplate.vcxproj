@@ -61,12 +61,12 @@
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|Emscripten'">
     <ConfigurationType>HTMLPage</ConfigurationType>
     <PlatformToolset>emcc</PlatformToolset>
-    <EmscriptenDir>$(EMSDK_PATH)\upstream\emscripten\</EmscriptenDir>
+    <EmscriptenDir>$(EMSDK)\upstream\emscripten\</EmscriptenDir>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'">
     <ConfigurationType>HTMLPage</ConfigurationType>
     <PlatformToolset>emcc</PlatformToolset>
-    <EmscriptenDir>$(EMSDK_PATH)\upstream\emscripten\</EmscriptenDir>
+    <EmscriptenDir>$(EMSDK)\upstream\emscripten\</EmscriptenDir>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
