@@ -65,7 +65,13 @@ jobs:
       - name: Restore Bundles
         uses: actions/download-artifact@v2
         with:
-          name: VSExt-Emscripten
+          name: VSExt-Build.Definition
+          path: .
+
+      - name: Restore Bundles
+        uses: actions/download-artifact@v2
+        with:
+          name: VSExt-Emscripten.Debugger
           path: .
 
       - name: Create release
