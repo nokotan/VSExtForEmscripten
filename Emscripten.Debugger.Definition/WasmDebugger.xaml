@@ -8,7 +8,7 @@
 	xmlns="http://schemas.microsoft.com/build/2009/properties">
     
     <Rule.DataSource>
-        <DataSource Persistence="ProjectFile"/>
+        <DataSource Persistence="UserFile"/>
     </Rule.DataSource>
 
     <StringProperty Name="ExecutedPage" DisplayName="Executed Page"

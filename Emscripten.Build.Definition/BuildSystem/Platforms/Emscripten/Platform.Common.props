@@ -65,7 +65,7 @@
     <LocalDebuggerCommandArguments Condition="'$(LocalDebuggerCommandArguments)' == ''">--serve_after_close $(TargetName)$(TargetExt)</LocalDebuggerCommandArguments>
     <LocalDebuggerDebuggerType Condition="'$(LocalDebuggerDebuggerType)' == ''">Auto</LocalDebuggerDebuggerType>
     <LocalDebuggerAttach Condition="'$(LocalDebuggerAttach)' == ''">false</LocalDebuggerAttach>
-    <LocalDebuggerWorkingDirectory Condition="'$(LocalDebuggerWorkingDirectory)' = ''">$(OutDir)</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerWorkingDirectory Condition="'$(LocalDebuggerWorkingDirectory)' == ''">$(OutDir)</LocalDebuggerWorkingDirectory>
 
     <ExecutedPage Condition="'$(ExecutedPage)' == ''">http://localhost:6931/$(TargetName)$(TargetExt)</ExecutedPage>
     <RunServerCommandExecutable Condition="'$(RunServerCommandExecutable)' == ''">$(EMSDK)\upstream\emscripten/emrun.bat</RunServerCommandExecutable>
