@@ -61,16 +61,16 @@
   <PropertyGroup>
     <DebuggerFlavor>WasmDebugger</DebuggerFlavor>
 
-    <LocalDebuggerCommand>$(EmscriptenDir)\emrun.bat</LocalDebuggerCommand>
-    <LocalDebuggerCommandArguments>--serve_after_close $(TargetName)$(TargetExt)</LocalDebuggerCommandArguments>
-    <LocalDebuggerDebuggerType>Auto</LocalDebuggerDebuggerType>
-    <LocalDebuggerAttach>false</LocalDebuggerAttach>
-    <LocalDebuggerWorkingDirectory>$(OutDir)</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommand Condition="'$(LocalDebuggerCommand)' == ''">$(EmscriptenDir)\emrun.bat</LocalDebuggerCommand>
+    <LocalDebuggerCommandArguments Condition="'$(LocalDebuggerCommandArguments)' == ''">--serve_after_close $(TargetName)$(TargetExt)</LocalDebuggerCommandArguments>
+    <LocalDebuggerDebuggerType Condition="'$(LocalDebuggerDebuggerType)' == ''">Auto</LocalDebuggerDebuggerType>
+    <LocalDebuggerAttach Condition="'$(LocalDebuggerAttach)' == ''">false</LocalDebuggerAttach>
+    <LocalDebuggerWorkingDirectory Condition="'$(LocalDebuggerWorkingDirectory)' = ''">$(OutDir)</LocalDebuggerWorkingDirectory>
 
-    <ExecutedPage>http://localhost:6931/$(TargetName)$(TargetExt)</ExecutedPage>
-    <RunServerCommandExecutable>$(EMSDK)\upstream\emscripten/emrun.bat</RunServerCommandExecutable>
-    <RunServerCommandArguments>--serve_after_close --no_browser $(TargetName)$(TargetExt)</RunServerCommandArguments>
-    <RunWorkingDirectory>$(OutDir)</RunWorkingDirectory>
+    <ExecutedPage Condition="'$(ExecutedPage)' == ''">http://localhost:6931/$(TargetName)$(TargetExt)</ExecutedPage>
+    <RunServerCommandExecutable Condition="'$(RunServerCommandExecutable)' == ''">$(EMSDK)\upstream\emscripten/emrun.bat</RunServerCommandExecutable>
+    <RunServerCommandArguments Condition="'$(RunServerCommandArguments)' == ''">--serve_after_close --no_browser $(TargetName)$(TargetExt)</RunServerCommandArguments>
+    <RunWorkingDirectory Condition="'$(RunWorkingDirectory)' == ''">$(OutDir)</RunWorkingDirectory>
   </PropertyGroup>
 
   <!-- Project tools defaults -->
