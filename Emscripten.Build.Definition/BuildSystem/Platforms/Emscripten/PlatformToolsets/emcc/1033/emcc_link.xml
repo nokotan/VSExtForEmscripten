@@ -52,6 +52,8 @@
   <StringListProperty Subtype="file" Name="HtmlShellFile" DisplayName="HTML Shell File (--shell-file)" Description="Specifies the .html file template inside which the generated JavaScript code will be generated to." Category="Input" Switch="-shell-file " />
   <StringListProperty Subtype="file" Name="JsLibrary" DisplayName="Additional JavaScript Libraries (--js-library)" Description="Specifies additional JavaScript libraries to link the generated code with." Category="Input" Switch="-js-library " />
 
+  <StringProperty Name="IncludedAssetTargets" DisplayName="Additional PreloadFile Target Names" Description="Additional target names to be bundled into preload files." IncludeInCommandLine="false" Category="Input" />
+
   <!-- Debugging -->
   
   <EnumProperty Name="GenerateDebugInformation" DisplayName="Generate Debug Info" Description="This option enables creation of debugging information." Category="Debugging">

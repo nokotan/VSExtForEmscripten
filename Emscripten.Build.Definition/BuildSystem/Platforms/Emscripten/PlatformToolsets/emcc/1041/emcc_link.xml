@@ -52,6 +52,8 @@
   <StringListProperty Subtype="file" Name="HtmlShellFile" DisplayName="HTML テンプレート" Description="コンパイルされた JavaScript コードが埋め込まれる HTML テンプレートファイルを指定します。(--shell-file)" Category="Input" Switch="-shell-file " />
   <StringListProperty Subtype="file" Name="JsLibrary" DisplayName="追加の JavaScript ライブラリ" Description="生成されたコードにリンクされる追加の JavaScript ライブラリファイルを指定します。(--js-library)" Category="Input" Switch="-js-library " />
 
+  <StringProperty Name="IncludedAssetTargets" DisplayName="追加のプリロードされるファイルのターゲット名" Description="プリロードされるファイルに追加すべきターゲット名を指定します。" IncludeInCommandLine="false" Category="Input" />
+  
   <!-- Debugging -->
 
   <EnumProperty Name="GenerateDebugInformation" DisplayName="デバッグ情報の生成" Description="このオプションを指定すると、デバッグ情報の作成が可能になります。" Category="Debugging">

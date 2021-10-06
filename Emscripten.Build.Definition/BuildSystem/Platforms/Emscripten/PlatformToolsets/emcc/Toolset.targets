@@ -151,8 +151,43 @@
 
   </Target>
 
+  <Target Name="CopyAssets" Condition="'@(Link.IncludedAssetTargets)' != ''">
+
+    <MakeDir Directories="$(IntDir)\assets" />
+
+    <ItemGroup>
+      <CopyAssetsTargets Include="%(Link.IncludedAssetTargets)">
+        <Enumerator>@(SourceProp->'@(%(Identity))')</Enumerator>
+      </CopyAssetsTargets>
+
+      <CopyAssetsSourceFiles Include="%(CopyAssetsTargets.Enumerator)" />
+    </ItemGroup>
+
+    <PropertyGroup>
+      <SourcePath>@(CopyAssetsSourceFiles)</SourcePath>
+      <DestinationPath>@(CopyAssetsSourceFiles->'$(IntDir)\assets\%(Identity)')</DestinationPath>
+    </PropertyGroup>
+ 
+    <Copy
+      SourceFiles="$(SourcePath)"
+      DestinationFiles="$(DestinationPath)">
+    </Copy>
+
+    <ItemGroup>
+      <Link>
+        <PreloadFile Condition="%(Link.PreloadFile) == ''">
+          $(ProjectDir)$(IntDir)assets@/
+        </PreloadFile>
+        <PreloadFile Condition="%(Link.PreloadFile) != ''">
+          %(Link.PreloadFile);$(ProjectDir)$(IntDir)assets@/
+        </PreloadFile>
+      </Link>
+    </ItemGroup>
+
+  </Target>
+
   <!-- Link -->
-  <Target Name="Link" Condition="'@(Link)' != ''">
+  <Target Name="Link" Condition="'@(Link)' != ''" DependsOnTargets="CopyAssets">
 
     <PropertyGroup>
       <LinkToolArchitecture Condition="'$(LinkToolArchitecture)' == ''">$(VCToolArchitecture)</LinkToolArchitecture>

@@ -47,6 +47,7 @@
       <SystemLibraryDirectories Condition="'%(Link.SystemLibraryDirectories)' == ''">$(LibraryPath)</SystemLibraryDirectories>
       <EchoCommandLines Condition="'%(Link.EchoCommandLines)' == ''">false</EchoCommandLines>
       <TrackerLogDirectory Condition="'%(Link.TrackerLogDirectory)' == ''">$(TLogLocation)</TrackerLogDirectory>
+      <IncludedAssetTargets Condition="'%(Link.IncludedAssetTargets)' == ''">Text;None;Content;Image;Xml;Media;</IncludedAssetTargets>
     </Link>
   </ItemDefinitionGroup>
   <!-- Project tools defaults - debug builds -->
