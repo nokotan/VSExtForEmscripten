@@ -67,10 +67,11 @@
     <LocalDebuggerAttach Condition="'$(LocalDebuggerAttach)' == ''">false</LocalDebuggerAttach>
     <LocalDebuggerWorkingDirectory Condition="'$(LocalDebuggerWorkingDirectory)' == ''">$(OutDir)</LocalDebuggerWorkingDirectory>
 
-    <ExecutedPage Condition="'$(ExecutedPage)' == ''">http://localhost:6931/$(TargetName)$(TargetExt)</ExecutedPage>
-    <RunServerCommandExecutable Condition="'$(RunServerCommandExecutable)' == ''">$(EMSDK)\upstream\emscripten/emrun.bat</RunServerCommandExecutable>
-    <RunServerCommandArguments Condition="'$(RunServerCommandArguments)' == ''">--serve_after_close --no_browser $(TargetName)$(TargetExt)</RunServerCommandArguments>
-    <RunWorkingDirectory Condition="'$(RunWorkingDirectory)' == ''">$(OutDir)</RunWorkingDirectory>
+    <WasmDebuggerInspectedPage Condition="'$(WasmDebuggerInspectedPage)' == ''">http://localhost:6931/$(TargetName)$(TargetExt)</WasmDebuggerInspectedPage>
+    <WasmDebuggerAdapterExecutable Condition="'$(WasmDebuggerAdapterExecutable)' == ''">$(EMSDK_NODE)</WasmDebuggerAdapterExecutable>
+    <WasmDebuggerServerExecutable Condition="'$(WasmDebuggerServerExecutable)' == ''">$(EmscriptenDir)\emrun.bat</WasmDebuggerServerExecutable>
+    <WasmDebuggerServerArguments Condition="'$(WasmDebuggerServerArguments)' == ''">--serve_after_close --no_browser $(TargetName)$(TargetExt)</WasmDebuggerServerArguments>
+    <WasmDebuggerServerWorkingDirectory Condition="'$(WasmDebuggerServerWorkingDirectory)' == ''">$(OutDir)</WasmDebuggerServerWorkingDirectory>
   </PropertyGroup>
 
   <!-- Project tools defaults -->
