@@ -32,7 +32,7 @@ This extension is developed with [Visual Studio Project System](https://github.c
 |Visual Studio Version|.vsix Download Page|
 |:--:|:--:|
 |Visual Studio 2013, 2015|(Not .vsix, but <https://github.com/crosire/vs-toolsets> will help)|
-|Visual Studio 2017, Visual Studio 2019|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscriptenproj1>|
+|Visual Studio 2017, Visual Studio 2019|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscripten-extensions>|
 
 ### From GitHub Releases (Cutting Edge)
 
