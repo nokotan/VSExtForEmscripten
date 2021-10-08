@@ -44,15 +44,15 @@ namespace Emscripten.Debugger.Definition
             settings.Executable = @"C:\Windows\System32\cmd.exe"; // dummy
 
             settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
-            settings.Options = $@"{{ ""type"": ""wasm"", ""url"": ""{inspectedPage}"", ""$adapter"":{debugAdapterExecutable} }}";
+            settings.Options = $@"{{ ""type"": ""wasm"", ""url"": ""{inspectedPage}"", ""$adapter"":""{debugAdapterExecutable.Replace('\\', '/')}"" }}";
 
             var serverProcessSetting = new DebugLaunchSettings(launchOptions);
 
             serverProcessSetting.LaunchOperation = DebugLaunchOperation.CreateProcess;
 
             serverProcessSetting.Executable = await debuggerProperties.WasmDebuggerServerExecutable.GetEvaluatedValueAtEndAsync();
-            serverProcessSetting.CurrentDirectory = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
-            serverProcessSetting.Arguments = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
+            serverProcessSetting.Arguments = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
+            serverProcessSetting.CurrentDirectory = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
 
             serverProcessSetting.LaunchDebugEngineGuid = DebuggerEngines.NativeOnlyEngine;
 

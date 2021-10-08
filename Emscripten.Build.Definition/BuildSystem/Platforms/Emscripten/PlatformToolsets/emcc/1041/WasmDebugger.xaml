@@ -15,7 +15,7 @@
                 Description="デバッグ対象となる Web ページへの Url">
     </StringProperty>
 
-    <StringProperty Name="WasmDebuggerAdapterExecutable" DisplayName="Debug Adapter Executable"
+    <StringProperty Name="WasmDebuggerAdapterExecutable" DisplayName="デバッグアダプター実行可能ファイル"
                 Description="デバッグアダプタの実行エンジン (node.exe).">
     </StringProperty>
 
@@ -27,8 +27,8 @@
                   Description="サーバ実行可能ファイルに渡されるコマンドライン引数">
         <Argument Property="ScriptDebuggerCommand" />
     </StringProperty>
-    
-    <StringProperty Name="WasmDebuggerServerWorkingDirectory" DisplayName="実行ディレクトリ"
+
+    <StringProperty Name="WasmDebuggerServerWorkingDirectory" DisplayName="サーバ実行可能ファイル 実行ディレクトリ"
               Description="サーバ実行可能ファイルを実行するときの、カレントディレクトリ"
               Subtype="folder"/>
 </Rule>

@@ -17,4 +17,5 @@
 "Language"="webassembly" 
 
 ; Launch Info 
+"Adapter"="%EMSDK_NODE%"
 "AdapterArgs"=""$PackageFolder$\lib\dapServerLauncher.js"" 

@@ -173,7 +173,7 @@
       DestinationFiles="$(DestinationPath)">
     </Copy>
 
-    <ItemGroup>
+    <ItemGroup Condition="'$(SourcePath)' != ''">
       <Link>
         <PreloadFile Condition="%(Link.PreloadFile) == ''">
           $(ProjectDir)$(IntDir)assets@/
