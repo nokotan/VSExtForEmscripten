@@ -19,7 +19,7 @@
                 Description="デバッグアダプタの実行エンジン (node.exe).">
     </StringProperty>
 
-    <StringProperty Name="WasmDebuggerServerCommandExecutable" DisplayName="サーバ実行可能ファイル"
+    <StringProperty Name="WasmDebuggerServerExecutable" DisplayName="サーバ実行可能ファイル"
                   Description="デバッグ中に実行する実行可能ファイル。Web サーバ などを起動します。">
     </StringProperty>
 

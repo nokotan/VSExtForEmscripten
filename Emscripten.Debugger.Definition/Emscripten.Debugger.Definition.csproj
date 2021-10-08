@@ -8,7 +8,7 @@
     <InstallRoot>Default</InstallRoot>
     <UseCodebase>true</UseCodebase>
     <TargetFrameworkProfile />
-    <IncludeDebugSymbolsInVSIXContainer>false</IncludeDebugSymbolsInVSIXContainer>
+    <IncludeDebugSymbolsInVSIXContainer>true</IncludeDebugSymbolsInVSIXContainer>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release VS2019|AnyCPU'">
     <OutputPath>bin\Release VS2019\</OutputPath>
@@ -71,6 +71,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DebuggerLaunchProvider.cs" />
+    <Compile Include="MyConfiguredProject.cs" />
+    <Compile Include="MyUnconfiguredProject.cs" />
     <Compile Include="ProjectProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VsPackage.cs" />
