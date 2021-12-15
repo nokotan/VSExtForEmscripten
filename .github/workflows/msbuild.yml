@@ -37,7 +37,7 @@ jobs:
     - name: Copy Vsix Source
       working-directory: Emscripten.Build.Definition
       run: |
-        cp ${{ matrix.config.runs-on }} source.extension.vsixmanifest
+        cp ${{ matrix.config.vsix-source }} source.extension.vsixmanifest
 
     - name: Setup Nuget
       uses: nuget/setup-nuget@v1
