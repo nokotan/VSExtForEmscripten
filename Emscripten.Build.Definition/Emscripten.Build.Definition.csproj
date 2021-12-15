@@ -5,9 +5,9 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug VS2019|AnyCPU'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug VS2017|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug VS2019\</OutputPath>
+    <OutputPath>bin\Debug VS2017\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -56,17 +56,56 @@
     <WarningLevel>4</WarningLevel>
     <DeployExtension>True</DeployExtension>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release VS2019|AnyCPU' ">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release VS2017|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release VS2019\</OutputPath>
+    <OutputPath>bin\Release VS2017\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DeployExtension>True</DeployExtension>
+    <VsixManifest>source.extension.vs2017.vsixmanifest</VsixManifest>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+      <InstallRoot>MSBuild</InstallRoot>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\Platform.Common.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\Platform.Default.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\Platform.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\Platform.targets">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.props">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.targets">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
@@ -109,7 +148,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' != 'Release VS2019' and '$(Configuration)' != 'Debug VS2019'">
+  <ItemGroup Condition="'$(Configuration)' == 'Release VS2017' or '$(Configuration)' == 'Debug VS2017'">
     <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
@@ -238,7 +277,69 @@
       <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' != 'Release VS2019' and '$(Configuration)' != 'Debug VS2019'">
+  <ItemGroup>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_lib.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_link.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\general.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\WasmDebugger.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_lib.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_link.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\general.xml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\WasmDebugger.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)' == 'Release VS2017' or '$(Configuration)' == 'Debug VS2017'">
     <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>VCTargets</InstallRoot>
