@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="Emscripten.Build.Definition.4E942135-F309-41D4-8214-C2E5BD7C7ACE" Version="0.5.5" Language="en-US" Publisher="KamenokoSoft" />
+        <DisplayName>Emscripten Build Support</DisplayName>
+        <Description xml:space="preserve">This extension will provide project template for emscripten and property pages for compilation with emcc.</Description>
+    </Metadata>
+    <Installation AllUsers="true">
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Community">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Community">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Pro">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Pro">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Enterprise">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Enterprise">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Emscripten.ProjectTemplate" Path="ProjectTemplates" d:TargetPath="|Emscripten.ProjectTemplate;TemplateProjectOutputGroup|" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$MSBuild\Microsoft\VC\v160\Platforms\Emscripten" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$MSBuild\Microsoft\VC\v170\Platforms\Emscripten" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="Emscripten.Debugger.Definition" Path="|Emscripten.Debugger.Definition;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Emscripten.Debugger.Definition" Path="|Emscripten.Debugger.Definition|" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" d:VsixSubPath="$VCTargets\Platforms\Emscripten" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" />
+    </Assets>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0, 18.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+</PackageManifest>
