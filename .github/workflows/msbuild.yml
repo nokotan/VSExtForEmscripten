@@ -58,11 +58,17 @@ jobs:
         name: VSExt-Build.Definition.${{ matrix.config.name }}
         path: .\Emscripten.Build.Definition\bin\${{ matrix.config.config-name }}\*.vsix  
         
-    - name: Save Bundles
+    - name: Save Debugger Bundles
       uses: actions/upload-artifact@v2
       with:
         name: VSExt-Emscripten.Debugger.${{ matrix.config.name }}
-        path: .\Emscripten.Debugger\bin\${{ matrix.config.config-name }}\*.vsix  
+        path: .\Emscripten.Debugger\bin\${{ matrix.config.config-name }}\*.vsix
+
+    - name: Save ExtensionPack Bundles
+      uses: actions/upload-artifact@v2
+      with:
+        name: VSExt-Emscripten.ExtensionPack.${{ matrix.config.name }}
+        path: .\Emscripten.ExtensionPack\bin\${{ matrix.config.config-name }}\*.vsix  
  
   deploy:
 
