@@ -49,7 +49,7 @@ jobs:
       id: cache
       with:
         path: ./packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.config') }}-2
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.config') }}-3
 
     - name: Restore Nuget package
       if: ${{ !steps.cache.outputs.cache-hit }}
