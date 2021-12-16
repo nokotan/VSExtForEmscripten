@@ -17,7 +17,7 @@ This extension is developed with [Visual Studio Project System](https://github.c
 
 ## Requirements
 
-- Visual Studio 2017 or Visual Studio 2019
+- Visual Studio 2017, Visual Studio 2019, Visual Studio 2022
 - emscripten Installation
 
 ## Installation
@@ -25,14 +25,14 @@ This extension is developed with [Visual Studio Project System](https://github.c
 ### From Visual Studio Extenstion Manager
 
 - Open Visual Studio Extenstion Manager ( [Tools] > [Extensions and Updates...] )
-- Search for Emscripten.ProjectType
+- Search for Emscripten Build Support
 
 ### From Visual Studio MarketPlace
 
 |Visual Studio Version|.vsix Download Page|
 |:--:|:--:|
 |Visual Studio 2013, 2015|(Not .vsix, but <https://github.com/crosire/vs-toolsets> will help)|
-|Visual Studio 2017, Visual Studio 2019|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscripten-extensions>|
+|Visual Studio 2017, 2019, 2022|<https://marketplace.visualstudio.com/items?itemName=KamenokoSoft.emscripten-extensions>|
 
 ### From GitHub Releases (Cutting Edge)
 
