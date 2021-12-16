@@ -2,7 +2,7 @@
   "id": "Emscripten.ExtensionPack",
   "name": "Emscripten Extension Pack for Visual Studio",
   "description": "This extension pack includes Build support and Debugger support with Emscripten",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "extensions": [
     {
       "vsixId": "Emscripten.Debugger.db0b9864-52e2-4c42-94d1-2c7279a2c57a",
@@ -11,6 +11,10 @@
     {
       "vsixId": "Emscripten.ProjectType.80c9bedd-1988-42d3-a4c8-d6be759abab6",
       "name": "Emscripten Build Support"
-    }
+    },
+	{
+	  "vsixId": "Emscripten.Build.Definition.4E942135-F309-41D4-8214-C2E5BD7C7ACE",
+	  "name": "Emscripten Build Support"
+	}
   ]
 }
