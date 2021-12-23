@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Emscripten.Build.Definition.4E942135-F309-41D4-8214-C2E5BD7C7ACE" Version="0.6.0" Language="en-US" Publisher="KamenokoSoft" />
-        <DisplayName>Emscripten Build Support</DisplayName>
+        <Identity Id="Emscripten.Build.Definition.4e942135-f309-41d4-8214-c2e5bd7c7ace" Version="0.6.1" Language="en-US" Publisher="KamenokoSoft" />
+        <DisplayName>Emscripten Build Support for amd64</DisplayName>
         <Description xml:space="preserve">This extension will provide project template for emscripten and property pages for compilation with emcc.</Description>
     </Metadata>
     <Installation AllUsers="true">

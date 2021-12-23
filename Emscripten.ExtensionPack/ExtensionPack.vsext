@@ -12,9 +12,9 @@
       "vsixId": "Emscripten.ProjectType.80c9bedd-1988-42d3-a4c8-d6be759abab6",
       "name": "Emscripten Build Support"
     },
-	{
-	  "vsixId": "Emscripten.Build.Definition.4E942135-F309-41D4-8214-C2E5BD7C7ACE",
-	  "name": "Emscripten Build Support"
-	}
+    {
+      "vsixId": "Emscripten.Build.Definition.4e942135-f309-41d4-8214-c2e5bd7c7ace",
+      "name": "Emscripten Build Support for amd64"
+    }
   ]
 }
