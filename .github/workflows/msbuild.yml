@@ -9,11 +9,6 @@ jobs:
     strategy:
         matrix:
           config:
-            - name: vs2017
-              runs-on: windows-2016
-              config-name: Release VS2017
-              vsix-source: source.extension.vs2017.vsixmanifest
-              msbuild-path: "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\MSBuild\\15.0\\bin"
             - name: vs2022
               runs-on: windows-2022
               config-name: Release
