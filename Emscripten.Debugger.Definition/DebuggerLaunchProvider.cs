@@ -44,7 +44,7 @@ namespace Emscripten.Debugger.Definition
             settings.Executable = @"C:\Windows\System32\cmd.exe"; // dummy
 
             settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
-            settings.Options = $@"{{ ""type"": ""wasm"", ""url"": ""{inspectedPage}"", ""$adapter"":""{debugAdapterExecutable.Replace('\\', '/')}"" }}";
+            settings.Options = $@"{{ ""type"": ""wasm-chrome"", ""url"": ""{inspectedPage}"", ""$adapter"":""{debugAdapterExecutable.Replace('\\', '/')}"" }}";
 
             var serverProcessSetting = new DebugLaunchSettings(launchOptions);
 
