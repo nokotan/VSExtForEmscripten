@@ -410,6 +410,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Target Name="IncludeProjectReferenceNuGetPackageAssemblies" AfterTargets="GetVsixSourceItems">
+    <Message Text="@(ReferencedVSIXSourceItem)" Condition="'%(ReferencedVSIXSourceItem.NuGetSourceType)' == 'Package' and '%(ReferencedVSIXSourceItem.FrameworkFile)' != 'true'" Importance="High" />
+    <!--Add project reference NuGet package assemblies to the package-->
+    <ItemGroup>
+      <VSIXSourceItem Include="@(ReferencedVSIXSourceItem)" Condition="'%(ReferencedVSIXSourceItem.NuGetSourceType)' == 'Package' and '%(ReferencedVSIXSourceItem.FrameworkFile)' != 'true'" />
+    </ItemGroup>
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
