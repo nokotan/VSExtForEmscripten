@@ -1,5 +1,9 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
+  <PropertyGroup>
+    <UseDefaultPropertyPageSchemas>false</UseDefaultPropertyPageSchemas>
+  </PropertyGroup>
+
   <Import Project="$(VCTargetsPath)Microsoft.CppCommon.targets" />
 
   <ItemGroup>
@@ -235,14 +239,25 @@
     <UseDefaultDebuggersPropertyPageSchemas>false</UseDefaultDebuggersPropertyPageSchemas>
   </PropertyGroup>
   <ItemGroup>
+    <!-- Default Project Schemas -->
+    <PropertyPageSchema Include="
+        $(VCTargetsPath)$(LangID)\ProjectItemsSchema.xml;
+        $(VCTargetsPath)$(LangID)\midl.xml;
+        $(VCTargetsPath)$(LangID)\build_events.xml;
+        $(VCTargetsPath)$(LangID)\custom_build_tool.xml;
+        $(VCTargetsPath)$(LangID)\custom_build_step.xml;
+        $(VCTargetsPath)$(LangID)\copy_file.xml;
+    "/>
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\general.xml">
       <Context>Project</Context>
     </PropertyPageSchema>
-    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_general.xml" />
-    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\debugger_local_windows.xml" />
-    <PropertyPageSchema Include="$(MSBuildThisFileDirectory)$(LangID)\WasmDebugger.xaml" />
-    <PropertyPageSchema Include="$(PropertyXmlDirectory)\directories.xml;" />
-    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc.xml" />
+    <PropertyPageSchema Include="
+        $(VCTargetsPath)$(LangID)\debugger_general.xml;
+        $(VCTargetsPath)$(LangID)\debugger_local_windows.xml;
+        $(PropertyXmlDirectory)\WasmDebugger.xaml;
+        $(PropertyXmlDirectory)\directories.xml;
+        $(PropertyXmlDirectory)\emcc.xml;
+    "/>
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary'" />
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_link.xml" Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication'" />
   </ItemGroup>
