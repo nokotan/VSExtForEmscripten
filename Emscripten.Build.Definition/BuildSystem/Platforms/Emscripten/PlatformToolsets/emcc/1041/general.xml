@@ -28,7 +28,7 @@
       <DataSource Persistence="ProjectFile" Label="" />
     </StringProperty.DataSource>
   </StringProperty>
-  <StringProperty Name="TargetExt" Category="General" DisplayName="ターゲットの拡張子" Description="このプロジェクトにより生成されるファイル拡張子を指定します。(例: .o, .bc, .js, .wasm または .html)" F1Keyword="VC.Project.VCConfiguration.TargetExt">
+  <StringProperty Name="TargetExt" Category="General" DisplayName="ターゲットの拡張子" Description="このプロジェクトにより生成されるファイル拡張子を指定します。(例: .o, .bc, .js, .mjs, .wasm または .html)" F1Keyword="VC.Project.VCConfiguration.TargetExt">
     <StringProperty.DataSource>
       <DataSource Persistence="ProjectFile" Label="" />
     </StringProperty.DataSource>
@@ -61,6 +61,7 @@
     <EnumValue Name="JSApplication" DisplayName="JavaScript (.js)" />
     <EnumValue Name="StaticLibrary" DisplayName="Static LLVM Bitcode Library (.a)" />
     <EnumValue Name="WebAssembly" DisplayName="WebAssembly (.wasm)" />
+	<EnumValue Name="ES6JSModule" DisplayName="ES6 JavaScript Module (.mjs)" />
   </EnumProperty>
 
 </Rule>

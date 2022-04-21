@@ -56,6 +56,10 @@
     <TargetExt>.wasm</TargetExt>
     <LibCompiled>true</LibCompiled>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(ConfigurationType)' == 'ES6JSModule'">
+    <TargetExt>.mjs</TargetExt>
+    <LinkCompiled>true</LinkCompiled>
+  </PropertyGroup>
 
   <!-- Debugging -->
   <PropertyGroup>

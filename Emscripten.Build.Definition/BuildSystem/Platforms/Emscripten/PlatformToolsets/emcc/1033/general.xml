@@ -28,7 +28,7 @@
       <DataSource Persistence="ProjectFile" Label="" />
     </StringProperty.DataSource>
   </StringProperty>
-  <StringProperty Name="TargetExt" Category="General" DisplayName="Target Extension" Description="Specifies a file extension that this project will generate. (Example: .o, .bc, .js or .html)" F1Keyword="VC.Project.VCConfiguration.TargetExt">
+  <StringProperty Name="TargetExt" Category="General" DisplayName="Target Extension" Description="Specifies a file extension that this project will generate. (Example: .o, .bc, .js , .mjs or .html)" F1Keyword="VC.Project.VCConfiguration.TargetExt">
     <StringProperty.DataSource>
       <DataSource Persistence="ProjectFile" Label="" />
     </StringProperty.DataSource>
@@ -61,6 +61,7 @@
     <EnumValue Name="JSApplication" DisplayName="JavaScript (.js)" />
     <EnumValue Name="StaticLibrary" DisplayName="Static LLVM Bitcode Library (.a)" />
     <EnumValue Name="WebAssembly" DisplayName="WebAssembly (.wasm)" />
+    <EnumValue Name="ES6JSModule" DisplayName="ES6 JavaScript Module (.mjs)" />
   </EnumProperty>
 
 </Rule>

@@ -225,7 +225,7 @@
   <PropertyGroup>
     <UseDefaultProjectTools>false</UseDefaultProjectTools>
   </PropertyGroup>
-  <ItemGroup Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication'">
+  <ItemGroup Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication' or '$(ConfigurationType)' == 'ES6JSModule'">
     <ProjectTools Include="Link" />
     <ProjectTools Include="CustomBuildStep" />
   </ItemGroup>
@@ -259,7 +259,7 @@
         $(PropertyXmlDirectory)\emcc.xml;
     "/>
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary'" />
-    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_link.xml" Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication'" />
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_link.xml" Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication' or '$(ConfigurationType)' == 'ES6JSModule'" />
   </ItemGroup>
 
 </Project>
