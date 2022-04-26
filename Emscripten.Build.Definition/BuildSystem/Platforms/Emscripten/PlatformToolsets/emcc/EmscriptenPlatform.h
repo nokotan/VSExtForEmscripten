@@ -230,18 +230,18 @@ typedef char* __builtin_va_list;
 #define __INT_MAX__ 2147483647
 #define __LDBL_DECIMAL_DIG__ 36
 #define __LDBL_DENORM_MIN__ 6.47517511943802511092443895822764655e-4966L
-#define __LDBL_DIG__ 15
+#define __LDBL_DIG__ 33
 #define __LDBL_EPSILON__ 1.92592994438723585305597794258492732e-34L
 #define __LDBL_HAS_DENORM__ 1
 #define __LDBL_HAS_INFINITY__ 1
 #define __LDBL_HAS_QUIET_NAN__ 1
 #define __LDBL_MANT_DIG__ 113
-#define __LDBL_MAX_10_EXP__ 308
-#define __LDBL_MAX_EXP__ 1024
-#define __LDBL_MAX__ 1.7976931348623158e+308
-#define __LDBL_MIN_10_EXP__ (-307)
-#define __LDBL_MIN_EXP__ (-1021)
-#define __LDBL_MIN__ 2.2250738585072014e-308
+#define __LDBL_MAX_10_EXP__ 4932
+#define __LDBL_MAX_EXP__ 16384
+#define __LDBL_MAX__ 1.18973149535723176508575932662800702e+4932L
+#define __LDBL_MIN_10_EXP__ (-4931)
+#define __LDBL_MIN_EXP__ (-16381)
+#define __LDBL_MIN__ 3.36210314311209350626267781732175260e-4932L
 #define __LITTLE_ENDIAN__ 1
 #define __LONG_LONG_MAX__ 9223372036854775807LL
 #define __LONG_MAX__ 2147483647L
@@ -260,7 +260,7 @@ typedef char* __builtin_va_list;
 #define __PTRDIFF_FMTd__ "ld"
 #define __PTRDIFF_FMTi__ "li"
 #define __PTRDIFF_MAX__ 2147483647L
-#define __PTRDIFF_TYPE__ int
+#define __PTRDIFF_TYPE__ long int
 #define __PTRDIFF_WIDTH__ 32
 #define __SCHAR_MAX__ 127
 #define __SHRT_MAX__ 32767
@@ -270,7 +270,7 @@ typedef char* __builtin_va_list;
 #define __SIZEOF_FLOAT__ 4
 // #define __SIZEOF_INT128__ 16
 #define __SIZEOF_INT__ 4
-#define __SIZEOF_LONG_DOUBLE__ 8
+#define __SIZEOF_LONG_DOUBLE__ 16
 #define __SIZEOF_LONG_LONG__ 8
 #define __SIZEOF_LONG__ 4
 #define __SIZEOF_POINTER__ 4
@@ -284,9 +284,9 @@ typedef char* __builtin_va_list;
 #define __SIZE_FMTu__ "lu"
 #define __SIZE_FMTx__ "lx"
 #define __SIZE_MAX__ 4294967295UL
-#define __SIZE_TYPE__ unsigned int
+#define __SIZE_TYPE__ long unsigned int
 #define __SIZE_WIDTH__ 32
-#define __STDCPP_DEFAULT_NEW_ALIGNMENT__ 16UL
+#define __STDCPP_DEFAULT_NEW_ALIGNMENT__ 8UL
 #define __STDC_HOSTED__ 1
 #define __STDC_UTF_16__ 1
 #define __STDC_UTF_32__ 1
@@ -383,7 +383,7 @@ typedef char* __builtin_va_list;
 #define __UINT_LEAST8_MAX__ 255
 #define __UINT_LEAST8_TYPE__ unsigned char
 #define __USER_LABEL_PREFIX__ 
-#define __VERSION__ "Clang 12.0.0 (/b/s/w/ir/cache/git/chromium.googlesource.com-external-github.com-llvm-llvm--project 77152a6b7ac07ce65568d7c69305653e7cad4bb0)"
+#define __VERSION__ "Clang 13.0.0 (https://github.com/llvm/llvm-project fd1d8c2f04dde23bee0fb3a7d069a9b1046da979)"
 #define __WCHAR_MAX__ 2147483647
 #define __WCHAR_TYPE__ int
 #define __WCHAR_WIDTH__ 32
@@ -391,10 +391,12 @@ typedef char* __builtin_va_list;
 #define __WINT_TYPE__ int
 #define __WINT_WIDTH__ 32
 // #define __clang__ 1
-#define __clang_major__ 12
+#define __clang_literal_encoding__ "UTF-8"
+#define __clang_major__ 13
 #define __clang_minor__ 0
 #define __clang_patchlevel__ 0
-#define __clang_version__ "12.0.0 (emulated clang on msvc)"
+#define __clang_version__ "13.0.0 (https://github.com/llvm/llvm-project fd1d8c2f04dde23bee0fb3a7d069a9b1046da979)"
+#define __clang_wide_literal_encoding__ "UTF-32"
 #define __cplusplus 202002L
 #define __cpp_aggregate_nsdmi 201304L
 #define __cpp_alias_templates 200704L
