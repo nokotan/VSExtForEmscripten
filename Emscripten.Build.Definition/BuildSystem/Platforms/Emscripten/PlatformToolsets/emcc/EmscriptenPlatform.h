@@ -41,6 +41,7 @@ typedef char* __builtin_va_list;
 # define __c11_atomic_compare_exchange_weak(...)
 
 # define __is_function(_Tp) !(is_reference<_Tp>::value || is_const<const _Tp>::value)
+# define __atomic_always_lock_free(...) (false)
 
 //
 // has_feature hacking
@@ -155,9 +156,9 @@ typedef char* __builtin_va_list;
 #define __GLIBCXX_BITSIZE_INT_N_0 128
 #define __GLIBCXX_TYPE_INT_N_0 __int128
 #define __GNUC_GNU_INLINE__ 1
-#define __GNUC_MINOR__ 2
-#define __GNUC_PATCHLEVEL__ 1
-#define __GNUC__ 4
+#define __GNUC_MINOR__ 0
+#define __GNUC_PATCHLEVEL__ 0
+#define __GNUC__ 12
 #define __GNUG__ 4
 #define __GXX_ABI_VERSION 1002
 #define __GXX_EXPERIMENTAL_CXX0X__ 1
