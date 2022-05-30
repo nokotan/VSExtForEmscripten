@@ -2,10 +2,19 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="Emscripten.Build.Definition.4e942135-f309-41d4-8214-c2e5bd7c7ace" Version="0.6.3" Language="en-US" Publisher="KamenokoSoft" />
-        <DisplayName>Emscripten Build Support for amd64</DisplayName>
+        <DisplayName>Emscripten Build Support for Visual Studio 2022</DisplayName>
         <Description xml:space="preserve">This extension will provide project template for emscripten and property pages for compilation with emcc.</Description>
     </Metadata>
     <Installation AllUsers="true">
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Community">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Pro">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Enterprise">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
         <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.Community">
             <ProductArchitecture>amd64</ProductArchitecture>
         </InstallationTarget>
