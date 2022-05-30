@@ -309,7 +309,9 @@ namespace Emscripten.Build.CPPTasks
                         templateStr.Replace("-std=c++03", "");
                         templateStr.Replace("-std=c++11", "");
                         templateStr.Replace("-std=c++14", "");
-                        templateStr.Replace("-std=c++1z", "");
+                        templateStr.Replace("-std=c++17", "");
+                        templateStr.Replace("-std=c++20", "");
+                        templateStr.Replace("-std=c++2a", "");
                     }
                 }
             }
