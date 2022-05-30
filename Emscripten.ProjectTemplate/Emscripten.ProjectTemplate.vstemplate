@@ -5,6 +5,7 @@
     <Description>Hello world with emscripten</Description>
     <Icon>Emscripten.ProjectTemplate.ico</Icon>
     <ProjectType>VC</ProjectType>
+    <LanguageTag>cpp</LanguageTag>
     <SortOrder>1000</SortOrder>
     <TemplateID>4aa7d94d-4f86-42a0-82cf-66c56048e49c</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
