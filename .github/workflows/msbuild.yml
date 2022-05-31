@@ -75,16 +75,6 @@ jobs:
       - name: Restore Bundles
         uses: actions/download-artifact@v2
         with:
-          name: VSExt-Build.Definition.vs2017
-          path: .
-
-      - name: Rename VSExt-Build.Definitio for vs2017
-        run: |
-          cp Emscripten.Build.Definition.vsix Emscripten.Build.Definition.vs2017.vsix
-
-      - name: Restore Bundles
-        uses: actions/download-artifact@v2
-        with:
           name: VSExt-Build.Definition.vs2022
           path: .
 
@@ -112,17 +102,6 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: Emscripten.Build.Definition.vsix
           asset_name: Emscripten.Build.Definition.vsix
-          asset_content_type: application/vsix
-
-      - name: Upload Release Asset (vs2017)
-        id: upload-build-support-package-for-vs2017
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Emscripten.Build.Definition.vs2017.vsix
-          asset_name: Emscripten.Build.Definition.vs2017.vsix
           asset_content_type: application/vsix
 
       - name: Upload Release Asset
