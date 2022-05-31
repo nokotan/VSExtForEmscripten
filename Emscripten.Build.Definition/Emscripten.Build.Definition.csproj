@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
@@ -215,8 +215,14 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.csproj">
+    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.csproj">
       <Project>{66908FCE-3A52-477B-87B5-ACDE7984DE68}</Project>
+      <Name>Emscripten.Debugger.Definition</Name>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+    </ProjectReference>
+    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.csproj">
+      <Project>{A872285A-D1CA-47FF-AAF8-900BFC71B45C}</Project>
       <Name>Emscripten.Debugger.Definition</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
