@@ -9,7 +9,7 @@
     <SortOrder>1000</SortOrder>
     <TemplateID>4aa7d94d-4f86-42a0-82cf-66c56048e49c</TemplateID>
     <CreateNewFolder>true</CreateNewFolder>
-    <DefaultName>Emscripten.ProjectTemplate</DefaultName>
+    <DefaultName>EmscriptenProject</DefaultName>
     <ProvideDefaultName>true</ProvideDefaultName>
   </TemplateData>
   <TemplateContent>
