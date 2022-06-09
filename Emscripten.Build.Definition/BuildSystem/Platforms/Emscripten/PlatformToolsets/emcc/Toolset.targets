@@ -248,6 +248,9 @@
         $(VCTargetsPath)$(LangID)\custom_build_step.xml;
         $(VCTargetsPath)$(LangID)\copy_file.xml;
     "/>
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_file.xml">
+      <Context>File</Context>
+    </PropertyPageSchema>
     <PropertyPageSchema Include="$(PropertyXmlDirectory)\general.xml">
       <Context>Project</Context>
     </PropertyPageSchema>
