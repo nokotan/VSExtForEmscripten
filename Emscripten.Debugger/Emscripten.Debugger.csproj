@@ -78,7 +78,7 @@
     <Content Include="lib\dapServerLauncher.js.map">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="lib\f69c74117ad7a4f1437c.module.wasm">
+    <Content Include="lib\feef29a47caed52f6d92.module.wasm">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
     <None Include="source.extension.vsixmanifest">
