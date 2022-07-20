@@ -187,21 +187,21 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
+    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
       <Project>{9B55BA92-5129-41E5-ABF3-CFB220E1672B}</Project>
       <Name>Emscripten.Build.CppTasks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
       <VSIXSubPath>%24VCTargets\Platforms\Emscripten</VSIXSubPath>
     </ProjectReference>
-    <ProjectReference Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
+    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
       <Project>{9B55BA92-5129-41E5-ABF3-CFB220E1672B}</Project>
       <Name>Emscripten.Build.CppTasks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
       <VSIXSubPath>$MSBuild\Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
     </ProjectReference>
-    <ProjectReference Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
+    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
       <Project>{9B55BA92-5129-41E5-ABF3-CFB220E1672B}</Project>
       <Name>Emscripten.Build.CppTasks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
@@ -215,13 +215,19 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
+    <ProjectReference Include="..\Emscripten.Debugger\Emscripten.Debugger.csproj">
+      <Project>{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}</Project>
+      <Name>Emscripten.Debugger</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+    </ProjectReference>
     <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.csproj">
       <Project>{66908FCE-3A52-477B-87B5-ACDE7984DE68}</Project>
       <Name>Emscripten.Debugger.Definition</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3bPkgdefProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
     </ProjectReference>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.csproj">
+    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.vs2017.csproj">
       <Project>{A872285A-D1CA-47FF-AAF8-900BFC71B45C}</Project>
       <Name>Emscripten.Debugger.Definition</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>

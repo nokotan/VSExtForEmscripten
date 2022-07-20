@@ -2,8 +2,8 @@
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
         <Identity Id="Emscripten.ProjectType.80c9bedd-1988-42d3-a4c8-d6be759abab6" Version="0.6.4" Language="en-US" Publisher="KamenokoSoft" />
-        <DisplayName>Emscripten Build Support</DisplayName>
-        <Description xml:space="preserve">This extension will provide project template for emscripten and property pages for compilation with emcc.</Description>
+        <DisplayName>Emscripten Build Definition for Visual Studio 2017, 2019</DisplayName>
+        <Description xml:space="preserve">This extension will provide property pages for compilation with emcc.</Description>
     </Metadata>
     <Installation AllUsers="true">
         <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.Community" />
@@ -14,7 +14,6 @@
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
     </Dependencies>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Emscripten.ProjectTemplate" Path="ProjectTemplates" d:TargetPath="|Emscripten.ProjectTemplate;TemplateProjectOutputGroup|" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$VCTargets\Platforms\Emscripten" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$MSBuild\Microsoft\VC\v160\Platforms\Emscripten" />
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="Emscripten.Debugger.Definition.vs2017" Path="|Emscripten.Debugger.Definition;PkgdefProjectOutputGroup|" />
