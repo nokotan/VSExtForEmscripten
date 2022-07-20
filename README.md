@@ -1,12 +1,29 @@
 # Visual Studio Project Support for emscripten
 
+## !!! IMPORTANT NOTICE !!!
+
+Breaking change is planned in v0.7.0.
+
+Extension dependency will be more simplified.
+
+### Required Actions
+
+#### Visual Studio 2017, 2019 Users
+
+- Remove **Emscripten Debugger for Visual Studio**, which will be merged into Emscripten Build Target
+- Install **Emscripten Build Target** additionaly
+
+#### Visual Studio 2022 Users
+
+- Remove **Emscripten Debugger for Visual Studio**, which will be merged into Emscripten Build Target
+
 ## Introduction
 
-This extension will provide...
+This extension will provide these functionarities
 
-- Project template for emscripten
-- Property pages for compilation with emcc
-- Debugger Support (experimental)
+- emscripten project template
+- Property pages for compiling with emcc
+- WebAssembly Debugger (experimental)
 
 This extension is based on following repositories.
 
@@ -25,7 +42,7 @@ This extension is developed with [Visual Studio Project System](https://github.c
 ### From Visual Studio Extenstion Manager
 
 - Open Visual Studio Extenstion Manager ( [Tools] > [Extensions and Updates...] )
-- Search for Emscripten Build Support
+- Search for Emscripten Extension Pack
 
 ### From Visual Studio MarketPlace
 
@@ -40,6 +57,6 @@ This extension is developed with [Visual Studio Project System](https://github.c
 
 ## First Step with this tool
 
-* Open project preference (in \[Project\] > \[$(ProjectName)\ Properties ...]) and fill out **General/Emscripten** ("emscripten インストールディレクトリ" in Japanese) with your emscripten installation path.
+- Open project preference (in \[Project\] > \[$(ProjectName)\ Properties ...]) and fill out **General/Emscripten** ("emscripten インストールディレクトリ" in Japanese) with your emscripten installation path.
 
 ![General/Emscripten](https://camo.githubusercontent.com/7f04788bbdf57ddb56c3c609bcb7947a704bb045457d3337e8211533a21bc35d/68747470733a2f2f71696974612d757365722d636f6e74656e74732e696d6769782e6e65742f687474707325334125324625324671696974612d696d6167652d73746f72652e73332e61702d6e6f727468656173742d312e616d617a6f6e6177732e636f6d2532463025324631353835313425324637343939336639632d386666342d653530302d333532312d3866306537373438613430332e706e673f69786c69623d72622d312e322e32266175746f3d666f726d6174266769662d713d363026713d373526773d31343030266669743d6d617826733d3031336263333530636136376530376362383537383165333465636435333133)

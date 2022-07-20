@@ -1,18 +1,45 @@
-# Projects in this repository
+# Architecture
 
-## Emscripten.Build.CppTasks
+## Extension Structure
 
-- Implementation for Build Tasks (EmscriptenCompile, EmscriptenLink, EmscriptenLib) which are used in Toolset.targets
+### Emscripten Build Target
 
-## Emscripten.ProjectTemplate
+- Core extension
+- Provides following functionarity
+  - Property page definition (for Visual Studio 2022)
+  - Project template
+  - WebAssembly debugger
 
-- Implementation for project template
+### Emscripten Build Definition for vs2017, vs2019
 
-## Emscripten.Debugger.Definition
+- Additional package for Visual Studio 2017, 2019
+- Provides following functionarity
+  - Property page definition
 
-- WebAssembly Debugger (under construction)
+### Emscripten Extension Pack for Visual Studio
 
-## Emscripten.Build.Definition
+- Installs required extension according to your development environment
+
+## Project Files Structure
+
+### Emscripten.Build.CppTasks
+
+- Build Tasks Implementation (EmscriptenCompile, EmscriptenLink, EmscriptenLib) which are used in Toolset.targets
+
+### Emscripten.ProjectTemplate
+
+- Project template with single Main.cpp file
+
+### Emscripten.Debugger
+
+- Core files of WebAssembly Debugger (under heavy construction)
+- Bundle result of [nokotan/cdb-gdb-bridge](https://github.com/nokotan/cdp-gdb-bridge)
+
+### Emscripten.Debugger.Definition
+
+- Debugger definition of WebAssembly Debugger
+
+### Emscripten.Build.Definition
 
 - .vsix package manifest
 - Definitions of Toolset and project pages
