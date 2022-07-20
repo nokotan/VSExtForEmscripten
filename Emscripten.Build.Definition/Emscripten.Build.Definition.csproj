@@ -208,14 +208,14 @@
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
       <VSIXSubPath>$MSBuild\Microsoft\VC\v170\Platforms\Emscripten</VSIXSubPath>
     </ProjectReference>
-    <ProjectReference Include="..\Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj">
+    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj">
       <Project>{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}</Project>
       <Name>Emscripten.ProjectTemplate</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Include="..\Emscripten.Debugger\Emscripten.Debugger.csproj">
+    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.Debugger\Emscripten.Debugger.csproj">
       <Project>{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}</Project>
       <Name>Emscripten.Debugger</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

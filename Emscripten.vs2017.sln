@@ -4,8 +4,6 @@ VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger.Definition.vs2017", "Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.vs2017.csproj", "{A872285A-D1CA-47FF-AAF8-900BFC71B45C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ProjectTemplate", "Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj", "{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.CppTasks", "Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj", "{9B55BA92-5129-41E5-ABF3-CFB220E1672B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.Definition", "Emscripten.Build.Definition\Emscripten.Build.Definition.csproj", "{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}"
@@ -20,10 +18,6 @@ Global
 		{A872285A-D1CA-47FF-AAF8-900BFC71B45C}.Debug VS2017|Any CPU.Build.0 = Debug VS2017|Any CPU
 		{A872285A-D1CA-47FF-AAF8-900BFC71B45C}.Release VS2017|Any CPU.ActiveCfg = Release VS2017|Any CPU
 		{A872285A-D1CA-47FF-AAF8-900BFC71B45C}.Release VS2017|Any CPU.Build.0 = Release VS2017|Any CPU
-		{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}.Debug VS2017|Any CPU.ActiveCfg = Debug|Any CPU
-		{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}.Debug VS2017|Any CPU.Build.0 = Debug|Any CPU
-		{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}.Release VS2017|Any CPU.ActiveCfg = Release|Any CPU
-		{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}.Release VS2017|Any CPU.Build.0 = Release|Any CPU
 		{9B55BA92-5129-41E5-ABF3-CFB220E1672B}.Debug VS2017|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B55BA92-5129-41E5-ABF3-CFB220E1672B}.Debug VS2017|Any CPU.Build.0 = Debug|Any CPU
 		{9B55BA92-5129-41E5-ABF3-CFB220E1672B}.Release VS2017|Any CPU.ActiveCfg = Release|Any CPU
