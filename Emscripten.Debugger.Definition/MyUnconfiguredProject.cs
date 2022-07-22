@@ -23,7 +23,7 @@ namespace Emscripten.Debugger.Definition
     using Task = System.Threading.Tasks.Task;
 
     [Export]
-    [AppliesTo(WasmDebugger.SchemaName)]
+    [AppliesTo(DebuggerLaunchProvider.DebuggerSchemaName)]
     internal class MyUnconfiguredProject
     {
         /// <summary>

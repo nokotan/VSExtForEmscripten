@@ -10,10 +10,16 @@ using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 
 namespace Emscripten.Debugger.Definition
 {
-    [ExportDebugger(WasmDebugger.SchemaName)]
-    [AppliesTo(WasmDebugger.SchemaName)]
+    [ExportDebugger(DebuggerSchemaName)]
+    [AppliesTo(DebuggerSchemaName)]
     public class DebuggerLaunchProvider : DebugLaunchProviderBase
     {
+#if VS2017
+        internal const string DebuggerSchemaName = WasmDebuggerVS2017.SchemaName;
+#else
+        internal const string DebuggerSchemaName = WasmDebugger.SchemaName;
+#endif
+
         [ImportingConstructor]
         public DebuggerLaunchProvider(ConfiguredProject configuredProject)
             : base(configuredProject)
@@ -21,7 +27,7 @@ namespace Emscripten.Debugger.Definition
         }
 
         [ExportPropertyXamlRuleDefinition("Emscripten.Debugger.Definition, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:WasmDebugger.xaml", "Project")]
-        [AppliesTo(WasmDebugger.SchemaName)]
+        [AppliesTo(DebuggerSchemaName)]
         private object DebuggerXaml { get { throw new NotImplementedException(); } }
 
         [Import]
@@ -35,7 +41,11 @@ namespace Emscripten.Debugger.Definition
         public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
         {
             var settings = new DebugLaunchSettings(launchOptions);
+#if VS2017
+            var debuggerProperties = await ProjectProperties.GetWasmDebuggerVS2017PropertiesAsync();
+#else
             var debuggerProperties = await ProjectProperties.GetWasmDebuggerPropertiesAsync();
+#endif
             var inspectedPage = await debuggerProperties.WasmDebuggerInspectedPage.GetEvaluatedValueAtEndAsync();
             var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
 

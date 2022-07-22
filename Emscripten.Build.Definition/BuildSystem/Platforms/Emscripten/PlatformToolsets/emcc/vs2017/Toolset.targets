@@ -1,0 +1,268 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <UseDefaultPropertyPageSchemas>false</UseDefaultPropertyPageSchemas>
+  </PropertyGroup>
+
+  <Import Project="$(VCTargetsPath)Microsoft.CppCommon.targets" />
+
+  <ItemGroup>
+    <ProjectCapability Include="WasmDebuggerVS2017"></ProjectCapability>
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <WebBrowserDebuggerHttpUrl Condition="'$(WebBrowserDebuggerHttpUrl)' == ''">$(TargetPath)</WebBrowserDebuggerHttpUrl>
+    <PropertyXmlDirectory Condition="Exists('$(MSBuildThisFileDirectory)$(LangID)')">$(MSBuildThisFileDirectory)$(LangID)</PropertyXmlDirectory>
+    <PropertyXmlDirectory Condition="'$(PropertyXmlDirectory)' == ''">$(MSBuildThisFileDirectory)1033</PropertyXmlDirectory>
+  </PropertyGroup>
+
+  <UsingTask TaskName="EmscriptenCompile" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
+  <UsingTask TaskName="EmscriptenLink" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
+  <UsingTask TaskName="EmscriptenLib" AssemblyFile="$(MSBuildThisFileDirectory)..\..\Emscripten.Build.CppTasks.dll" />
+
+  <Target Name="FixupCLCompileOptions"
+          Condition="'@(ClCompile)' != ''">
+    <ItemGroup>
+      <ClCompile>
+        <PrecompiledHeaderOutputFileDirectory Condition="'%(ClCompile.PrecompiledHeaderOutputFileDirectory)' != '' and !HasTrailingSlash('%(ClCompile.PrecompiledHeaderOutputFileDirectory)')">%(ClCompile.PrecompiledHeaderOutputFileDirectory)\</PrecompiledHeaderOutputFileDirectory>
+      </ClCompile>
+
+      <!-- Add PCH to the list of compiles -->
+      <ClCompilePCH Condition="'%(ClCompile.PrecompiledHeaderFile)' != '' and '%(ClCompile.PrecompiledHeader)' == 'Use'" Include="@(ClCompile->Metadata(PrecompiledHeaderFile)->Fullpath()->Distinct()->ClearMetadata())">
+        <CompileAs/>
+        <ForcedIncludeFiles/>
+        <PrecompiledHeaderFile/>
+        <PrecompiledHeader>Create</PrecompiledHeader>
+        <PrecompiledHeaderCompileAs>%(ClCompile.PrecompiledHeaderCompileAs)</PrecompiledHeaderCompileAs>
+        <PrecompiledHeaderOutputFileDirectory>%(ClCompile.PrecompiledHeaderOutputFileDirectory)</PrecompiledHeaderOutputFileDirectory>
+        <!-- PCH are not part of the build, so exclude the output from the link step. -->
+        <LibCompiled>false</LibCompiled>
+        <LinkCompiled>false</LinkCompiled>
+      </ClCompilePCH>
+
+      <ClCompilePCH>
+        <ObjectFileName>%(ClCompilePCH.PrecompiledHeaderOutputFileDirectory)%(FileName)%(Extension).pch</ObjectFileName>
+        <PrecompiledHeaderOutputFile>%(PrecompiledHeaderOutputFileDirectory)%(ClCompile.PrecompiledHeaderFile).pch</PrecompiledHeaderOutputFile>
+      </ClCompilePCH>
+
+      <!-- Add PCH to the force include, and remove from PCH related flags. -->
+      <ClCompile Condition="'%(ClCompile.PrecompiledHeader)' == 'Use' and '$(DesignTimeBuild)' == 'true'">
+        <!-- Clang expect the output pch.h, which it will deduce pch.h.gch) -->
+        <!-- VC intellisense expect the source pch.h -->
+        <ForcedIncludeFiles>%(ClCompile.PrecompiledHeaderFile);%(ClCompile.ForcedIncludeFiles)</ForcedIncludeFiles>
+        <PrecompiledHeaderOutputFile>%(PrecompiledHeaderOutputFileDirectory)%(ClCompile.PrecompiledHeaderFile).pch</PrecompiledHeaderOutputFile>
+      </ClCompile>
+
+      <ClCompile Condition="'%(ClCompile.PrecompiledHeader)' == 'Use' and '$(DesignTimeBuild)' != 'true' and '%(Identity)' != ''">
+        <PrecompiledHeaderOutputFile>@(ClCompile->Metadata(PrecompiledHeaderFile)->'%(PrecompiledHeaderOutputFileDirectory)%(FileName)%(Extension)').pch</PrecompiledHeaderOutputFile>
+      </ClCompile>
+
+      <!-- Done processing PCH, blank out the unused metadata. -->
+      <ClCompile>
+        <PrecompiledHeaderFile />
+        <PrecompiledHeaderCompileAs />
+        <PrecompiledHeaderOutputFileDirectory />
+      </ClCompile>
+      
+      <ClCompilePCH>
+        <PrecompiledHeaderOutputFileDirectory />
+        <RuntimeTypeInfo Condition="'%(ClCompilePCH.PrecompiledHeaderCompileAs)' == 'CompileAsC'" />
+      </ClCompilePCH>
+
+      <ClCompile Condition="'$(DesignTimeBuild)' != 'true'" Include="@(ClCompilePCH)" />
+    </ItemGroup>
+  </Target>
+
+  <!-- Compile -->
+  <Target Name="ClCompile" Condition="'@(ClCompile)' != ''" DependsOnTargets="SelectClCompile">
+
+    <ItemGroup>
+      <ClCompile>
+        <MinimalRebuildFromTracking Condition="'$(BuildType)' != 'Build' or '$(ForceRebuild)' == 'true'">false</MinimalRebuildFromTracking>
+        <MinimalRebuildFromTracking Condition="'%(ClCompile.MinimalRebuildFromTracking)' == '' and '$(BuildType)' == 'Build' and '$(ForceRebuild)' != 'true'">true</MinimalRebuildFromTracking>
+      </ClCompile>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <CLToolArchitecture Condition="'$(CLToolArchitecture)' == ''">$(VCToolArchitecture)</CLToolArchitecture>
+    </PropertyGroup>
+
+    <EmscriptenCompile
+        Condition="'%(ClCompile.PrecompiledHeader)' == 'Create'"
+        BuildingInIDE = "$(BuildingInsideVisualStudio)"
+        Sources = "@(ClCompile)"
+        TrackerLogDirectory = "%(ClCompile.TrackerLogDirectory)"
+        TLogReadFiles = "@(CLTLogReadFiles)"
+        TLogWriteFiles = "@(CLTLogWriteFiles)"
+        EmscriptenToolPath = "$(EmscriptenDir)\emcc.bat"
+        TrackFileAccess = "$(TrackFileAccess)"
+        MinimalRebuildFromTracking = "%(ClCompile.MinimalRebuildFromTracking)"
+        ToolArchitecture = "$(CLToolArchitecture)"
+        AcceptableNonZeroExitCodes = "%(ClCompile.AcceptableNonZeroExitCodes)"
+        EchoCommandLines = "%(ClCompile.EchoCommandLines)"
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml">
+    </EmscriptenCompile>
+
+    <EmscriptenCompile
+        Condition = "'%(ClCompile.PrecompiledHeader)' != 'Create' and '%(ClCompile.ExcludedFromBuild)' != 'true'"
+        BuildingInIDE = "$(BuildingInsideVisualStudio)"
+        Sources = "@(ClCompile)"
+        TrackerLogDirectory = "%(ClCompile.TrackerLogDirectory)"
+        TLogReadFiles = "@(CLTLogReadFiles)"
+        TLogWriteFiles = "@(CLTLogWriteFiles)"
+        EmscriptenToolPath = "$(EmscriptenDir)\emcc.bat"
+        TrackFileAccess = "$(TrackFileAccess)"
+        MinimalRebuildFromTracking = "%(ClCompile.MinimalRebuildFromTracking)"
+        ToolArchitecture = "$(CLToolArchitecture)"
+        AcceptableNonZeroExitCodes = "%(ClCompile.AcceptableNonZeroExitCodes)"
+        EchoCommandLines = "%(ClCompile.EchoCommandLines)"
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml">
+    </EmscriptenCompile>
+
+  </Target>
+
+  <!-- Lib -->
+  <Target Name="Lib" Condition="'@(Lib)' != ''">
+
+    <ItemGroup>
+      <Lib>
+        <MinimalRebuildFromTracking Condition="'%(Lib.MinimalRebuildFromTracking)' == '' and '$(BuildType)' == 'Build' and '$(ForceRebuild)' != 'true'">true</MinimalRebuildFromTracking>
+      </Lib>
+    </ItemGroup>
+
+    <PropertyGroup>
+      <LibToolArchitecture Condition="'$(LibToolArchitecture)' == ''">$(VCToolArchitecture)</LibToolArchitecture>
+    </PropertyGroup>
+
+    <EmscriptenLib
+        BuildingInIDE = "$(BuildingInsideVisualStudio)"
+        Sources = "@(Lib)"
+        OutputFile = "%(Lib.OutputFile)"
+        TrackerLogDirectory = "%(Lib.TrackerLogDirectory)"
+        TLogReadFiles = "@(LIBTLogReadFiles)"
+        TLogWriteFiles = "@(LIBTLogWriteFiles)"
+        EmscriptenToolPath = "$(EmscriptenDir)\emar.bat"
+        TrackFileAccess = "$(TrackFileAccess)"
+        MinimalRebuildFromTracking = "%(Lib.MinimalRebuildFromTracking)"
+        ToolArchitecture = "$(LibToolArchitecture)"
+        AcceptableNonZeroExitCodes = "%(Lib.AcceptableNonZeroExitCodes)"
+        EchoCommandLines = "%(Lib.EchoCommandLines)"
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc_lib.xml">
+        <Output TaskParameter="SkippedExecution" PropertyName="LibSkippedExecution" />
+    </EmscriptenLib>
+
+    <Message Condition="'$(LibSkippedExecution)' == 'false'" Text="$(MSBuildProjectFile) -&gt; $(TargetPath)" Importance="High" />
+
+  </Target>
+
+  <Target Name="CopyAssets" Condition="'@(Link.IncludedAssetTargets)' != ''">
+
+    <MakeDir Directories="$(IntDir)\assets" />
+
+    <ItemGroup>
+      <CopyAssetsTargets Include="%(Link.IncludedAssetTargets)">
+        <Enumerator>@(SourceProp->'@(%(Identity))')</Enumerator>
+      </CopyAssetsTargets>
+
+      <CopyAssetsSourceFiles Include="%(CopyAssetsTargets.Enumerator)" />
+    </ItemGroup>
+
+    <PropertyGroup>
+      <SourcePath>@(CopyAssetsSourceFiles)</SourcePath>
+      <DestinationPath>@(CopyAssetsSourceFiles->'$(IntDir)\assets\%(Identity)')</DestinationPath>
+    </PropertyGroup>
+ 
+    <Copy
+      SourceFiles="$(SourcePath)"
+      DestinationFiles="$(DestinationPath)">
+    </Copy>
+
+    <ItemGroup Condition="'$(SourcePath)' != ''">
+      <Link>
+        <PreloadFile Condition="%(Link.PreloadFile) == ''">
+          $(ProjectDir)$(IntDir)assets@/
+        </PreloadFile>
+        <PreloadFile Condition="%(Link.PreloadFile) != ''">
+          %(Link.PreloadFile);$(ProjectDir)$(IntDir)assets@/
+        </PreloadFile>
+      </Link>
+    </ItemGroup>
+
+  </Target>
+
+  <!-- Link -->
+  <Target Name="Link" Condition="'@(Link)' != ''" DependsOnTargets="CopyAssets">
+
+    <PropertyGroup>
+      <LinkToolArchitecture Condition="'$(LinkToolArchitecture)' == ''">$(VCToolArchitecture)</LinkToolArchitecture>
+      <Link_MinimalRebuildFromTracking Condition="'@(Link->AnyHaveMetadataValue('MinimalRebuildFromTracking', 'false'))' == 'true'">false</Link_MinimalRebuildFromTracking>
+      <Link_MinimalRebuildFromTracking Condition="'$(BuildType)' != 'Build' or '$(ForceRebuild)' == 'true'" >false</Link_MinimalRebuildFromTracking>
+      <Link_MinimalRebuildFromTracking Condition="'$(Link_MinimalRebuildFromTracking)' == ''">true</Link_MinimalRebuildFromTracking>
+    </PropertyGroup>
+
+    <EmscriptenLink
+        BuildingInIDE = "$(BuildingInsideVisualStudio)"
+        Sources = "@(Link)"
+        OutputFile = "%(Link.OutputFile)"
+        TrackerLogDirectory = "%(Link.TrackerLogDirectory)"
+        TLogReadFiles = "@(LinkTLogReadFiles)"
+        TLogWriteFiles = "@(LinkTLogWriteFiles)"
+        EmscriptenToolPath = "$(EmscriptenDir)\emcc.bat"
+        TrackFileAccess = "$(TrackFileAccess)"
+        MinimalRebuildFromTracking = "$(Link_MinimalRebuildFromTracking)"
+        ToolArchitecture = "$(LinkToolArchitecture)"
+        AcceptableNonZeroExitCodes = "%(Link.AcceptableNonZeroExitCodes)"
+        EchoCommandLines = "%(Link.EchoCommandLines)"     
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc_link.xml">
+      <Output TaskParameter="SkippedExecution" PropertyName="LinkSkippedExecution" />
+    </EmscriptenLink>
+
+    <Message Condition="'$(LinkSkippedExecution)' == 'false'" Text="$(MSBuildProjectFile) -&gt; $(TargetPath)" Importance="High" />
+
+  </Target>
+
+  <!-- Project tools -->
+  <PropertyGroup>
+    <UseDefaultProjectTools>false</UseDefaultProjectTools>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication' or '$(ConfigurationType)' == 'ES6JSModule'">
+    <ProjectTools Include="Link" />
+    <ProjectTools Include="CustomBuildStep" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(ConfigurationType)' == 'StaticLibrary' or '$(ConfigurationType)' == 'WebAssembly'">
+    <ProjectTools Include="Lib" />
+    <ProjectTools Include="CustomBuildStep" />
+  </ItemGroup>
+
+  <!-- Property pages -->
+  <PropertyGroup>
+    <UseDefaultDebuggersPropertyPageSchemas>false</UseDefaultDebuggersPropertyPageSchemas>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Default Project Schemas -->
+    <PropertyPageSchema Include="
+        $(VCTargetsPath)$(LangID)\ProjectItemsSchema.xml;
+        $(VCTargetsPath)$(LangID)\midl.xml;
+        $(VCTargetsPath)$(LangID)\build_events.xml;
+        $(VCTargetsPath)$(LangID)\custom_build_tool.xml;
+        $(VCTargetsPath)$(LangID)\custom_build_step.xml;
+        $(VCTargetsPath)$(LangID)\copy_file.xml;
+    "/>
+    <PropertyPageSchema Include="$(VCTargetsPath)$(LangID)\general_file.xml">
+      <Context>File</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\general.xml">
+      <Context>Project</Context>
+    </PropertyPageSchema>
+    <PropertyPageSchema Include="
+        $(VCTargetsPath)$(LangID)\debugger_general.xml;
+        $(VCTargetsPath)$(LangID)\debugger_local_windows.xml;
+        $(PropertyXmlDirectory)\WasmDebugger.xaml;
+        $(PropertyXmlDirectory)\directories.xml;
+        $(PropertyXmlDirectory)\emcc.xml;
+    "/>
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_lib.xml" Condition="'$(ConfigurationType)' == 'StaticLibrary'" />
+    <PropertyPageSchema Include="$(PropertyXmlDirectory)\emcc_link.xml" Condition="'$(ConfigurationType)' == 'HTMLPage' or '$(ConfigurationType)' == 'JSApplication' or '$(ConfigurationType)' == 'ES6JSModule'" />
+  </ItemGroup>
+
+</Project>

@@ -22,7 +22,7 @@ namespace Emscripten.Debugger.Definition
     using Task = System.Threading.Tasks.Task;
 
     [Export]
-    [AppliesTo(WasmDebugger.SchemaName)]
+    [AppliesTo(DebuggerLaunchProvider.DebuggerSchemaName)]
     internal class MyConfiguredProject
     {
         [Import, SuppressMessage("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Justification = "MEF")]

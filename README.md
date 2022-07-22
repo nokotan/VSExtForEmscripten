@@ -6,9 +6,15 @@ Breaking change is planned in v0.7.0.
 
 Extension dependency will be more simplified.
 
+**And support to Visual Studio 2017 is temporarily suspended in v0.7.0.**
+
 ### Required Actions
 
-#### Visual Studio 2017, 2019 Users
+#### Visual Studio 2017 Users
+
+- No action required.
+
+#### Visual Studio 2019 Users
 
 - Remove **Emscripten Debugger for Visual Studio**, which will be merged into Emscripten Build Target
 - Install **Emscripten Build Target** additionaly
