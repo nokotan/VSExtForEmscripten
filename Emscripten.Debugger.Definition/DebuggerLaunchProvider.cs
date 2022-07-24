@@ -8,7 +8,11 @@ using Microsoft.VisualStudio.ProjectSystem.Debug;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 
+#if VS2017
+namespace Emscripten.Debugger.Definition.vs2017
+#else
 namespace Emscripten.Debugger.Definition
+#endif
 {
     [ExportDebugger(DebuggerSchemaName)]
     [AppliesTo(DebuggerSchemaName)]

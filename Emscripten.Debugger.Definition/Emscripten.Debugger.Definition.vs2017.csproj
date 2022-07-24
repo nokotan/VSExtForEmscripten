@@ -42,8 +42,8 @@
     <ProjectGuid>{A872285A-D1CA-47FF-AAF8-900BFC71B45C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Emscripten.Debugger.Definition</RootNamespace>
-    <AssemblyName>Emscripten.Debugger.Definition</AssemblyName>
+    <RootNamespace>Emscripten.Debugger.Definition.vs2017</RootNamespace>
+    <AssemblyName>Emscripten.Debugger.Definition.vs2017</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>true</GeneratePkgDefFile>
     <CopyBuildOutputToOutputDirectory>true</CopyBuildOutputToOutputDirectory>
@@ -112,7 +112,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <XamlPropertyRule Include="vs2017\WasmDebugger.xaml">
+    <XamlPropertyRule Include="vs2017\WasmDebuggerVS2017.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:GenerateRuleSourceFromXaml</Generator>
     </XamlPropertyRule>

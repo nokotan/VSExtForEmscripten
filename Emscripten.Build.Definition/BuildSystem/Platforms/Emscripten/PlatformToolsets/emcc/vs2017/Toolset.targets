@@ -257,7 +257,7 @@
     <PropertyPageSchema Include="
         $(VCTargetsPath)$(LangID)\debugger_general.xml;
         $(VCTargetsPath)$(LangID)\debugger_local_windows.xml;
-        $(PropertyXmlDirectory)\WasmDebugger.xaml;
+        $(PropertyXmlDirectory)\WasmDebuggerVS2017.xaml;
         $(PropertyXmlDirectory)\directories.xml;
         $(PropertyXmlDirectory)\emcc.xml;
     "/>

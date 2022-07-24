@@ -9,7 +9,11 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 
 ***************************************************************************/
 
+#if VS2017
+namespace Emscripten.Debugger.Definition.vs2017
+#else
 namespace Emscripten.Debugger.Definition
+#endif
 {
     using System;
     using System.ComponentModel.Composition;
