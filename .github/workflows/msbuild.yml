@@ -52,12 +52,6 @@ jobs:
       with:
         name: VSExt-Build.Definition.${{ matrix.config.name }}
         path: .\Emscripten.Build.Definition\bin\${{ matrix.config.config-name }}\*.vsix  
-        
-    - name: Save Debugger Bundles
-      uses: actions/upload-artifact@v2
-      with:
-        name: VSExt-Emscripten.Debugger.${{ matrix.config.name }}
-        path: .\Emscripten.Debugger\bin\${{ matrix.config.config-name }}\*.vsix
 
     - name: Save ExtensionPack Bundles
       uses: actions/upload-artifact@v2
@@ -81,7 +75,7 @@ jobs:
       - name: Restore Bundles
         uses: actions/download-artifact@v2
         with:
-          name: VSExt-Emscripten.Debugger.vs2022
+          name: VSExt-Emscripten.ExtensionPack.vs2022
           path: .
 
       - name: Create release
@@ -105,12 +99,12 @@ jobs:
           asset_content_type: application/vsix
 
       - name: Upload Release Asset
-        id: upload-debugger-package
+        id: upload-extension-pack-package
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: Emscripten.Debugger.vsix
-          asset_name: Emscripten.Debugger.vsix
+          asset_path: Emscripten.ExtensionPack.vsix
+          asset_name: Emscripten.ExtensionPack.vsix
           asset_content_type: application/vsix
