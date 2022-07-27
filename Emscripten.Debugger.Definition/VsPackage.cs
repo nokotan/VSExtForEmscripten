@@ -5,7 +5,7 @@
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [Guid(PackageGuid)]
-    public sealed class VsPackage : Package
+    public sealed class VsPackage : AsyncPackage
     {
         /// <summary>
         /// The GUID for this package.
