@@ -42,7 +42,7 @@
 
   <!-- Input -->
 
-  <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="Additional Dependencies" Category="Input" />
+  <StringListProperty Subtype="file" Name="AdditionalDependencies" DisplayName="Additional Dependencies" Category="Input" Switch="l" />
 
   <StringListProperty Subtype="file" Name="PreJsFile" DisplayName="Pre-Add JavaScript File (--pre-js)" Description="Specifies a .js file to embed to the beginning of the generated script file, before running optimizations on the file." Category="Input" Switch="-pre-js " />
   <StringListProperty Subtype="file" Name="PostJsFile" DisplayName="Post-Add JavaScript File (--post-js)" Description="Specifies a .js file to embed to the beginning of the generated script file, after optimizations have been performed." Category="Input" Switch="-post-js " />
