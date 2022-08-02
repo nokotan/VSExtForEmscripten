@@ -9,7 +9,7 @@ namespace Emscripten.Debugger.Definition
 
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [Guid(PackageGuid)]
-    public sealed class VsPackage : AsyncPackage
+    public sealed class VsPackage : Package
     {
         /// <summary>
         /// The GUID for this package.
