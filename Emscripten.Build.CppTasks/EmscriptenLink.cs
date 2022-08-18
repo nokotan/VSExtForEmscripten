@@ -1,5 +1,8 @@
 ﻿// ***********************************************************************************************
 // (c) 2012 Gavin Pugh http://www.gavpugh.com/ - Released under the open-source zlib license
+// -----------------------------------------------------------------------------------------------
+// This file is modified by [kamenokonokotan](https://github.com/nokotan) and redistributed under
+// the MIT License. See LICENSE in the project root for license information.
 // ***********************************************************************************************
 
 // Emscripten Linker task. Switches are data-driven via PropXmlParse.
