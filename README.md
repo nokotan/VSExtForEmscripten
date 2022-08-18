@@ -25,7 +25,8 @@ This extension will provide these functionarities
 - Property pages for compiling with emcc
 - WebAssembly Debugger (experimental)
 
-This extension is based on following repositories.
+This extension contains sources in following repositories and these source files are re-licensed under the MIT licenses.
+Please refer the original repository for the original licenses.
 
 - <https://github.com/crosire/vs-toolsets>
 - <https://github.com/gavinpugh/vs-android>
