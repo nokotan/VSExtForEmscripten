@@ -1,4 +1,13 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<!-- 
+  Copyright (C) 2021 kamenokonokotan. All rights reserved. 
+  Licensed under the MIT License.
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Copyright (C) 2015 Patrick Mours. All rights reserved. 
+  Licensed under the BSD 2-Clause "Simplified" License.
+-->
+
+
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <_PlatformFolder>$(MSBuildThisFileDirectory)</_PlatformFolder>
   </PropertyGroup>

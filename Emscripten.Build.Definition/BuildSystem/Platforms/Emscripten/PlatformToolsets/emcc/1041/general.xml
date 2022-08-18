@@ -1,4 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<!-- 
+  Copyright (C) 2021 kamenokonokotan. All rights reserved. 
+  Licensed under the MIT License.
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Copyright (C) 2015 Patrick Mours. All rights reserved. 
+  Licensed under the BSD 2-Clause "Simplified" License.
+-->
+
+
+<?xml version="1.0" encoding="utf-8"?>
 <Rule Name="ConfigurationGeneral" DisplayName="全般" Description="全般" PageTemplate="generic" xmlns="http://schemas.microsoft.com/build/2009/properties">
 
   <Rule.Categories>

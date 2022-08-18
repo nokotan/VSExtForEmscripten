@@ -1,4 +1,13 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<!-- 
+  Copyright (C) 2021 kamenokonokotan. All rights reserved. 
+  Licensed under the MIT License.
+  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  Copyright (C) 2015 Patrick Mours. All rights reserved. 
+  Licensed under the BSD 2-Clause "Simplified" License.
+-->
+
+
+<?xml version="1.0" encoding="utf-8"?>
 <Rule Name="Link" DisplayName="Emscripten リンカ" PageTemplate="tool" Order="20" SwitchPrefix="-" xmlns="http://schemas.microsoft.com/build/2009/properties" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
   <Rule.Categories>
