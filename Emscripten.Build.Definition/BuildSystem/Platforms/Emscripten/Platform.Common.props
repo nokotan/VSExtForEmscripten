@@ -75,7 +75,7 @@
     <DebuggerFlavor>WasmDebugger</DebuggerFlavor>
 
     <LocalDebuggerCommand Condition="'$(LocalDebuggerCommand)' == ''">$(EmscriptenDir)\emrun.bat</LocalDebuggerCommand>
-    <LocalDebuggerCommandArguments Condition="'$(LocalDebuggerCommandArguments)' == ''">--serve_after_close $(TargetName)$(TargetExt)</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments Condition="'$(LocalDebuggerCommandArguments)' == ''">$(TargetName)$(TargetExt)</LocalDebuggerCommandArguments>
     <LocalDebuggerDebuggerType Condition="'$(LocalDebuggerDebuggerType)' == ''">Auto</LocalDebuggerDebuggerType>
     <LocalDebuggerAttach Condition="'$(LocalDebuggerAttach)' == ''">false</LocalDebuggerAttach>
     <LocalDebuggerWorkingDirectory Condition="'$(LocalDebuggerWorkingDirectory)' == ''">$(OutDir)</LocalDebuggerWorkingDirectory>
@@ -83,7 +83,7 @@
     <WasmDebuggerInspectedPage Condition="'$(WasmDebuggerInspectedPage)' == ''">http://localhost:6931/$(TargetName)$(TargetExt)</WasmDebuggerInspectedPage>
     <WasmDebuggerAdapterExecutable Condition="'$(WasmDebuggerAdapterExecutable)' == ''">$(EMSDK_NODE)</WasmDebuggerAdapterExecutable>
     <WasmDebuggerServerExecutable Condition="'$(WasmDebuggerServerExecutable)' == ''">$(EmscriptenDir)\emrun.bat</WasmDebuggerServerExecutable>
-    <WasmDebuggerServerArguments Condition="'$(WasmDebuggerServerArguments)' == ''">--serve_after_close --no_browser $(TargetName)$(TargetExt)</WasmDebuggerServerArguments>
+    <WasmDebuggerServerArguments Condition="'$(WasmDebuggerServerArguments)' == ''">--no_browser $(TargetName)$(TargetExt)</WasmDebuggerServerArguments>
     <WasmDebuggerServerWorkingDirectory Condition="'$(WasmDebuggerServerWorkingDirectory)' == ''">$(OutDir)</WasmDebuggerServerWorkingDirectory>
   </PropertyGroup>
 

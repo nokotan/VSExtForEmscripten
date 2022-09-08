@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.ProjectSystem;
@@ -60,13 +61,21 @@ namespace Emscripten.Debugger.Definition
             settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
             settings.Options = $@"{{ ""type"": ""wasm-chrome"", ""url"": ""{inspectedPage}"", ""$adapter"":""{debugAdapterExecutable.Replace('\\', '/')}"" }}";
 
+            var serverProcess = new Process();
+
+            serverProcess.StartInfo.FileName = await debuggerProperties.WasmDebuggerServerExecutable.GetEvaluatedValueAtEndAsync();
+            serverProcess.StartInfo.Arguments = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
+            serverProcess.StartInfo.WorkingDirectory = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
+            serverProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+            serverProcess.Start();
+
             var serverProcessSetting = new DebugLaunchSettings(launchOptions);
 
-            serverProcessSetting.LaunchOperation = DebugLaunchOperation.CreateProcess;
-
-            serverProcessSetting.Executable = await debuggerProperties.WasmDebuggerServerExecutable.GetEvaluatedValueAtEndAsync();
-            serverProcessSetting.Arguments = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
-            serverProcessSetting.CurrentDirectory = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
+            serverProcessSetting.LaunchOperation = DebugLaunchOperation.AlreadyRunning;
+            serverProcessSetting.LaunchOptions |= DebugLaunchOptions.CannotDebugAlone;
+            serverProcessSetting.Executable = serverProcess.StartInfo.FileName;
+            serverProcessSetting.ProcessId = serverProcess.Id;
 
             serverProcessSetting.LaunchDebugEngineGuid = DebuggerEngines.NativeOnlyEngine;
 
