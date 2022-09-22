@@ -4,16 +4,15 @@ on:
   [ push, pull_request ]
 
 jobs:
-
   build:
     strategy:
-        matrix:
-          config:
-            - name: vs2022
-              runs-on: windows-2022
-              config-name: Release
-              vsix-source: source.extension.vs2022.vsixmanifest
-              msbuild-path: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\bin"
+      matrix:
+        config:
+          - name: vs2022
+            runs-on: windows-2022
+            config-name: Release
+            vsix-source: source.extension.vs2022.vsixmanifest
+            msbuild-path: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\bin"
 
     if: ${{ !contains(github.event.head_commit.message, '[ci skip]') }}
     runs-on: ${{ matrix.config.runs-on }}
@@ -22,47 +21,87 @@ jobs:
       Solution_Name: Emscripten.sln
       MSBuild_Path: ${{ matrix.config.msbuild-path }}
 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Copy Vsix Source
+        working-directory: Emscripten.Build.Definition
+        run: |
+          cp ${{ matrix.config.vsix-source }} source.extension.vsixmanifest
+
+      - name: Setup Nuget
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-version: '5.x'
+
+      - name: Restore Nuget package
+        run: nuget restore $env:Solution_Name
+      
+      - name: Build the application
+        run: |
+          Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
+          msbuild $env:Solution_Name /p:Configuration="${{ matrix.config.config-name }}"
+      
+      - name: Save Build.Definition Bundles
+        uses: actions/upload-artifact@v2
+        with:
+          name: VSExt-Build.Definition.${{ matrix.config.name }}
+          path: .\Emscripten.Build.Definition\bin\${{ matrix.config.config-name }}\*.vsix  
+
+      - name: Save ExtensionPack Bundles
+        uses: actions/upload-artifact@v2
+        with:
+          name: VSExt-Emscripten.ExtensionPack.${{ matrix.config.name }}
+          path: .\Emscripten.ExtensionPack\bin\${{ matrix.config.config-name }}\*.vsix  
+
+  test:
+    needs: build
+    runs-on: windows-2022
+
+    env:
+      MSBuild_path: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\bin"
+      VSIXInstaller_Path: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE"
+      DevEnv_Path: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\Common7\\IDE\\devenv.exe"
+      WinAppDriver_Path: "C:\\Program Files (x86)\\Windows Application Driver\\WinAppDriver.exe"
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Copy Vsix Source
-      working-directory: Emscripten.Build.Definition
-      run: |
-        cp ${{ matrix.config.vsix-source }} source.extension.vsixmanifest
+      - name: Install Emscripten
+        working-directory: Test
+        run: |
+          curl -L https://github.com/nokotan/EmscriptenInstaller/releases/download/v0.1.2/EmscriptenOffline.exe -o Emscripten.exe
+          & ".\Emscripten.exe" /SILENT /SUPPRESSMSGBOXES
+          Wait-Process -Name "Emscripten"
+          $env:EMSDK = [System.Environment]::GetEnvironmentVariable("EMSDK","User")
+          echo "EMSDK=$env:EMSDK" >> $env:GITHUB_ENV
+          $env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+          echo $env:Path >> $Env:GITHUB_PATH
 
-    - name: Setup Nuget
-      uses: nuget/setup-nuget@v1
-      with:
-        nuget-version: '5.x'
+      - name: Restore Bundles
+        uses: actions/download-artifact@v2
+        with:
+          name: VSExt-Build.Definition.vs2022
+          path: Test
 
-    - name: Restore Nuget package
-      run: nuget restore $env:Solution_Name
-      
-    - name: Build the application
-      run: |
-        Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
-        msbuild $env:Solution_Name /p:Configuration="${{ matrix.config.config-name }}"
-    
-    - name: Save Build.Definition Bundles
-      uses: actions/upload-artifact@v2
-      with:
-        name: VSExt-Build.Definition.${{ matrix.config.name }}
-        path: .\Emscripten.Build.Definition\bin\${{ matrix.config.config-name }}\*.vsix  
+      - name: Install VSIX
+        working-directory: Test
+        run: |
+          Set-Item Env:Path "$env:VSIXInstaller_Path;$env:Path"
+          VSIXInstaller /quiet /admin Emscripten.Build.Definition.vsix
+          Wait-Process -Name "VSIXInstaller"
 
-    - name: Save ExtensionPack Bundles
-      uses: actions/upload-artifact@v2
-      with:
-        name: VSExt-Emscripten.ExtensionPack.${{ matrix.config.name }}
-        path: .\Emscripten.ExtensionPack\bin\${{ matrix.config.config-name }}\*.vsix  
+      - name: Static Linking Test
+        working-directory: Test/SampleProjects/StaticLinking
+        run: |
+          Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
+          msbuild StaticLinking.sln /p:Configuration="Release"
  
   deploy:
-
     if: ${{ contains(github.ref, 'tags/v') }}
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
 
     steps:
