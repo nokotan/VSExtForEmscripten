@@ -1,4 +1,6 @@
-﻿<!-- 
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 
   Copyright (C) 2021 kamenokonokotan. All rights reserved. 
   Licensed under the MIT License.
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -6,7 +8,6 @@
   Licensed under the BSD 2-Clause "Simplified" License.
 -->
 
-<?xml version="1.0" encoding="utf-8"?>
 <Rule Name="ConfigurationDirectories" DisplayName="Emscripten/C++ ディレクトリ" Description="ツール検索ディレクトリです" PageTemplate="generic" Order="8" xmlns="http://schemas.microsoft.com/build/2009/properties">
 
   <Rule.Categories>
