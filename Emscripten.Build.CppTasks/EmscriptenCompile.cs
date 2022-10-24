@@ -21,13 +21,13 @@ using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Resources;
-using System.Text.RegularExpressions;
-using System.Security;
-using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 using Microsoft.Build.Framework;
 using Microsoft.Build.CPPTasks;
 using Microsoft.Build.Utilities;
+using System.Runtime.CompilerServices;
 
 namespace Emscripten.Build.CPPTasks
 {
@@ -201,61 +201,106 @@ namespace Emscripten.Build.CPPTasks
             int retCode = 0;
             bool hitError = false;
 
+            CancellationTokenSource source = new CancellationTokenSource();
+            CancellationToken token = source.Token;
+
+            List<Task<int>> tasks = new List<Task<int>>();
+            TaskFactory factory = new TaskFactory(token);
+
             foreach (ITaskItem sourceFile in SourcesCompiled)
             {
-                m_currentSourceItem = sourceFile;
-
-                try
+                tasks.Add(factory.StartNew(() =>
                 {
-                    // Command line we'll be using
-                    string responseFileCommands = GenerateResponseFileCommands();
-                    string logString = pathToTool + " " + responseFileCommands;
-
-                    // Echo name of just the source file. Win32's CL does this.
-                    base.Log.LogMessageFromText(Path.GetFileName(sourceFile.ToString()), MessageImportance.High);
-
-                    // Echo full command line if we want it
-                    if (EchoCommandLines == "true")
+                    try
                     {
-                        Log.LogMessageFromText(logString, MessageImportance.High);
-                    }
+                        // Command line we'll be using
+                        string responseFileCommands = GenerateResponseFileCommands(sourceFile);
+                        string logString = pathToTool + " " + responseFileCommands;
 
-                    // Create dummy .h file for precompiled headers. Units with the "use" setting can forcefully include it, which
-                    // in turn makes Emscripten load up the .gch
-                    string pchSetting = sourceFile.GetMetadata("PrecompiledHeader").ToLowerInvariant();
-                    if (pchSetting == "create")
-                    {
-                        string pchOutputH = Path.GetFullPath(sourceFile.GetMetadata("PrecompiledHeaderOutputFile"));
+                        // Echo name of just the source file. Win32's CL does this.
+                        base.Log.LogMessageFromText(Path.GetFileName(sourceFile.ToString()), MessageImportance.High);
 
-                        using (StreamWriter writer = new StreamWriter(pchOutputH, false, Encoding.ASCII))
+                        // Echo full command line if we want it
+                        if (EchoCommandLines == "true")
                         {
-                            writer.WriteLine("#error \"Problem with precompiled headers. It's likely that the .gch file is not present, or you're using a combination of C and CPP files.\"");
+                            Log.LogMessageFromText(logString, MessageImportance.High);
+                        }
+
+                        // Create dummy .h file for precompiled headers. Units with the "use" setting can forcefully include it, which
+                        // in turn makes Emscripten load up the .gch
+                        string pchSetting = sourceFile.GetMetadata("PrecompiledHeader").ToLowerInvariant();
+                        if (pchSetting == "create")
+                        {
+                            string pchOutputH = Path.GetFullPath(sourceFile.GetMetadata("PrecompiledHeaderOutputFile"));
+
+                            using (StreamWriter writer = new StreamWriter(pchOutputH, false, Encoding.ASCII))
+                            {
+                                writer.WriteLine("#error \"Problem with precompiled headers. It's likely that the .gch file is not present, or you're using a combination of C and CPP files.\"");
+                            }
+                        }
+
+                        // Execute the tool, on this source file, with the given commandline.
+                        retCode = base.ExecuteTool(pathToTool, responseFileCommands, string.Empty);
+
+                        if (retCode != 0)
+                        {
+                            // Bad run, bail out here
+                            hitError = true;
                         }
                     }
-
-                    // Execute the tool, on this source file, with the given commandline.
-                    retCode = base.ExecuteTool(pathToTool, responseFileCommands, string.Empty);
-
-                    if (retCode != 0)
+                    catch (Exception e)
                     {
-                        // Bad run, bail out here
+                        // Exception caught, bail out here
                         hitError = true;
+                        retCode = base.ExitCode;
+
+                        Log.LogErrorFromException(e);
                     }
-                }
-                catch (Exception e)
-                {
-                    // Exception caught, bail out here
-                    hitError = true;
-                    retCode = base.ExitCode;
 
-                    Log.LogErrorFromException(e);
-                }
+                    if (hitError)
+                    {
+                        source.Cancel();
+                        return retCode;
+                    }
 
-                if (hitError)
+                    return 0;
+                }));
+            }
+
+            try
+            {
+                Task<int> result = factory.ContinueWhenAll(tasks.ToArray(), (Task<int>[] results) =>
                 {
-                    return retCode;
+                    foreach (var t in results)
+                    {
+                        var r = t.Result;
+                        
+                        if (r != 0)
+                        {
+                            return r;
+                        }
+                    }
+                    return 0;
+                });
+
+                retCode = result.Result;
+            }
+            catch (AggregateException ae)
+            {
+                foreach (Exception e in ae.InnerExceptions)
+                {
+                    if (e is TaskCanceledException)
+                        Console.WriteLine("Unable to compute mean: {0}",
+                           ((TaskCanceledException)e).Message);
+                    else
+                        Console.WriteLine("Exception: " + e.GetType().Name);
                 }
             }
+            finally
+            {
+                source.Dispose();
+            }
+
             return retCode;
         }
 
@@ -268,10 +313,15 @@ namespace Emscripten.Build.CPPTasks
 
         protected override string GenerateResponseFileCommands()
         {
+            return GenerateResponseFileCommands(m_currentSourceItem);
+        }
+
+        protected string GenerateResponseFileCommands(ITaskItem currentSourceItem)
+        {
             StringBuilder templateStr = new StringBuilder(Utils.EST_MAX_CMDLINE_LEN);
-            if (m_currentSourceItem != null)
+            if (currentSourceItem != null)
             {
-                string objectFile = Path.GetFullPath(m_currentSourceItem.GetMetadata("ObjectFileName"));
+                string objectFile = Path.GetFullPath(currentSourceItem.GetMetadata("ObjectFileName"));
                 if (Path.GetFileName(objectFile) == string.Empty)
                 {
                     Log.LogError("The ObjectFileName setting in the Visual Studio C/C++ - Output Files sheet is set to a directory:");
@@ -280,28 +330,28 @@ namespace Emscripten.Build.CPPTasks
                     return string.Empty;
                 }
 
-                string pchSetting = m_currentSourceItem.GetMetadata("PrecompiledHeader").ToLowerInvariant();
+                string pchSetting = currentSourceItem.GetMetadata("PrecompiledHeader").ToLowerInvariant();
                 if (pchSetting == "use")
                 {
-                    string pchOutputH = Utils.PathSanitize(m_currentSourceItem.GetMetadata("PrecompiledHeaderOutputFile"));
+                    string pchOutputH = Utils.PathSanitize(currentSourceItem.GetMetadata("PrecompiledHeaderOutputFile"));
 
                     templateStr.Append(" -include-pch ");
                     templateStr.Append(pchOutputH);
                     templateStr.Append(" ");
                 }
 
-                string sourcePath = Utils.PathSanitize(m_currentSourceItem.ToString());
+                string sourcePath = Utils.PathSanitize(currentSourceItem.ToString());
 
                 // -c = Compile the C/C++ file
                 // -MD = Generate dependency .d file
-                templateStr.Append(m_propXmlParse.ProcessProperties(m_currentSourceItem));
+                templateStr.Append(m_propXmlParse.ProcessProperties(currentSourceItem));
                 templateStr.Append(" -c -MD ");
                 templateStr.Append(sourcePath);
 
                  if (pchSetting != "create")
                 {
                     // Remove rtti stuff from plain C builds. -Wall generates warnings otherwise.
-                    string compileAs = m_currentSourceItem.GetMetadata("CompileAs");
+                    string compileAs = currentSourceItem.GetMetadata("CompileAs");
                     string sourceExtension = Path.GetExtension(sourcePath);
                     
                     if (compileAs != null && (compileAs == "CompileAsC" || (compileAs != "CompileAsCpp" && sourceExtension == ".c")))
