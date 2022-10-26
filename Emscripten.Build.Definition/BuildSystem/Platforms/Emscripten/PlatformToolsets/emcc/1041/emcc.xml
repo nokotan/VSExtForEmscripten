@@ -47,6 +47,9 @@
   <IntProperty Name="ErrorLimit" DisplayName="コンパイルエラーの上限" Description="出力される警告の最大数を設定します。0 を指定すると、警告の最大数は無効になります。規定値は 20 です。(-ferror-limit=[N])" Category="General" Switch="ferror-limit=" />
   <IntProperty Name="TemplateBacktraceLimit" DisplayName="テンプレートのバックトレースの上限" Description="テンプレートの実体化時にエラーが発生した場合の、そのバックトレースを表示する最大数を設定します。0 を指定すると、警告の最大数は無効になります。規定値は 10 です。(-ftemplate-backtrace-limit=[N]" Category="General" Switch="ftemplate-backtrace-limit=" />
 
+  <BoolProperty Name="MultiProcessorCompilation" DisplayName="複数プロセッサによるコンパイル" Description="複数プロセッサによるコンパイルです。" Category="General" F1Keyword="VC.Project.VCCLCompilerTool.MultiProcessorCompilation" />
+  <IntProperty Name="ProcessorNumber" DisplayName="プロセッサ数" Description="プロセッサの数。" Category="General" />
+
   <!-- Optimization -->
 
   <EnumProperty Name="OptimizationLevel" DisplayName="最適化" Description="コード最適化のオプションを選択します。(-O0 ~ -O3, -Os)" Category="Optimization">

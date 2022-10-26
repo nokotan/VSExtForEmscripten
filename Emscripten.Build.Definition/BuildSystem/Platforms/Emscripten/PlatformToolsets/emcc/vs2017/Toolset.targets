@@ -109,7 +109,9 @@
         ToolArchitecture = "$(CLToolArchitecture)"
         AcceptableNonZeroExitCodes = "%(ClCompile.AcceptableNonZeroExitCodes)"
         EchoCommandLines = "%(ClCompile.EchoCommandLines)"
-        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml">
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml"
+        MultiProcessorCompilation = "%(ClCompile.MultiProcessorCompilation)"
+        ProcessorNumber = "%(ClCompile.ProcessorNumber)">
     </EmscriptenCompile>
 
     <EmscriptenCompile
@@ -125,7 +127,9 @@
         ToolArchitecture = "$(CLToolArchitecture)"
         AcceptableNonZeroExitCodes = "%(ClCompile.AcceptableNonZeroExitCodes)"
         EchoCommandLines = "%(ClCompile.EchoCommandLines)"
-        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml">
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc.xml"
+        MultiProcessorCompilation = "%(ClCompile.MultiProcessorCompilation)"
+        ProcessorNumber = "%(ClCompile.ProcessorNumber)">
     </EmscriptenCompile>
 
   </Target>

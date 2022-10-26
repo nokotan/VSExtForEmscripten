@@ -39,6 +39,8 @@
       <PrecompiledHeaderOutputFileDirectory>$(IntDir)</PrecompiledHeaderOutputFileDirectory>
       <PrecompiledHeaderOutputFile></PrecompiledHeaderOutputFile>
       <PrecompiledHeaderCompileAs>CompileAsCpp</PrecompiledHeaderCompileAs>
+      <MultiProcessorCompilation Condition="'%(ClCompile.MultiProcessorCompilation)' == ''">false</MultiProcessorCompilation>
+      <ProcessorNumber Condition="'%(ClCompile.ProcessorNumber)' == ''"></ProcessorNumber>
     </ClCompile>
     <Lib>      
       <OutputFile Condition="'%(Lib.OutputFile)' == ''">$(OutDir)$(TargetName)$(TargetExt)</OutputFile>

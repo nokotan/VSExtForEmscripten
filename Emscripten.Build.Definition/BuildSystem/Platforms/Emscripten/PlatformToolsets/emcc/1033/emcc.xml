@@ -47,6 +47,9 @@
   <IntProperty Name="ErrorLimit" DisplayName="Compilation Error Limit" Description="Set the maximum number of errors to emit before stopping. A value of zero disables the error limit. The default value is 20." Category="General" Switch="ferror-limit=" />
   <IntProperty Name="TemplateBacktraceLimit" DisplayName="Template Backtrace Error Limit" Description="Set the maximum number of entries to print in a template instantiation backtrace. A value of zero disables the limit. The default value is 10." Category="General" Switch="ftemplate-backtrace-limit=" />
 
+  <BoolProperty Name="MultiProcessorCompilation" DisplayName="Multi-processor Compilation" Description="Multi-processor Compilation." Category="General" F1Keyword="VC.Project.VCCLCompilerTool.MultiProcessorCompilation" />
+  <IntProperty Name="ProcessorNumber" DisplayName="Number of processors" Description="Number of processors." Category="General" />
+
   <!-- Optimization -->
 
   <EnumProperty Name="OptimizationLevel" DisplayName="Optimization" Category="Optimization">

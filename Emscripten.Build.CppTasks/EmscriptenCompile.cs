@@ -51,6 +51,10 @@ namespace Emscripten.Build.CPPTasks
         [Required]
         public ITaskItem[] Sources { get; set; }
 
+        [Required]
+        public string MultiProcessorCompilation { get; set; }
+
+        public string ProcessorNumber { get; set; }
 
         public EmscriptenCompile()
             : base(new ResourceManager("Emscripten.Build.CPPTasks.Properties.Resources", Assembly.GetExecutingAssembly()))
@@ -200,12 +204,22 @@ namespace Emscripten.Build.CPPTasks
         {
             int retCode = 0;
             bool hitError = false;
+            int ProcessorNumber = 1;
 
+            if (MultiProcessorCompilation == "true")
+            {
+                if (!int.TryParse(this.ProcessorNumber, out ProcessorNumber))
+                {
+                    ProcessorNumber = Environment.ProcessorCount;
+                }
+            }
+
+            ConcurrentExclusiveSchedulerPair taskScheduler = new ConcurrentExclusiveSchedulerPair(TaskScheduler.Default, ProcessorNumber);
             CancellationTokenSource source = new CancellationTokenSource();
             CancellationToken token = source.Token;
 
             List<Task<int>> tasks = new List<Task<int>>();
-            TaskFactory factory = new TaskFactory(token);
+            TaskFactory factory = new TaskFactory(token, TaskCreationOptions.None, TaskContinuationOptions.None, taskScheduler.ConcurrentScheduler);
 
             foreach (ITaskItem sourceFile in SourcesCompiled)
             {
