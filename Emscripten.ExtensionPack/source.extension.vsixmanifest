@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Emscripten.ExtensionPack.193af23d-e4d9-4665-b6d5-64dfe0d48129" Version="0.7.0" Language="en-US" Publisher="KamenokoSoft" />
+        <Identity Id="Emscripten.ExtensionPack.193af23d-e4d9-4665-b6d5-64dfe0d48129" Version="0.7.1" Language="en-US" Publisher="KamenokoSoft" />
         <DisplayName>Emscripten Extension Pack for Visual Studio</DisplayName>
         <Description xml:space="preserve">This extension pack includes Build support and Debugger support with Emscripten.</Description>
     </Metadata>
