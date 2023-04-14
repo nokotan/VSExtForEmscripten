@@ -200,6 +200,11 @@ namespace Emscripten.Build.CPPTasks
             return base.ValidateParameters();
         }
 
+        private int ExecuteToolBase(string pathToTool, string responseFileCommands, string commandLineCommands)
+        {
+            return base.ExecuteTool(pathToTool, responseFileCommands, commandLineCommands);
+        }
+
         private int CompileWithEmscripten(string pathToTool)
         {
             int retCode = 0;
@@ -253,8 +258,11 @@ namespace Emscripten.Build.CPPTasks
                             }
                         }
 
+                        // ExecuteToolBase is not thread-safe, use cloned instance for now.
+                        var that = this.MemberwiseClone() as EmscriptenCompile;
+
                         // Execute the tool, on this source file, with the given commandline.
-                        retCode = base.ExecuteTool(pathToTool, responseFileCommands, string.Empty);
+                        retCode = that.ExecuteToolBase(pathToTool, responseFileCommands, string.Empty);
 
                         if (retCode != 0)
                         {
