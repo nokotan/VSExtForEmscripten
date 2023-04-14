@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.2017
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MultiProcessBuild", "MultiProcessBuild.vcxproj", "{61072049-589B-42F4-92B2-93DC2F0AB285}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Emscripten = Debug|Emscripten
+		Release|Emscripten = Release|Emscripten
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61072049-589B-42F4-92B2-93DC2F0AB285}.Debug|Emscripten.ActiveCfg = Debug|Emscripten
+		{61072049-589B-42F4-92B2-93DC2F0AB285}.Debug|Emscripten.Build.0 = Debug|Emscripten
+		{61072049-589B-42F4-92B2-93DC2F0AB285}.Release|Emscripten.ActiveCfg = Release|Emscripten
+		{61072049-589B-42F4-92B2-93DC2F0AB285}.Release|Emscripten.Build.0 = Release|Emscripten
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9092F9E-378A-4C32-919A-8FCA5EE9827D}
+	EndGlobalSection
+EndGlobal

@@ -98,6 +98,12 @@ jobs:
         run: |
           Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
           msbuild StaticLinking.sln /p:Configuration="Release"
+
+      - name: MultiProcessBuild Test
+        working-directory: Test/SampleProjects/MultiProcessBuild
+        run: |
+          Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
+          msbuild MultiProcessBuild.sln /p:Configuration="Release"
  
   deploy:
     if: ${{ contains(github.ref, 'tags/v') }}
