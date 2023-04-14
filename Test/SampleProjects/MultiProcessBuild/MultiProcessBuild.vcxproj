@@ -36,19 +36,11 @@
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>StaticLibrary</AdditionalDependencies>
-      <AdditionalLinkDirectories>$(ProjectDir)\$(Platform)\$(Configuration)</AdditionalLinkDirectories>
-    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Emscripten'">
     <ClCompile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
-    <Link>
-      <AdditionalDependencies>StaticLibrary</AdditionalDependencies>
-      <AdditionalLinkDirectories>$(ProjectDir)\$(Platform)\$(Configuration)</AdditionalLinkDirectories>
-    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
