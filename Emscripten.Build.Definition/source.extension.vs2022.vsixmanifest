@@ -6,6 +6,12 @@
         <Description xml:space="preserve">This extension will provide project template for emscripten and property pages for compilation with emcc.</Description>
     </Metadata>
     <Installation AllUsers="true">
+        <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.BuildTools">
+            <ProductArchitecture>x86</ProductArchitecture>
+        </InstallationTarget>
+        <InstallationTarget Version="[17.0, 18.0)" Id="Microsoft.VisualStudio.BuildTools">
+            <ProductArchitecture>amd64</ProductArchitecture>
+        </InstallationTarget>
         <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.Community">
             <ProductArchitecture>x86</ProductArchitecture>
         </InstallationTarget>
