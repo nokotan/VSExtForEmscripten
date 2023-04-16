@@ -8,7 +8,7 @@ SHELL ["cmd", "/S", "/C"]
 COPY Emscripten.Build.Definition.vsix .
 
 RUN `
-    "%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat" `
+    ""%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat"" `
     && VSIXInstaller /quiet /admin Emscripten.Build.Definition.vsix `
     && PowerShell -NoLogo -ExecutionPolicy ByPass Wait-Process -Name "VSIXInstaller" `
     && del /q Emscripten.vsix

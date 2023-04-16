@@ -107,7 +107,7 @@ jobs:
 
   build-dockerimage:
     runs-on: windows-latest
-    needs: [ test ]
+    needs: build
 
     steps:
       - name: Checkout code
