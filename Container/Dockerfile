@@ -9,8 +9,7 @@ COPY Emscripten.Build.Definition.vsix .
 
 RUN `
     ""%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat"" `
-    && curl -SL --output Emscripten.vsix https://github.com/nokotan/VSExtForEmscripten/releases/download/v0.7.1/Emscripten.Build.Definition.vsix `
-    && VSIXInstaller /quiet /admin Emscripten.vsix `
+    && VSIXInstaller /quiet /admin Emscripten.Build.Definition.vsix `
     && PowerShell -NoLogo -ExecutionPolicy ByPass Wait-Process -Name "VSIXInstaller" `
     && del /q Emscripten.vsix
 
