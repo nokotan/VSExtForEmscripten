@@ -8,11 +8,10 @@ SHELL ["cmd", "/S", "/C"]
 COPY Emscripten.Build.Definition.vsix .
 
 RUN `
-    set VSCMD_DEBUG=1 `
-    && ""%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat"" `
+    ""%ProgramFiles%\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\VsDevCmd.bat" `
     && VSIXInstaller /quiet /admin Emscripten.Build.Definition.vsix `
     && PowerShell -NoLogo -ExecutionPolicy ByPass Wait-Process -Name "VSIXInstaller" `
-    && del /q Emscripten.vsix
+    && del /q Emscripten.vsix"
 
 # Define the entry point for the docker container.
 # This entry point starts the developer command prompt and launches the PowerShell shell.
