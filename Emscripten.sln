@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger", "Emsc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ExtensionPack", "Emscripten.ExtensionPack\Emscripten.ExtensionPack.csproj", "{9608F800-0957-4679-AFA6-99E45DCE9034}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger.Definition.Test", "Emscripten.Debugger.Definition.Test\Emscripten.Debugger.Definition.Test.csproj", "{3067B6A0-72BF-414F-B259-0838A12FFC55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{9608F800-0957-4679-AFA6-99E45DCE9034}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9608F800-0957-4679-AFA6-99E45DCE9034}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9608F800-0957-4679-AFA6-99E45DCE9034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3067B6A0-72BF-414F-B259-0838A12FFC55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3067B6A0-72BF-414F-B259-0838A12FFC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3067B6A0-72BF-414F-B259-0838A12FFC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3067B6A0-72BF-414F-B259-0838A12FFC55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
