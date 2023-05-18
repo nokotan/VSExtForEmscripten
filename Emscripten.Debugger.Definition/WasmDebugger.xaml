@@ -19,6 +19,18 @@
                 Description="The debugger adapter executable (node.exe).">
     </StringProperty>
 
+    <StringListProperty Name="WasmDebuggerChromeFlags" DisplayName="Chrome Flags"
+                Description="Chrome flags.">
+    </StringListProperty>
+
+    <StringProperty Name="WasmDebuggerChromeUserDataDirectory" DisplayName="Chrome UserData Directory"
+                Description="Chrome userData directory.">
+    </StringProperty>
+
+    <BoolProperty Name="WasmDebuggerChromeIgnoreDefaultFlags" DisplayName="Chrome Ignore Default Flags"
+                Description="Ignore chrome default flags.">
+    </BoolProperty>
+
     <StringProperty Name="WasmDebuggerServerExecutable" DisplayName="Server Command Executable"
                   Description="The executable during run debugging.">
     </StringProperty>
