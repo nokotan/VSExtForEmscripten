@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.ProjectSystem.Debug;
@@ -42,6 +43,7 @@ namespace Emscripten.Debugger.Definition
         {
             return Task.FromResult(true);
         }
+       
 
         public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
         {
@@ -51,15 +53,27 @@ namespace Emscripten.Debugger.Definition
 #else
             var debuggerProperties = await ProjectProperties.GetWasmDebuggerPropertiesAsync();
 #endif
-            var inspectedPage = await debuggerProperties.WasmDebuggerInspectedPage.GetEvaluatedValueAtEndAsync();
             var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
+
+            if (!File.Exists(debugAdapterExecutable))
+            {
+                throw new FileNotFoundException($@"Failed to launch WebAssembly debugger. Debugger adapter executable cannot be found. Please check WasmDebuggerAdapterExecutable in the Debugger configuration. InputValue: {debugAdapterExecutable}");
+            }
+
+            var config = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
+                inspectedPage: await debuggerProperties.WasmDebuggerInspectedPage.GetEvaluatedValueAtEndAsync(),
+                chromeFlags: await debuggerProperties.WasmDebuggerChromeFlags.GetEvaluatedValueAtEndAsync(),
+                chromeUserDataDirectory: await debuggerProperties.WasmDebuggerChromeUserDataDirectory.GetEvaluatedValueAtEndAsync(),
+                chromeIgnoreDefaultFlags: await debuggerProperties.WasmDebuggerChromeIgnoreDefaultFlags.GetEvaluatedValueAtEndAsync(),
+                debugAdapterExecutable: debugAdapterExecutable
+            );
 
             settings.LaunchOperation = DebugLaunchOperation.CreateProcess;
 
             settings.Executable = @"C:\Windows\System32\cmd.exe"; // dummy
 
             settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
-            settings.Options = $@"{{ ""type"": ""wasm-chrome"", ""url"": ""{inspectedPage}"", ""$adapter"":""{debugAdapterExecutable.Replace('\\', '/')}"" }}";
+            settings.Options = JsonSerializer.Serialize(config);
 
             var serverProcess = new Process();
 
