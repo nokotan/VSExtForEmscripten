@@ -83,7 +83,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="lib\2fd68917a1a4953b856c.module.wasm">
+    <Content Include="lib\d041c5b2b60bd9321501.module.wasm">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
