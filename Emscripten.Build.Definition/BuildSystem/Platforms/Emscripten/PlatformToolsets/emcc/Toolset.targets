@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectCapability Include="WasmDebugger"></ProjectCapability>
+    <ProjectCapability Include="NodeWasmDebugger"></ProjectCapability>
   </ItemGroup>
   
   <PropertyGroup>
@@ -271,6 +272,7 @@
         $(VCTargetsPath)$(LangID)\debugger_general.xml;
         $(VCTargetsPath)$(LangID)\debugger_local_windows.xml;
         $(PropertyXmlDirectory)\WasmDebugger.xaml;
+        $(PropertyXmlDirectory)\NodeWasmDebugger.xaml;
         $(PropertyXmlDirectory)\directories.xml;
         $(PropertyXmlDirectory)\emcc.xml;
     "/>

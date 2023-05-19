@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Copyright, Microsoft Corporation, All rights reserved.-->
+<Rule
+	Name="NodeWasmDebugger"
+	DisplayName="Node WebAssembly Debugger"
+	PageTemplate="debugger"
+	Description="Node WebAssembly Debugger options"
+	xmlns="http://schemas.microsoft.com/build/2009/properties">
+    
+    <Rule.DataSource>
+        <DataSource Persistence="UserFile"/>
+    </Rule.DataSource>
+
+    <StringProperty Name="NodeWasmDebuggerProgram" DisplayName="Launched Program"
+                Description="The debugged program.">
+    </StringProperty>
+
+    <StringProperty Name="NodeWasmDebuggerAdapterExecutable" DisplayName="Debug Adapter Executable"
+                Description="The debugger adapter executable (node.exe).">
+    </StringProperty>
+
+    <StringProperty Name="NodeWasmDebuggerNodeExecutable" DisplayName="Node Executable"
+                Description="The launched node.exe with the debugged program.">
+    </StringProperty>
+
+    <StringProperty Name="NodeWasmDebuggerWorkingDirectory" DisplayName="Working Directory"
+              Description="The application's working directory. By default, the directory containing the project file."
+              Subtype="folder"/>
+</Rule>

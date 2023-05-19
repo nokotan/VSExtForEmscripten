@@ -327,6 +327,11 @@
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
     </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\NodeWasmDebugger.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
+    </Content>
     <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
@@ -353,6 +358,11 @@
       <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
     <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\WasmDebugger.xaml">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <InstallRoot>MSBuild</InstallRoot>
+      <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
+    </Content>
+    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\NodeWasmDebugger.xaml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>

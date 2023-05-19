@@ -71,6 +71,7 @@
     <DeployExtension>False</DeployExtension>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="NodeDebuggerLaunchProvider.cs" />
     <Compile Include="DebuggerLaunchProvider.cs" />
     <Compile Include="MyConfiguredProject.cs" />
     <Compile Include="MyUnconfiguredProject.cs" />
@@ -136,6 +137,12 @@
     <PackageReference Include="Microsoft.VisualStudio.Threading">
       <Version>17.2.32</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <XamlPropertyRule Include="NodeWasmDebugger.xaml">
+      <Generator>MSBuild:GenerateRuleSourceFromXaml</Generator>
+      <SubType>Designer</SubType>
+    </XamlPropertyRule>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />

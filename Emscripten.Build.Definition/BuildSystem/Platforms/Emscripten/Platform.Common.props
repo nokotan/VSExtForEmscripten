@@ -85,6 +85,12 @@
     <WasmDebuggerServerExecutable Condition="'$(WasmDebuggerServerExecutable)' == ''">$(EmscriptenDir)\emrun.bat</WasmDebuggerServerExecutable>
     <WasmDebuggerServerArguments Condition="'$(WasmDebuggerServerArguments)' == ''">--no_browser $(TargetName)$(TargetExt)</WasmDebuggerServerArguments>
     <WasmDebuggerServerWorkingDirectory Condition="'$(WasmDebuggerServerWorkingDirectory)' == ''">$(OutDir)</WasmDebuggerServerWorkingDirectory>
+    <WasmDebuggerChromeIgnoreDefaultFlags Condition="'$(WasmDebuggerServerWorkingDirectory)' == ''">true</WasmDebuggerChromeIgnoreDefaultFlags>
+
+    <NodeWasmDebuggerProgram Condition="'$(NodeWasmDebuggerProgram)' == ''">$(TargetName)$(TargetExt)</NodeWasmDebuggerProgram>
+    <NodeWasmDebuggerAdapterExecutable Condition="'$(NodeWasmDebuggerAdapterExecutable)' == ''">$(EMSDK_NODE)</NodeWasmDebuggerAdapterExecutable>
+    <NodeWasmDebuggerNodeExecutable Condition="'$(NodeWasmDebuggerNodeExecutable)' == ''">$(EMSDK_NODE)</NodeWasmDebuggerNodeExecutable>
+    <NodeWasmDebuggerWorkingDirectory Condition="'$(NodeWasmDebuggerWorkingDirectory)' == ''">$(OutDir)</NodeWasmDebuggerWorkingDirectory>
   </PropertyGroup>
 
   <!-- Project tools defaults -->

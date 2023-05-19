@@ -52,4 +52,37 @@ namespace Emscripten.Debugger.Definition
             return config;
         }
     }
+
+    public class NodeWebAssemblyDebuggerConfig
+    {
+        public string type { get; set; }
+        public string program { get; set; }
+        [JsonPropertyName("$adapter")]
+        public string adapterExecutable { get; set; }
+        public string node { get; set; }
+        public string cwd { get; set; }
+
+        public static NodeWebAssemblyDebuggerConfig GenerateNodeLaunchConfig(
+                string program,
+                string nodeExecutable,
+                string nodeWorkingDirectory,
+                string debugAdapterExecutable
+            )
+        {
+            var config = new NodeWebAssemblyDebuggerConfig()
+            {
+                type = "wasm-node",
+                program = program,
+                node = nodeExecutable,
+                adapterExecutable = debugAdapterExecutable.Replace('\\', '/'),
+            };
+
+            if (!string.IsNullOrWhiteSpace(nodeWorkingDirectory))
+            {
+                config.cwd = nodeWorkingDirectory;
+            }
+
+            return config;
+        }
+    }
 }
