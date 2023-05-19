@@ -18,6 +18,7 @@ namespace Emscripten.Debugger.Definition.Test
                 debugAdapterExecutable: ""
             );
 
+            Assert.AreEqual(config.type, "wasm-chrome");
             Assert.AreEqual(config.flags.Length, 0);
             Assert.AreEqual(config.userDataDir, null);
             Assert.AreEqual(config.ignoreDefaultFlags, null);
