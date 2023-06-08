@@ -214,6 +214,36 @@
       <Link_MinimalRebuildFromTracking Condition="'$(Link_MinimalRebuildFromTracking)' == ''">true</Link_MinimalRebuildFromTracking>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Link>
+        <SavedAdditionalOptions>%(Link.AdditionalOptions)</SavedAdditionalOptions>
+        <AdditionalOptions>%(Link.AdditionalOptions) -Wl,--version</AdditionalOptions>
+      </Link>
+    </ItemGroup>
+
+    <EmscriptenLink
+        BuildingInIDE = "$(BuildingInsideVisualStudio)"
+        Sources = "@(Link)"
+        OutputFile = "%(Link.OutputFile)"
+        TrackerLogDirectory = "%(Link.TrackerLogDirectory)"
+        TLogReadFiles = "@(LinkTLogReadFiles)"
+        TLogWriteFiles = "@(LinkTLogWriteFiles)"
+        EmscriptenToolPath = "$(EmscriptenDir)\emcc.bat"
+        TrackFileAccess = "False"
+        TrackCommandLines = "False"
+        MinimalRebuildFromTracking = "$(Link_MinimalRebuildFromTracking)"
+        ToolArchitecture = "$(LinkToolArchitecture)"
+        AcceptableNonZeroExitCodes = "%(Link.AcceptableNonZeroExitCodes)"
+        EchoCommandLines = "%(Link.EchoCommandLines)"     
+        PropertyXmlFile = "$(PropertyXmlDirectory)\emcc_link.xml">
+    </EmscriptenLink>
+
+    <ItemGroup>
+      <Link>
+        <AdditionalOptions>%(Link.SavedAdditionalOptions)</AdditionalOptions>
+      </Link>
+    </ItemGroup>
+
     <EmscriptenLink
         BuildingInIDE = "$(BuildingInsideVisualStudio)"
         Sources = "@(Link)"
