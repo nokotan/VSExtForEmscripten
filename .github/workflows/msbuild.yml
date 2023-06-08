@@ -105,6 +105,19 @@ jobs:
           Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
           msbuild MultiProcessBuild.sln /p:Configuration="Release"
 
+      - name: TLog Generation Test
+        working-directory: Test/SampleProjects/PreCompiledHeader
+        run: |
+          Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
+          msbuild PreCompiledHeader.sln /p:Configuration="Release"
+
+      - name: TLog Generation Test
+        working-directory: Test/SampleProjects/StaticLinking
+        run: |
+          Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
+          emcc --clear-cache
+          msbuild StaticLinking.sln /p:Configuration="Release"
+
   build-dockerimage:
     runs-on: windows-latest
     needs: build
