@@ -47,7 +47,7 @@ namespace Emscripten.Debugger.Definition
 
         public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
         {
-            var settings = new DebugLaunchSettings(launchOptions);
+            
 #if VS2017
             var debuggerProperties = await ProjectProperties.GetWasmDebuggerVS2017PropertiesAsync();
 #else
@@ -60,40 +60,55 @@ namespace Emscripten.Debugger.Definition
                 throw new FileNotFoundException($@"Failed to launch WebAssembly debugger. Debugger adapter executable cannot be found. Please check WasmDebuggerAdapterExecutable in the Debugger configuration. InputValue: {debugAdapterExecutable}");
             }
 
-            var config = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
+            // 1: Debug Adapter Server Process
+            var serverSettings = new DebugLaunchSettings(launchOptions);
+            serverSettings.LaunchOperation = DebugLaunchOperation.CreateProcess;
+            serverSettings.LaunchOptions = DebugLaunchOptions.CannotDebugAlone | DebugLaunchOptions.TerminateOnStop;
+            serverSettings.Executable = @"WebAssembly Debug Server";
+            serverSettings.LaunchDebugEngineGuid = new Guid("9849C080-ECCF-46EE-9758-9F6F9ED68693");
+            serverSettings.Options = "{}";
+
+            // 2: Debug Adapter Client Process
+            var clientSettings = new DebugLaunchSettings(launchOptions);
+            var clientConfig = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
                 inspectedPage: await debuggerProperties.WasmDebuggerInspectedPage.GetEvaluatedValueAtEndAsync(),
                 chromeFlags: await debuggerProperties.WasmDebuggerChromeFlags.GetEvaluatedValueAtEndAsync(),
                 chromeUserDataDirectory: await debuggerProperties.WasmDebuggerChromeUserDataDirectory.GetEvaluatedValueAtEndAsync(),
                 chromeIgnoreDefaultFlags: await debuggerProperties.WasmDebuggerChromeIgnoreDefaultFlags.GetEvaluatedValueAtEndAsync(),
-                debugAdapterExecutable: debugAdapterExecutable
+                debugAdapterExecutable: null
             );
 
-            settings.LaunchOperation = DebugLaunchOperation.CreateProcess;
+            clientSettings.LaunchOperation = DebugLaunchOperation.CreateProcess;
+            clientSettings.Executable = @"WebAssembly Debug Client";
+            clientSettings.LaunchDebugEngineGuid = new Guid("9849C080-ECCF-46EE-9758-9F6F9ED68693");
 
-            settings.Executable = @"C:\Windows\System32\cmd.exe"; // dummy
+            clientConfig.type = "pwa-chrome";
+            clientConfig.enableDWARF = true;
+            clientConfig.adapterExecutable = null;
+            clientConfig.port = 8123;
 
-            settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
-            settings.Options = JsonSerializer.Serialize(config);
+            clientSettings.LaunchOptions |= DebugLaunchOptions.StopDebuggingOnEnd;
+            clientSettings.Options = JsonSerializer.Serialize(clientConfig);
 
-            var serverProcess = new Process();
+            // 3: WebServer Process
+            var webServerProcessSetting = new DebugLaunchSettings(launchOptions);
+            var webServerProcess = new Process();
 
-            serverProcess.StartInfo.FileName = await debuggerProperties.WasmDebuggerServerExecutable.GetEvaluatedValueAtEndAsync();
-            serverProcess.StartInfo.Arguments = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
-            serverProcess.StartInfo.WorkingDirectory = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
-            serverProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            webServerProcess.StartInfo.FileName = await debuggerProperties.WasmDebuggerServerExecutable.GetEvaluatedValueAtEndAsync();
+            webServerProcess.StartInfo.Arguments = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
+            webServerProcess.StartInfo.WorkingDirectory = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
+            webServerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
-            serverProcess.Start();
+            webServerProcess.Start();
 
-            var serverProcessSetting = new DebugLaunchSettings(launchOptions);
+            webServerProcessSetting.LaunchOperation = DebugLaunchOperation.AlreadyRunning;
+            webServerProcessSetting.LaunchOptions = DebugLaunchOptions.CannotDebugAlone | DebugLaunchOptions.TerminateOnStop;
+            webServerProcessSetting.Executable = webServerProcess.ProcessName;
+            webServerProcessSetting.ProcessId = webServerProcess.Id;
 
-            serverProcessSetting.LaunchOperation = DebugLaunchOperation.AlreadyRunning;
-            serverProcessSetting.LaunchOptions |= DebugLaunchOptions.CannotDebugAlone;
-            serverProcessSetting.Executable = serverProcess.StartInfo.FileName;
-            serverProcessSetting.ProcessId = serverProcess.Id;
+            webServerProcessSetting.LaunchDebugEngineGuid = DebuggerEngines.NativeOnlyEngine;
 
-            serverProcessSetting.LaunchDebugEngineGuid = DebuggerEngines.NativeOnlyEngine;
-
-            return new IDebugLaunchSettings[] { settings, serverProcessSetting };
+            return new IDebugLaunchSettings[] { serverSettings, clientSettings, webServerProcessSetting };
         }
     }
 }

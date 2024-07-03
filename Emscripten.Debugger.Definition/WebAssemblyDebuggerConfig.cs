@@ -17,6 +17,10 @@ namespace Emscripten.Debugger.Definition
         public string[] flags { get; set; }
         public string userDataDir { get; set; }
         public bool? ignoreDefaultFlags { get; set; }
+        [JsonPropertyName("$debugServer")]
+        public int? port { get; set; }
+
+        public bool? enableDWARF { get; set; }
 
         public static WebAssemblyDebuggerConfig GenerateChromeLaunchConfig(
                 string inspectedPage,
@@ -36,7 +40,7 @@ namespace Emscripten.Debugger.Definition
                 type = "wasm-chrome",
                 url = inspectedPage,
                 flags = splittedFlags,
-                adapterExecutable = debugAdapterExecutable.Replace('\\', '/'),
+                adapterExecutable = debugAdapterExecutable?.Replace('\\', '/'),
             };
 
             if (!string.IsNullOrWhiteSpace(chromeUserDataDirectory))
