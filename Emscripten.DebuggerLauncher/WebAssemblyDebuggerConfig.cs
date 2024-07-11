@@ -3,9 +3,9 @@ using System.Linq;
 using System.Text.Json.Serialization;
 
 #if VS2017
-namespace Emscripten.Debugger.Definition.vs2017
+namespace Emscripten.DebuggerLauncher.vs2017
 #else
-namespace Emscripten.Debugger.Definition
+namespace Emscripten.DebuggerLauncher
 #endif
 {
     public class WebAssemblyDebuggerConfig

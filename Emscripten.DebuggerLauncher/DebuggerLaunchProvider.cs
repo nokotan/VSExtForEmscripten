@@ -11,9 +11,9 @@ using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 
 #if VS2017
-namespace Emscripten.Debugger.Definition.vs2017
+namespace Emscripten.DebuggerLauncher.vs2017
 #else
-namespace Emscripten.Debugger.Definition
+namespace Emscripten.DebuggerLauncher
 #endif
 {
     [ExportDebugger(DebuggerSchemaName)]
@@ -32,7 +32,7 @@ namespace Emscripten.Debugger.Definition
         {
         }
 
-        [ExportPropertyXamlRuleDefinition("Emscripten.Debugger.Definition, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:WasmDebugger.xaml", "Project")]
+        [ExportPropertyXamlRuleDefinition("Emscripten.DebuggerLauncher, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:WasmDebugger.xaml", "Project")]
         [AppliesTo(DebuggerSchemaName)]
         private object DebuggerXaml { get { throw new NotImplementedException(); } }
 

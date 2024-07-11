@@ -2,11 +2,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Emscripten.Debugger.Definition.Test")]
+[assembly: AssemblyTitle("Emscripten.DebuggerLauncher.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Emscripten.Debugger.Definition.Test")]
+[assembly: AssemblyProduct("Emscripten.DebuggerLauncher.Test")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

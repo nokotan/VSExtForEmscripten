@@ -35,11 +35,11 @@
 - Core files of WebAssembly Debugger (under heavy construction)
 - Bundle result of [nokotan/cdb-gdb-bridge](https://github.com/nokotan/cdp-gdb-bridge)
 
-### Emscripten.Debugger.Definition
+### Emscripten.DebuggerLauncher
 
 - Debugger definition of WebAssembly Debugger
 
-### Emscripten.Build.Definition
+### Emscripten.BuildSystem
 
 - .vsix package manifest
 - Definitions of Toolset and project pages

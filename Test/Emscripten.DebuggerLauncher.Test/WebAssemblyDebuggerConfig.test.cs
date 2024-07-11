@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Emscripten.Debugger.Definition;
+using Emscripten.DebuggerLauncher;
 using System;
 
-namespace Emscripten.Debugger.Definition.Test
+namespace Emscripten.DebuggerLauncher.Test
 {
     [TestClass]
     public class WebAssemblyDebuggerConfigTest

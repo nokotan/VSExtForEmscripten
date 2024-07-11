@@ -1,7 +1,7 @@
 ﻿#if VS2017
-namespace Emscripten.Debugger.Definition.vs2017
+namespace Emscripten.DebuggerLauncher.vs2017
 #else
-namespace Emscripten.Debugger.Definition
+namespace Emscripten.DebuggerLauncher
 #endif
 {
     using Microsoft.VisualStudio.Shell;
@@ -20,6 +20,6 @@ namespace Emscripten.Debugger.Definition
         /// The default namespace this project compiles with, so that manifest
         /// resource names can be calculated for embedded resources.
         /// </summary>
-        internal const string DefaultNamespace = "Emscripten.Debugger.Definition";
+        internal const string DefaultNamespace = "Emscripten.DebuggerLauncher";
     }
 }

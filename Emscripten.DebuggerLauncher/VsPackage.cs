@@ -1,4 +1,4 @@
-﻿namespace Emscripten.Debugger.Definition
+﻿namespace Emscripten.DebuggerLauncher
 {
     using Microsoft.VisualStudio.Shell;
     using System.Runtime.InteropServices;
@@ -16,6 +16,6 @@
         /// The default namespace this project compiles with, so that manifest
         /// resource names can be calculated for embedded resources.
         /// </summary>
-        internal const string DefaultNamespace = "Emscripten.Debugger.Definition";
+        internal const string DefaultNamespace = "Emscripten.DebuggerLauncher";
     }
 }

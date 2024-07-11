@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Emscripten.Build.Definition.4e942135-f309-41d4-8214-c2e5bd7c7ace" Version="0.8.0" Language="en-US" Publisher="KamenokoSoft" />
+        <Identity Id="Emscripten.BuildSystem.4e942135-f309-41d4-8214-c2e5bd7c7ace" Version="0.8.0" Language="en-US" Publisher="KamenokoSoft" />
         <DisplayName>Emscripten Build Target</DisplayName>
         <Description xml:space="preserve">This extension will provide project template for emscripten and property pages for compilation with emcc.</Description>
     </Metadata>
@@ -37,8 +37,8 @@
     <Assets>
         <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Emscripten.ProjectTemplate" Path="ProjectTemplates" d:TargetPath="|Emscripten.ProjectTemplate;TemplateProjectOutputGroup|" d:VsixSubPath="ProjectTemplates" />
         <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$MSBuild\Microsoft\VC\v170\Platforms\Emscripten" />
-        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="Emscripten.Debugger.Definition" Path="|Emscripten.Debugger.Definition;PkgdefProjectOutputGroup|" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Emscripten.Debugger.Definition" Path="|Emscripten.Debugger.Definition|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="Emscripten.DebuggerLauncher" Path="|Emscripten.DebuggerLauncher;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Emscripten.DebuggerLauncher" Path="|Emscripten.DebuggerLauncher|" />
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0, 18.0)" DisplayName="Visual Studio core editor" />

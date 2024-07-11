@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32519.379
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger.Definition.vs2017", "Emscripten.Debugger.Definition\Emscripten.Debugger.Definition.vs2017.csproj", "{A872285A-D1CA-47FF-AAF8-900BFC71B45C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.DebuggerLauncher.vs2017", "Emscripten.DebuggerLauncher\Emscripten.DebuggerLauncher.vs2017.csproj", "{A872285A-D1CA-47FF-AAF8-900BFC71B45C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.CppTasks", "Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj", "{9B55BA92-5129-41E5-ABF3-CFB220E1672B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.Definition", "Emscripten.Build.Definition\Emscripten.Build.Definition.csproj", "{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.BuildSystem", "Emscripten.BuildSystem\Emscripten.BuildSystem.csproj", "{048B183F-A4FB-4213-A9B4-7311AFBE7DD9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
