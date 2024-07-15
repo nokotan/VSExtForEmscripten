@@ -6,7 +6,7 @@
 
 
 [$RootKey$\AD7Metrics\Engine\{9849C080-ECCF-46EE-9758-9F6F9ED68693}]
-"Name"="Chrome CXX Debugger"
+"Name"="WebAssembly DWARF Debug"
 
 ; Boilerplate 
 "CLSID"="{DAB324E9-7B35-454C-ACA8-F6BB0D5C8673}" 

@@ -11,29 +11,13 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
 
 namespace Emscripten.DebuggerLauncher
 {
-    using System;
     using System.ComponentModel.Composition;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Threading.Tasks;
-    using System.Threading.Tasks.Dataflow;
     using Microsoft.VisualStudio.ProjectSystem;
-    using Microsoft.VisualStudio.ProjectSystem.VS;
-    using Microsoft.VisualStudio.Shell;
     using Microsoft.VisualStudio.Shell.Interop;
-    using Task = System.Threading.Tasks.Task;
 
     [Export]
-    [AppliesTo(DebuggerLaunchProvider.DebuggerSchemaName)]
     internal class MyUnconfiguredProject
     {
-        /// <summary>
-        /// The file extension used by your project type.
-        /// This does not include the leading period.
-        /// </summary>
-        internal const string ProjectExtension = "wsproj";
-
-        internal const string Language = "WindowsScript";
-
         [ImportingConstructor]
         public MyUnconfiguredProject(UnconfiguredProject unconfiguredProject)
         {

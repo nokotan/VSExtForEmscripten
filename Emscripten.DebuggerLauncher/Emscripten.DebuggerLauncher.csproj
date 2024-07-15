@@ -49,12 +49,13 @@
     <DeployExtension>False</DeployExtension>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="NodeDebuggerLaunchProvider.cs" />
-    <Compile Include="DebuggerLaunchProvider.cs" />
+    <Compile Include="NodeWasmDebuggerLaunchProvider.cs" />
+    <Compile Include="WasmDebuggerLaunchProvider.cs" />
     <Compile Include="MyConfiguredProject.cs" />
     <Compile Include="MyUnconfiguredProject.cs" />
     <Compile Include="ProjectProperties.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VSCodeDebuggerLaunchProvider.cs" />
     <Compile Include="VsPackage.cs" />
     <Compile Include="WebAssemblyDebuggerConfig.cs" />
   </ItemGroup>
@@ -123,6 +124,10 @@
       <Generator>MSBuild:GenerateRuleSourceFromXaml</Generator>
       <SubType>Designer</SubType>
     </XamlPropertyRule>
+    <XamlPropertyRule Include="Rule\VSCodeDebugger.xaml">
+      <Generator>MSBuild:GenerateRuleSourceFromXaml</Generator>
+      <SubType>Designer</SubType>
+    </XamlPropertyRule>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Rule\WasmDebugger.xaml">
@@ -131,6 +136,10 @@
     </Content>
     <Content Include="Rule\NodeWasmDebugger.xaml">
       <Link>PlatformToolsets\emcc\1033\NodeWasmDebugger.xaml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Rule\VSCodeDebugger.xaml">
+      <Link>PlatformToolsets\emcc\1033\VSCodeDebugger.xaml</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
@@ -14,12 +13,12 @@ namespace Emscripten.DebuggerLauncher
 {
     [ExportDebugger(DebuggerSchemaName)]
     [AppliesTo(DebuggerSchemaName)]
-    public class NodeDebuggerLaunchProvider : DebugLaunchProviderBase
+    public class NodeWasmDebuggerLaunchProvider : DebugLaunchProviderBase
     {
         internal const string DebuggerSchemaName = NodeWasmDebugger.SchemaName;
 
         [ImportingConstructor]
-        public NodeDebuggerLaunchProvider(ConfiguredProject configuredProject)
+        public NodeWasmDebuggerLaunchProvider(ConfiguredProject configuredProject)
             : base(configuredProject)
         {
         }
