@@ -33,8 +33,8 @@
     <ProjectGuid>{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kamenokosoft.ChromeCXXDebugger</RootNamespace>
-    <AssemblyName>Kamenokosoft.ChromeCXXDebugger</AssemblyName>
+    <RootNamespace>Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug</RootNamespace>
+    <AssemblyName>Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
@@ -73,7 +73,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ChromeCXXDebugger.pkgdef">
+    <Content Include="Emscripten.Debugger.VSCodeDwarfDebug.pkgdef">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

@@ -88,7 +88,7 @@ namespace Emscripten.DebuggerLauncher
             clientConfig.port = 8123;
 
             clientSettings.LaunchOptions |= DebugLaunchOptions.StopDebuggingOnEnd;
-            clientSettings.Options = JsonConvert.SerializeObject(config);
+            clientSettings.Options = JsonConvert.SerializeObject(clientConfig);
 
             // 3: WebServer Process
             var webServerProcessSetting = new DebugLaunchSettings(launchOptions);

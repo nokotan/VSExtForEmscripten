@@ -15,9 +15,9 @@ using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
 #if VS2017
-namespace ChromeCXXDebugger.Definition.vs2017
+namespace Emscripten.Debugger.VSCodeDwarfDebug.Definition.vs2017
 #else
-namespace ChromeCXXDebugger.Definition
+namespace Emscripten.Debugger.VSCodeDwarfDebug.Definition
 #endif
 {
     [ExportDebugger(DebuggerSchemaName)]
@@ -27,7 +27,7 @@ namespace ChromeCXXDebugger.Definition
 #if VS2017
         internal const string DebuggerSchemaName = WasmDebuggerVS2017.SchemaName;
 #else
-        internal const string DebuggerSchemaName = ChromeCXXDebugger.SchemaName;
+        internal const string DebuggerSchemaName = Emscripten.Debugger.VSCodeDwarfDebug.SchemaName;
 #endif
 
         internal static DebuggerLaunchProvider Instance;
@@ -39,7 +39,7 @@ namespace ChromeCXXDebugger.Definition
             Instance = this;
         }
 
-        [ExportPropertyXamlRuleDefinition("ChromeCXXDebugger.Definition, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:ChromeCXXDebugger.xaml", "Project")]
+        [ExportPropertyXamlRuleDefinition("Emscripten.Debugger.VSCodeDwarfDebug.Definition, Version=1.0.0.0, Culture=neutral", "XamlRuleToCode:Emscripten.Debugger.VSCodeDwarfDebug.xaml", "Project")]
         [AppliesTo(DebuggerSchemaName)]
         private object DebuggerXaml { get { throw new NotImplementedException(); } }
 
@@ -62,7 +62,7 @@ namespace ChromeCXXDebugger.Definition
 #if VS2017
             var debuggerProperties = await ProjectProperties.GetWasmDebuggerVS2017PropertiesAsync();
 #else
-            var debuggerProperties = await ProjectProperties.GetChromeCXXDebuggerPropertiesAsync();
+            var debuggerProperties = await ProjectProperties.GetEmscripten.Debugger.VSCodeDwarfDebugPropertiesAsync();
 #endif
             var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
 

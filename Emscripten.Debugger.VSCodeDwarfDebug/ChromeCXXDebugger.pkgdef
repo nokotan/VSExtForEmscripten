@@ -1,8 +1,8 @@
 ﻿; Custom Protocol Extension
 [$RootKey$\CLSID\{05EFD122-20D3-4FB8-8C72-E4BBEEA19FD3}]
-"Assembly"="Kamenokosoft.ChromeCXXDebugger"
-"Class"="Kamenokosoft.ChromeCXXDebugger.StartDebuggingRequestHandler"
-"CodeBase"="$PackageFolder$\Kamenokosoft.ChromeCXXDebugger.dll"
+"Assembly"="Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug"
+"Class"="Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug.StartDebuggingRequestHandler"
+"CodeBase"="$PackageFolder$\Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug.dll"
 
 
 [$RootKey$\AD7Metrics\Engine\{9849C080-ECCF-46EE-9758-9F6F9ED68693}]

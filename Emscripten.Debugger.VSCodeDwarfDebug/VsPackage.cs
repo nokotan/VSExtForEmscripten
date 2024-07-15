@@ -1,4 +1,4 @@
-﻿namespace ChromeCXXDebugger.Definition
+﻿namespace Emscripten.Debugger.VSCodeDwarfDebug.Definition
 {
     using Microsoft.VisualStudio.Shell;
     using System.Runtime.InteropServices;
@@ -16,7 +16,7 @@
         /// The default namespace this project compiles with, so that manifest
         /// resource names can be calculated for embedded resources.
         /// </summary>
-        internal const string DefaultNamespace = "ChromeCXXDebugger.Definition";
+        internal const string DefaultNamespace = "Emscripten.Debugger.VSCodeDwarfDebug.Definition";
 
 
     }

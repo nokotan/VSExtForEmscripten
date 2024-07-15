@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 using StreamJsonRpc;
 
-namespace Kamenokosoft.ChromeCXXDebugger
+namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 {
     internal sealed class DebugEngineLauncher
     {

@@ -17,7 +17,7 @@ namespace Emscripten.DebuggerLauncher
         public string[] flags { get; set; }
         public string userDataDir { get; set; }
         public bool? ignoreDefaultFlags { get; set; }
-        [JsonPropertyName("$debugServer")]
+        [JsonProperty("$debugServer")]
         public int? port { get; set; }
 
         public bool? enableDWARF { get; set; }

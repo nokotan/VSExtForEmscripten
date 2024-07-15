@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.BuildSystem", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger", "Emscripten.Debugger\Emscripten.Debugger.csproj", "{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeCXXDebugger", "ChromeCXXDebugger\ChromeCXXDebugger.csproj", "{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger.VSCodeDwarfDebug", "Emscripten.Debugger.VSCodeDwarfDebug\Emscripten.Debugger.VSCodeDwarfDebug.csproj", "{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ExtensionPack", "Emscripten.ExtensionPack\Emscripten.ExtensionPack.csproj", "{9608F800-0957-4679-AFA6-99E45DCE9034}"
 EndProject

@@ -10,7 +10,7 @@ using System.IO;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Threading;
 
-namespace Kamenokosoft.ChromeCXXDebugger
+namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 {
 
 
