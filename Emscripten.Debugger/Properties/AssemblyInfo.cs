@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Emscripten.Debug.VSCode")]
+[assembly: AssemblyTitle("Emscripten.Debugger")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Emscripten.Debug.VSCode")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCompany("KamenokoSoft")]
+[assembly: AssemblyProduct("Emscripten.Debugger")]
+[assembly: AssemblyCopyright("Copyright (C) 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
