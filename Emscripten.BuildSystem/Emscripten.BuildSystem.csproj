@@ -5,16 +5,6 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug VS2017|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug VS2017\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <DeployExtension>True</DeployExtension>
-  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -56,23 +46,13 @@
     <WarningLevel>4</WarningLevel>
     <DeployExtension>True</DeployExtension>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release VS2017|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release VS2017\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DeployExtension>True</DeployExtension>
-    <VsixManifest>source.extension.vs2017.vsixmanifest</VsixManifest>
-  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release' or '$(Configuration)' == 'Debug'">
+  <ItemGroup>
     <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
       <IncludeInVSIX>true</IncludeInVSIX>
       <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
@@ -110,183 +90,43 @@
       <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
     </Content>
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release VS2017' or '$(Configuration)' == 'Debug VS2017'">
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
-      <InstallRoot>MSBuild</InstallRoot>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.Common.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.Default.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.targets">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\vs2017\Toolset.targets">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
-    </Content>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release VS2017' or '$(Configuration)' == 'Debug VS2017'">
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\EmscriptenPlatform.h">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
-      <InstallRoot>VCTargets</InstallRoot>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.Common.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.Default.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\Platform.targets">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\Toolset.props">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\vs2017\Toolset.targets">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc</VSIXSubPath>
-    </Content>
-  </ItemGroup>
   <ItemGroup>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
-      <Project>{9B55BA92-5129-41E5-ABF3-CFB220E1672B}</Project>
-      <Name>Emscripten.Build.CppTasks</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-      <VSIXSubPath>%24VCTargets\Platforms\Emscripten</VSIXSubPath>
-    </ProjectReference>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
-      <Project>{9B55BA92-5129-41E5-ABF3-CFB220E1672B}</Project>
-      <Name>Emscripten.Build.CppTasks</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
-      <VSIXSubPath>$MSBuild\Microsoft\VC\v160\Platforms\Emscripten</VSIXSubPath>
-    </ProjectReference>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
+    <ProjectReference Include="..\Emscripten.Build.CppTasks\Emscripten.Build.CppTasks.csproj">
       <Project>{9B55BA92-5129-41E5-ABF3-CFB220E1672B}</Project>
       <Name>Emscripten.Build.CppTasks</Name>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
       <VSIXSubPath>$MSBuild\Microsoft\VC\v170\Platforms\Emscripten</VSIXSubPath>
     </ProjectReference>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj">
+    <ProjectReference Include="..\Emscripten.ProjectTemplate\Emscripten.ProjectTemplate.csproj">
       <Project>{ABAFBE38-79B0-4E2A-8358-4B508AEA142A}</Project>
       <Name>Emscripten.ProjectTemplate</Name>
       <VSIXSubPath>ProjectTemplates</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>TemplateProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.Debugger\Emscripten.Debugger.csproj">
+    <ProjectReference Include="..\Emscripten.Debugger\Emscripten.Debugger.csproj">
       <Project>{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}</Project>
       <Name>Emscripten.Debugger</Name>
+      <VSIXSubPath>Debuggers\WasmDebugger</VSIXSubPath>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
     </ProjectReference>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug' or '$(Configuration)' == 'Release'" Include="..\Emscripten.DebuggerLauncher\Emscripten.DebuggerLauncher.csproj">
+    <ProjectReference Include="..\Emscripten.DebuggerLauncher\Emscripten.DebuggerLauncher.csproj">
       <Project>{66908FCE-3A52-477B-87B5-ACDE7984DE68}</Project>
       <Name>Emscripten.DebuggerLauncher</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3bPkgdefProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
+      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bSatelliteDllsProjectOutputGroup%3bPkgdefProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
       <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+      <VSIXSubPath>DebuggerLaunchers\WasmDebugger</VSIXSubPath>
     </ProjectReference>
-    <ProjectReference Condition="'$(Configuration)' == 'Debug VS2017' or '$(Configuration)' == 'Release VS2017'" Include="..\Emscripten.DebuggerLauncher\Emscripten.DebuggerLauncher.vs2017.csproj">
-      <Project>{A872285A-D1CA-47FF-AAF8-900BFC71B45C}</Project>
+    <ProjectReference Include="..\Emscripten.DebuggerLauncher\Emscripten.DebuggerLauncher.csproj">
+      <Project>{66908FCE-3A52-477B-87B5-ACDE7984DE68}</Project>
       <Name>Emscripten.DebuggerLauncher</Name>
-      <IncludeOutputGroupsInVSIX>BuiltProjectOutputGroup%3bBuiltProjectOutputGroupDependencies%3bGetCopyToOutputDirectoryItems%3bSatelliteDllsProjectOutputGroup%3bPkgdefProjectOutputGroup%3b</IncludeOutputGroupsInVSIX>
-      <IncludeOutputGroupsInVSIXLocalOnly>DebugSymbolsProjectOutputGroup%3b</IncludeOutputGroupsInVSIXLocalOnly>
+      <IncludeOutputGroupsInVSIX>GetCopyToOutputDirectoryItems%3b</IncludeOutputGroupsInVSIX>
+      <VSIXSubPath>$MSBuild\Microsoft\VC\v170\Platforms\Emscripten</VSIXSubPath>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release VS2017' or '$(Configuration)' == 'Debug VS2017'">
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_lib.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_link.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\general.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_lib.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_link.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\general.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>MSBuild</InstallRoot>
-      <VSIXSubPath>Microsoft\VC\v160\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release' or '$(Configuration)' == 'Debug'">
+  <ItemGroup>
     <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
@@ -336,58 +176,6 @@
       <IncludeInVSIX>true</IncludeInVSIX>
       <InstallRoot>MSBuild</InstallRoot>
       <VSIXSubPath>Microsoft\VC\v170\Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-  </ItemGroup>
-  <ItemGroup Condition="'$(Configuration)' == 'Release VS2017' or '$(Configuration)' == 'Debug VS2017'">
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\directories.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_lib.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\emcc_link.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1033\general.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1033</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\directories.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_lib.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\emcc_link.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
-    </Content>
-    <Content Include="BuildSystem\Platforms\Emscripten\PlatformToolsets\emcc\1041\general.xml">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <InstallRoot>VCTargets</InstallRoot>
-      <VSIXSubPath>Platforms\Emscripten\PlatformToolsets\emcc\1041</VSIXSubPath>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,15 +1,17 @@
-﻿using System.Reflection;
+﻿using Microsoft.VisualStudio.Shell;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Xml.Linq;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Emsctipten.ProjectType")]
-[assembly: AssemblyDescription("Emsctipten.ProjectType")]
+[assembly: AssemblyTitle("Emsctipten.DebuggerLauncher")]
+[assembly: AssemblyDescription("Emsctipten.DebuggerLauncher")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("KamenokoSoft")]
-[assembly: AssemblyProduct("Emsctipten.ProjectType")]
+[assembly: AssemblyProduct("Emsctipten.DebuggerLauncher")]
 [assembly: AssemblyCopyright("Copyright (C) 2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
