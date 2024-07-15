@@ -1,0 +1,34 @@
+﻿; Custom Protocol Extension
+[$RootKey$\CLSID\{05EFD122-20D3-4FB8-8C72-E4BBEEA19FD3}]
+"Assembly"="Kamenokosoft.ChromeCXXDebugger"
+"Class"="Kamenokosoft.ChromeCXXDebugger.StartDebuggingRequestHandler"
+"CodeBase"="$PackageFolder$\Kamenokosoft.ChromeCXXDebugger.dll"
+
+
+[$RootKey$\AD7Metrics\Engine\{9849C080-ECCF-46EE-9758-9F6F9ED68693}]
+"Name"="Chrome CXX Debugger"
+
+; Boilerplate 
+"CLSID"="{DAB324E9-7B35-454C-ACA8-F6BB0D5C8673}" 
+"AlwaysLoadLocal"=dword:00000001
+"Attach"=dword:00000001
+"AddressBP"=dword:00000000
+"AutoSelectPriority"=dword:00000004
+"CallstackBP"=dword:00000000
+"ConditionalBP"=dword:00000001
+"Exceptions"=dword:00000001
+"ExceptionBreakpointCategory"="{1ce4d9f7-faac-42ee-b352-87fdfb6fb37b}"
+"UseEngineForNonDebugLaunch"=dword:00000001
+"DebugEngineType"="javascript"
+@="VSCode Debugger Host"
+
+; Language Info 
+"Language"="C++ with WebAssembly" 
+"LanguageId"="{3a12d0b7-c26c-11d0-b442-00a0244a1dd2}" 
+
+; Launch Info 
+"Adapter"=""$PackageFolder$\DebugAdapter\src\dapDebugServer.js""
+"AdapterArgs"="8123 127.0.0.1"
+"AdapterRuntime"="node-x64-lts"
+
+"CustomProtocolExtension"="{05EFD122-20D3-4FB8-8C72-E4BBEEA19FD3}"

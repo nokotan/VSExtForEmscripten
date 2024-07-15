@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.BuildSystem", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Debugger", "Emscripten.Debugger\Emscripten.Debugger.csproj", "{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromeCXXDebugger", "ChromeCXXDebugger\ChromeCXXDebugger.csproj", "{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.ExtensionPack", "Emscripten.ExtensionPack\Emscripten.ExtensionPack.csproj", "{9608F800-0957-4679-AFA6-99E45DCE9034}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.DebuggerLauncher.Test", "Test\Emscripten.DebuggerLauncher.Test\Emscripten.DebuggerLauncher.Test.csproj", "{3067B6A0-72BF-414F-B259-0838A12FFC55}"
@@ -44,6 +46,10 @@ Global
 		{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81F45FBA-4D90-41F4-B5DE-0E13EDA78370}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9608F800-0957-4679-AFA6-99E45DCE9034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9608F800-0957-4679-AFA6-99E45DCE9034}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9608F800-0957-4679-AFA6-99E45DCE9034}.Release|Any CPU.ActiveCfg = Release|Any CPU
