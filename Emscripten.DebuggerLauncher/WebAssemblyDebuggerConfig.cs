@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 #if VS2017
 namespace Emscripten.DebuggerLauncher.vs2017
@@ -12,7 +12,7 @@ namespace Emscripten.DebuggerLauncher
     {
         public string type { get; set; }
         public string url { get; set; }
-        [JsonPropertyName("$adapter")]
+        [JsonProperty("$adapter")]
         public string adapterExecutable { get; set; }
         public string[] flags { get; set; }
         public string userDataDir { get; set; }
@@ -57,7 +57,7 @@ namespace Emscripten.DebuggerLauncher
     {
         public string type { get; set; }
         public string program { get; set; }
-        [JsonPropertyName("$adapter")]
+        [JsonProperty("$adapter")]
         public string adapterExecutable { get; set; }
         public string node { get; set; }
         public string cwd { get; set; }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
-using System.Text.Json;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.ProjectSystem.Debug;
@@ -69,7 +69,7 @@ namespace Emscripten.DebuggerLauncher
             settings.Executable = @"C:\Windows\System32\cmd.exe"; // dummy
 
             settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
-            settings.Options = JsonSerializer.Serialize(config);
+            settings.Options = JsonConvert.SerializeObject(config);
 
             return new IDebugLaunchSettings[] { settings };
         }
