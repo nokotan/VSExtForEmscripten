@@ -10,21 +10,13 @@ using Microsoft.VisualStudio.ProjectSystem.Debug;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 
-#if VS2017
-namespace Emscripten.DebuggerLauncher.vs2017
-#else
 namespace Emscripten.DebuggerLauncher
-#endif
 {
     [ExportDebugger(DebuggerSchemaName)]
     [AppliesTo(DebuggerSchemaName)]
     public class NodeDebuggerLaunchProvider : DebugLaunchProviderBase
     {
-#if VS2017
-        internal const string DebuggerSchemaName = WasmDebuggerVS2017.SchemaName;
-#else
         internal const string DebuggerSchemaName = NodeWasmDebugger.SchemaName;
-#endif
 
         [ImportingConstructor]
         public NodeDebuggerLaunchProvider(ConfiguredProject configuredProject)

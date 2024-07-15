@@ -10,21 +10,13 @@ using Microsoft.VisualStudio.ProjectSystem.Debug;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 
-#if VS2017
-namespace Emscripten.DebuggerLauncher.vs2017
-#else
 namespace Emscripten.DebuggerLauncher
-#endif
 {
     [ExportDebugger(DebuggerSchemaName)]
     [AppliesTo(DebuggerSchemaName)]
     public class DebuggerLaunchProvider : DebugLaunchProviderBase
     {
-#if VS2017
-        internal const string DebuggerSchemaName = WasmDebuggerVS2017.SchemaName;
-#else
         internal const string DebuggerSchemaName = WasmDebugger.SchemaName;
-#endif
 
         [ImportingConstructor]
         public DebuggerLaunchProvider(ConfiguredProject configuredProject)
@@ -47,12 +39,8 @@ namespace Emscripten.DebuggerLauncher
 
         public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
         {
-            
-#if VS2017
-            var debuggerProperties = await ProjectProperties.GetWasmDebuggerVS2017PropertiesAsync();
-#else
             var debuggerProperties = await ProjectProperties.GetWasmDebuggerPropertiesAsync();
-#endif
+
             var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
 
             if (!File.Exists(debugAdapterExecutable))

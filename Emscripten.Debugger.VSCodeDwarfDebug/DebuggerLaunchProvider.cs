@@ -14,21 +14,13 @@ using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
-#if VS2017
-namespace Emscripten.Debugger.VSCodeDwarfDebug.Definition.vs2017
-#else
 namespace Emscripten.Debugger.VSCodeDwarfDebug.Definition
-#endif
 {
     [ExportDebugger(DebuggerSchemaName)]
     [AppliesTo(DebuggerSchemaName)]
     public class DebuggerLaunchProvider : DebugLaunchProviderBase
     {
-#if VS2017
-        internal const string DebuggerSchemaName = WasmDebuggerVS2017.SchemaName;
-#else
         internal const string DebuggerSchemaName = Emscripten.Debugger.VSCodeDwarfDebug.SchemaName;
-#endif
 
         internal static DebuggerLaunchProvider Instance;
 
@@ -59,11 +51,7 @@ namespace Emscripten.Debugger.VSCodeDwarfDebug.Definition
         public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
         {
             var settings = new DebugLaunchSettings(launchOptions);
-#if VS2017
-            var debuggerProperties = await ProjectProperties.GetWasmDebuggerVS2017PropertiesAsync();
-#else
             var debuggerProperties = await ProjectProperties.GetEmscripten.Debugger.VSCodeDwarfDebugPropertiesAsync();
-#endif
             var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
 
             if (!File.Exists(debugAdapterExecutable))
