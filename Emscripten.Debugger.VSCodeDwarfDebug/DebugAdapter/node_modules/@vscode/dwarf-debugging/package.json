@@ -1,0 +1,28 @@
+{
+  "name": "@vscode/dwarf-debugging",
+  "version": "0.0.2",
+  "description": "Enables DWARF debugging of webassembly in js-debug",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "npm run build-meta && tsx test/mandelbrot.test.ts",
+    "build": "npm run build-native-ext-image && npm run copy-out-native-ext && npm run build-meta",
+    "build-meta": "rimraf dist && node esbuild.js && tsc src/index.ts --target es2021 --declaration --emitDeclarationOnly --outDir dist",
+    "build-native-ext-image": "docker build -t cxx-debug-extension ./chrome-cxx",
+    "copy-out-native-ext": "docker run -v ./chrome-cxx/mnt:/mnt cxx-debug-extension /bin/sh /mnt/do-copy.sh",
+    "prepack": "npm run build-meta"
+  },
+  "author": "Connor Peet <connor@peet.io>",
+  "license": "MIT",
+  "devDependencies": {
+    "@chialab/esbuild-plugin-meta-url": "^0.17.7",
+    "@types/emscripten": "^1.39.7",
+    "@types/node": "^20.6.0",
+    "esbuild": "^0.19.2",
+    "rimraf": "^5.0.1",
+    "tsx": "^3.12.10",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "ws": "^8.14.1"
+  }
+}
