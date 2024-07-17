@@ -30,11 +30,13 @@ namespace Emscripten.DebuggerLauncher
         [Import]
         private ProjectProperties ProjectProperties { get; set; }
 
-        public override Task<bool> CanLaunchAsync(DebugLaunchOptions launchOptions)
+        public override async Task<bool> CanLaunchAsync(DebugLaunchOptions launchOptions)
         {
-            return Task.FromResult(true);
+            var debuggerProperties = await ProjectProperties.GetNodeWasmDebuggerPropertiesAsync();
+            var debugAdapterExecutable = await debuggerProperties.NodeWasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
+
+            return File.Exists(debugAdapterExecutable);
         }
-       
 
         public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
         {
@@ -43,12 +45,7 @@ namespace Emscripten.DebuggerLauncher
             var debuggerProperties = await ProjectProperties.GetNodeWasmDebuggerPropertiesAsync();
             var debugAdapterExecutable = await debuggerProperties.NodeWasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
 
-            if (!File.Exists(debugAdapterExecutable))
-            {
-                throw new FileNotFoundException($@"Failed to launch WebAssembly debugger. Debugger adapter executable cannot be found. Please check WasmDebuggerAdapterExecutable in the Debugger configuration. InputValue: {debugAdapterExecutable}");
-            }
-
-            var config = NodeWebAssemblyDebuggerConfig.GenerateNodeLaunchConfig(
+            var config = NodeWasmDebuggerConfig.GenerateNodeLaunchConfig(
                 program: await debuggerProperties.NodeWasmDebuggerProgram.GetEvaluatedValueAtEndAsync(),
                 nodeExecutable: await debuggerProperties.NodeWasmDebuggerNodeExecutable.GetEvaluatedValueAtEndAsync(),
                 nodeWorkingDirectory: await debuggerProperties.NodeWasmDebuggerWorkingDirectory.GetEvaluatedValueAtEndAsync(),
@@ -57,7 +54,7 @@ namespace Emscripten.DebuggerLauncher
 
             settings.LaunchOperation = DebugLaunchOperation.CreateProcess;
 
-            settings.Executable = @"C:\Windows\System32\cmd.exe"; // dummy
+            settings.Executable = @"WebAssembly Debugger";
 
             settings.LaunchDebugEngineGuid = new Guid("A18E581E-F120-4E9F-A0D4-D284EB773257");
             settings.Options = JsonConvert.SerializeObject(config);

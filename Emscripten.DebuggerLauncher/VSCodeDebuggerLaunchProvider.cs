@@ -43,13 +43,6 @@ namespace Emscripten.DebuggerLauncher
         {
             var debuggerProperties = await ProjectProperties.GetVSCodeDebuggerPropertiesAsync();
 
-            var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
-
-            if (!File.Exists(debugAdapterExecutable))
-            {
-                throw new FileNotFoundException($@"Failed to launch WebAssembly debugger. Debugger adapter executable cannot be found. Please check WasmDebuggerAdapterExecutable in the Debugger configuration. InputValue: {debugAdapterExecutable}");
-            }
-
             // 1: Debug Adapter Server Process
             var serverSettings = new DebugLaunchSettings(launchOptions);
             serverSettings.LaunchOperation = DebugLaunchOperation.CreateProcess;
@@ -60,12 +53,8 @@ namespace Emscripten.DebuggerLauncher
 
             // 2: Debug Adapter Client Process
             var clientSettings = new DebugLaunchSettings(launchOptions);
-            var clientConfig = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
-                inspectedPage: await debuggerProperties.WasmDebuggerInspectedPage.GetEvaluatedValueAtEndAsync(),
-                chromeFlags: await debuggerProperties.WasmDebuggerChromeFlags.GetEvaluatedValueAtEndAsync(),
-                chromeUserDataDirectory: await debuggerProperties.WasmDebuggerChromeUserDataDirectory.GetEvaluatedValueAtEndAsync(),
-                chromeIgnoreDefaultFlags: await debuggerProperties.WasmDebuggerChromeIgnoreDefaultFlags.GetEvaluatedValueAtEndAsync(),
-                debugAdapterExecutable: null
+            var clientConfig = VSCodeDebuggerConfig.GenerateChromeLaunchConfig(
+                inspectedPage: await debuggerProperties.VSCodeDebuggerInspectedPage.GetEvaluatedValueAtEndAsync()
             );
 
             clientSettings.LaunchOperation = DebugLaunchOperation.CreateProcess;
@@ -74,7 +63,6 @@ namespace Emscripten.DebuggerLauncher
 
             clientConfig.type = "pwa-chrome";
             clientConfig.enableDWARF = true;
-            clientConfig.adapterExecutable = null;
             clientConfig.port = 8123;
 
             clientSettings.LaunchOptions |= DebugLaunchOptions.StopDebuggingOnEnd;
@@ -84,9 +72,9 @@ namespace Emscripten.DebuggerLauncher
             var webServerProcessSetting = new DebugLaunchSettings(launchOptions);
             var webServerProcess = new Process();
 
-            webServerProcess.StartInfo.FileName = await debuggerProperties.WasmDebuggerServerExecutable.GetEvaluatedValueAtEndAsync();
-            webServerProcess.StartInfo.Arguments = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
-            webServerProcess.StartInfo.WorkingDirectory = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
+            webServerProcess.StartInfo.FileName = await debuggerProperties.VSCodeDebuggerServerExecutable.GetEvaluatedValueAtEndAsync();
+            webServerProcess.StartInfo.Arguments = await debuggerProperties.VSCodeDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
+            webServerProcess.StartInfo.WorkingDirectory = await debuggerProperties.VSCodeDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
             webServerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
             webServerProcess.Start();

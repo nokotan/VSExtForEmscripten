@@ -10,7 +10,7 @@ namespace Emscripten.DebuggerLauncher.Test
         [TestMethod]
         public void GenerateChromeLaunchConfigFromEmptyStrings()
         {
-            var config = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
+            var config = WasmDebuggerConfig.GenerateChromeLaunchConfig(
                 inspectedPage: "",
                 chromeFlags: "",
                 chromeUserDataDirectory: "",
@@ -27,7 +27,7 @@ namespace Emscripten.DebuggerLauncher.Test
         [TestMethod]
         public void GenerateChromeLaunchConfigFromValidFlags()
         {
-            var config = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
+            var config = WasmDebuggerConfig.GenerateChromeLaunchConfig(
                 inspectedPage: "",
                 chromeFlags: "--isolated;--mute;",
                 chromeUserDataDirectory: "",
@@ -43,7 +43,7 @@ namespace Emscripten.DebuggerLauncher.Test
         [TestMethod]
         public void GenerateChromeLaunchConfigFromValidUserDataDirectory()
         {
-            var config = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
+            var config = WasmDebuggerConfig.GenerateChromeLaunchConfig(
                 inspectedPage: "",
                 chromeFlags: "",
                 chromeUserDataDirectory: "/foo/bar",
@@ -58,7 +58,7 @@ namespace Emscripten.DebuggerLauncher.Test
         [ExpectedException(typeof(FormatException))]
         public void GenerateChromeLaunchConfigFromValidChromeIgnoreDefaultFlags()
         {
-            var _config = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
+            var _config = WasmDebuggerConfig.GenerateChromeLaunchConfig(
                 inspectedPage: "",
                 chromeFlags: "",
                 chromeUserDataDirectory: "",

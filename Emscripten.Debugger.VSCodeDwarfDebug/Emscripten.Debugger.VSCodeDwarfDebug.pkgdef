@@ -27,8 +27,7 @@
 "LanguageId"="{3a12d0b7-c26c-11d0-b442-00a0244a1dd2}" 
 
 ; Launch Info 
-"Adapter"=""$PackageFolder$\DebugAdapter\src\dapDebugServer.js""
-"AdapterArgs"="8123 127.0.0.1"
-"AdapterRuntime"="node-x64-lts"
+"Adapter"="%EMSDK_NODE%"
+"AdapterArgs"="--experimental-wasm-threads --experimental-wasm-simd "$PackageFolder$\DebugAdapter\src\dapDebugServer.js" 8123 127.0.0.1"
 
 "CustomProtocolExtension"="{05EFD122-20D3-4FB8-8C72-E4BBEEA19FD3}"

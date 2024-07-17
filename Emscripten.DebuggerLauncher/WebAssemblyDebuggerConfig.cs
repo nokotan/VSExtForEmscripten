@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Emscripten.DebuggerLauncher
 {
-    public class WebAssemblyDebuggerConfig
+    public class WasmDebuggerConfig
     {
         public string type { get; set; }
         public string url { get; set; }
@@ -13,12 +13,8 @@ namespace Emscripten.DebuggerLauncher
         public string[] flags { get; set; }
         public string userDataDir { get; set; }
         public bool? ignoreDefaultFlags { get; set; }
-        [JsonProperty("$debugServer")]
-        public int? port { get; set; }
 
-        public bool? enableDWARF { get; set; }
-
-        public static WebAssemblyDebuggerConfig GenerateChromeLaunchConfig(
+        public static WasmDebuggerConfig GenerateChromeLaunchConfig(
                 string inspectedPage,
                 string chromeFlags,
                 string chromeUserDataDirectory,
@@ -31,7 +27,7 @@ namespace Emscripten.DebuggerLauncher
             // remove empty string away
             splittedFlags = splittedFlags.Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
 
-            var config = new WebAssemblyDebuggerConfig()
+            var config = new WasmDebuggerConfig()
             {
                 type = "wasm-chrome",
                 url = inspectedPage,
@@ -53,7 +49,7 @@ namespace Emscripten.DebuggerLauncher
         }
     }
 
-    public class NodeWebAssemblyDebuggerConfig
+    public class NodeWasmDebuggerConfig
     {
         public string type { get; set; }
         public string program { get; set; }
@@ -62,14 +58,14 @@ namespace Emscripten.DebuggerLauncher
         public string node { get; set; }
         public string cwd { get; set; }
 
-        public static NodeWebAssemblyDebuggerConfig GenerateNodeLaunchConfig(
+        public static NodeWasmDebuggerConfig GenerateNodeLaunchConfig(
                 string program,
                 string nodeExecutable,
                 string nodeWorkingDirectory,
                 string debugAdapterExecutable
             )
         {
-            var config = new NodeWebAssemblyDebuggerConfig()
+            var config = new NodeWasmDebuggerConfig()
             {
                 type = "wasm-node",
                 program = program,
@@ -81,6 +77,30 @@ namespace Emscripten.DebuggerLauncher
             {
                 config.cwd = nodeWorkingDirectory;
             }
+
+            return config;
+        }
+    }
+
+    public class VSCodeDebuggerConfig
+    {
+        public string type { get; set; }
+        public string url { get; set; }
+        
+        [JsonProperty("$debugServer")]
+        public int? port { get; set; }
+
+        public bool? enableDWARF { get; set; }
+
+        public static VSCodeDebuggerConfig GenerateChromeLaunchConfig(
+                string inspectedPage
+            )
+        {
+            var config = new VSCodeDebuggerConfig()
+            {
+                type = "pwa-chrome",
+                url = inspectedPage
+            };
 
             return config;
         }

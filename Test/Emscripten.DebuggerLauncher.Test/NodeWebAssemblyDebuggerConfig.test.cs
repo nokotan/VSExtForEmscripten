@@ -10,7 +10,7 @@ namespace Emscripten.DebuggerLauncher.Test
         [TestMethod]
         public void GenerateNodeLaunchConfigFromEmptyStrings()
         {
-            var config = NodeWebAssemblyDebuggerConfig.GenerateNodeLaunchConfig(
+            var config = NodeWasmDebuggerConfig.GenerateNodeLaunchConfig(
                 program: "",
                 nodeExecutable: "",
                 nodeWorkingDirectory: "",
@@ -24,7 +24,7 @@ namespace Emscripten.DebuggerLauncher.Test
         [TestMethod]
         public void GenerateNodeLaunchConfigFromValidWorkingDirectory()
         {
-            var config = NodeWebAssemblyDebuggerConfig.GenerateNodeLaunchConfig(
+            var config = NodeWasmDebuggerConfig.GenerateNodeLaunchConfig(
                 program: "",
                 nodeExecutable: "",
                 nodeWorkingDirectory: "/foo/bar",

@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.ProjectSystem;
 using Microsoft.VisualStudio.ProjectSystem.Debug;
 using Microsoft.VisualStudio.ProjectSystem.Properties;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
+using Microsoft.Build.Utilities;
 
 namespace Emscripten.DebuggerLauncher
 {
@@ -31,9 +32,12 @@ namespace Emscripten.DebuggerLauncher
         [Import]
         private ProjectProperties ProjectProperties { get; set; }
 
-        public override Task<bool> CanLaunchAsync(DebugLaunchOptions launchOptions)
+        public override async Task<bool> CanLaunchAsync(DebugLaunchOptions launchOptions)
         {
-            return Task.FromResult(true);
+            var debuggerProperties = await ProjectProperties.GetWasmDebuggerPropertiesAsync();
+            var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
+
+            return File.Exists(debugAdapterExecutable);
         }
 
         public override async Task<IReadOnlyList<IDebugLaunchSettings>> QueryDebugTargetsAsync(DebugLaunchOptions launchOptions)
@@ -41,14 +45,9 @@ namespace Emscripten.DebuggerLauncher
             var debuggerProperties = await ProjectProperties.GetWasmDebuggerPropertiesAsync();
             var debugAdapterExecutable = await debuggerProperties.WasmDebuggerAdapterExecutable.GetEvaluatedValueAtEndAsync();
 
-            if (!File.Exists(debugAdapterExecutable))
-            {
-                throw new FileNotFoundException($@"Failed to launch WebAssembly debugger. Debugger adapter executable cannot be found. Please check WasmDebuggerAdapterExecutable in the Debugger configuration. InputValue: {debugAdapterExecutable}");
-            }
-
             // 1: Debug Adapter Server Process
             var debugServerSettings = new DebugLaunchSettings(launchOptions);
-            var debugServerConfig = WebAssemblyDebuggerConfig.GenerateChromeLaunchConfig(
+            var debugServerConfig = WasmDebuggerConfig.GenerateChromeLaunchConfig(
                 inspectedPage: await debuggerProperties.WasmDebuggerInspectedPage.GetEvaluatedValueAtEndAsync(),
                 chromeFlags: await debuggerProperties.WasmDebuggerChromeFlags.GetEvaluatedValueAtEndAsync(),
                 chromeUserDataDirectory: await debuggerProperties.WasmDebuggerChromeUserDataDirectory.GetEvaluatedValueAtEndAsync(),
