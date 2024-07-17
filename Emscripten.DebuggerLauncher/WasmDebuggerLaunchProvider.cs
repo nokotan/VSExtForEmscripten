@@ -52,7 +52,7 @@ namespace Emscripten.DebuggerLauncher
                 chromeFlags: await debuggerProperties.WasmDebuggerChromeFlags.GetEvaluatedValueAtEndAsync(),
                 chromeUserDataDirectory: await debuggerProperties.WasmDebuggerChromeUserDataDirectory.GetEvaluatedValueAtEndAsync(),
                 chromeIgnoreDefaultFlags: await debuggerProperties.WasmDebuggerChromeIgnoreDefaultFlags.GetEvaluatedValueAtEndAsync(),
-                debugAdapterExecutable
+                debugAdapterExecutable: debugAdapterExecutable
             );
 
             debugServerSettings.LaunchOperation = DebugLaunchOperation.CreateProcess;

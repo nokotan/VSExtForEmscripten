@@ -4,10 +4,7 @@
 using System;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
-using Microsoft.VisualStudio.Debugger.Interop;
-using Microsoft.VisualStudio;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+using Task = System.Threading.Tasks.Task;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
 using StreamJsonRpc;
 
