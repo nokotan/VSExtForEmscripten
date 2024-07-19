@@ -1,33 +1,78 @@
-﻿// Copyright (c) Microsoft Corporation.  All rights reserved.
-// Licensed under the MIT License.
-
-using System;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Shell.Interop;
-using Task = System.Threading.Tasks.Task;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Runtime;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Emscripten.DebuggerLauncher;
+using Microsoft.VisualStudio.Debugger.DebugAdapterHost.Interfaces;
+using Microsoft.VisualStudio.ProjectSystem.Debug;
 using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
-using StreamJsonRpc;
+using Microsoft.VisualStudio.Shell;
+using Microsoft.VisualStudio.Threading;
+using Newtonsoft.Json;
+using static System.Windows.Forms.Design.AxImporter;
 
 namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 {
-    internal sealed class DebugEngineLauncher
+    public class AdapterLauncher : IAdapterLauncher, IDebugAdapterHostComponent
     {
-        static public async Task LaunchAsync(DebugLaunchSettings setting)
+        private IDebugAdapterHostContext context;
+
+        private Process debugServerProcess;
+
+        public void Initialize(IDebugAdapterHostContext context)
         {
-            await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+            // Save the context object provided by the Debug Adapter Host so we can use it to access services later
+            this.context = context;
 
-            var obj = Package.GetGlobalService(typeof(SVsShellDebugger)) as IVsDebugger4;
-            var vsDebugTargetInfo = new VsDebugTargetInfo4
-            {
-                LaunchFlags = (uint)setting.LaunchOptions,
-                dlo = (uint)setting.LaunchOperation,
-                guidLaunchDebugEngine = setting.LaunchDebugEngineGuid,
-                bstrExe = setting.Executable,
-                bstrOptions = setting.Options
-            };
-            var _unused = new VsDebugTargetProcessInfo[1];
-
-            obj.LaunchDebugTargets4(1, new VsDebugTargetInfo4[1] { vsDebugTargetInfo }, _unused);
+            context.Events.DebuggingEnded += OnDebugSessionEnded;
         }
+
+        public void UpdateLaunchOptions(IAdapterLaunchInfo launchInfo)      
+        {
+            if (launchInfo.LaunchJson.Contains("__pendingTarget"))
+            {
+                // child target. ignore
+            } 
+            else 
+            {
+                LaunchDebugServer(launchInfo);
+            }
+        }
+
+        private void OnDebugSessionEnded(object sender, EventArgs e)
+        {
+            if (debugServerProcess != null && !debugServerProcess.HasExited)
+            {
+                debugServerProcess.Kill();
+            }
+        }
+
+        private void LaunchDebugServer(IAdapterLaunchInfo launchInfo)
+        {
+            var AdapterExecutable = launchInfo.GetMetricString("Adapter");
+            var AdapterArguments = launchInfo.GetMetricString("AdapterArgs");
+
+            var AdapterServerProcess = new Process();
+
+            AdapterServerProcess.StartInfo.FileName = AdapterExecutable;
+            AdapterServerProcess.StartInfo.Arguments = AdapterArguments;
+            AdapterServerProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            // AdapterServerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+
+            AdapterServerProcess.Start();
+
+            debugServerProcess = AdapterServerProcess;
+        }
+
+        public ITargetHostProcess LaunchAdapter(IAdapterLaunchInfo launchInfo, ITargetHostInterop targetInterop)
+        {
+            // nop
+            return null;
+        } 
     }
 }

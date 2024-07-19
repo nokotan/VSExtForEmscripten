@@ -5,7 +5,7 @@
         <DisplayName>VSCode WebAssembly Debugger</DisplayName>
         <Description xml:space="preserve">This extension will provide WebAssembly debugger used in VSCode.</Description>
     </Metadata>
-    <Installation>
+    <Installation AllUsers="true">
         <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.BuildTools">
             <ProductArchitecture>x86</ProductArchitecture>
         </InstallationTarget>

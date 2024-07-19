@@ -1,4 +1,4 @@
-﻿namespace Emscripten.Debugger.VSCodeDwarfDebug.Definition
+﻿namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 {
     using Microsoft.VisualStudio.Shell;
     using System.Runtime.InteropServices;
@@ -16,8 +16,6 @@
         /// The default namespace this project compiles with, so that manifest
         /// resource names can be calculated for embedded resources.
         /// </summary>
-        internal const string DefaultNamespace = "Emscripten.Debugger.VSCodeDwarfDebug.Definition";
-
-
+        internal const string DefaultNamespace = "Emscripten.Debugger.VSCodeDwarfDebug";
     }
 }

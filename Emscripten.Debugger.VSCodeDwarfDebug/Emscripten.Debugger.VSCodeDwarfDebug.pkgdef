@@ -4,6 +4,11 @@
 "Class"="Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug.StartDebuggingRequestHandler"
 "CodeBase"="$PackageFolder$\Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug.dll"
 
+; Adapter Launcher Extension
+[$RootKey$\CLSID\{89B1AE26-954B-41A1-A713-88731D9958FE}]
+"Assembly"="Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug"
+"Class"="Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug.AdapterLauncher"
+"CodeBase"="$PackageFolder$\Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug.dll"
 
 [$RootKey$\AD7Metrics\Engine\{9849C080-ECCF-46EE-9758-9F6F9ED68693}]
 "Name"="WebAssembly DWARF Debug"
@@ -18,7 +23,6 @@
 "ConditionalBP"=dword:00000001
 "Exceptions"=dword:00000001
 "ExceptionBreakpointCategory"="{1ce4d9f7-faac-42ee-b352-87fdfb6fb37b}"
-"UseEngineForNonDebugLaunch"=dword:00000001
 "DebugEngineType"="javascript"
 @="VSCode Debugger Host"
 
@@ -30,4 +34,5 @@
 "Adapter"="%EMSDK_NODE%"
 "AdapterArgs"="--experimental-wasm-threads --experimental-wasm-simd "$PackageFolder$\DebugAdapter\src\dapDebugServer.js" 8123 127.0.0.1"
 
+"AdapterLauncher"="{89B1AE26-954B-41A1-A713-88731D9958FE}"
 "CustomProtocolExtension"="{05EFD122-20D3-4FB8-8C72-E4BBEEA19FD3}"

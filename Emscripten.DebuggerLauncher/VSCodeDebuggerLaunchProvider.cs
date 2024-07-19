@@ -46,7 +46,7 @@ namespace Emscripten.DebuggerLauncher
             // 1: Debug Adapter Server Process
             var serverSettings = new DebugLaunchSettings(launchOptions);
             serverSettings.LaunchOperation = DebugLaunchOperation.CreateProcess;
-            serverSettings.LaunchOptions = DebugLaunchOptions.CannotDebugAlone | DebugLaunchOptions.TerminateOnStop;
+            serverSettings.LaunchOptions = DebugLaunchOptions.TerminateOnStop;
             serverSettings.Executable = @"WebAssembly Debug Server";
             serverSettings.LaunchDebugEngineGuid = new Guid("9849C080-ECCF-46EE-9758-9F6F9ED68693");
             serverSettings.Options = "{}";
@@ -80,13 +80,13 @@ namespace Emscripten.DebuggerLauncher
             webServerProcess.Start();
 
             webServerProcessSetting.LaunchOperation = DebugLaunchOperation.AlreadyRunning;
-            webServerProcessSetting.LaunchOptions = DebugLaunchOptions.CannotDebugAlone | DebugLaunchOptions.TerminateOnStop;
+            webServerProcessSetting.LaunchOptions = DebugLaunchOptions.TerminateOnStop;
             webServerProcessSetting.Executable = webServerProcess.ProcessName;
             webServerProcessSetting.ProcessId = webServerProcess.Id;
 
             webServerProcessSetting.LaunchDebugEngineGuid = DebuggerEngines.NativeOnlyEngine;
 
-            return new IDebugLaunchSettings[] { serverSettings, clientSettings, webServerProcessSetting };
+            return new IDebugLaunchSettings[] { clientSettings, webServerProcessSetting };
         }
     }
 }

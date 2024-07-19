@@ -12,8 +12,6 @@ using Microsoft.VisualStudio.Threading;
 
 namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 {
-
-
     public class StartDebuggingRequestHandler : ICustomProtocolExtension
     {
         private IDebugAdapterHostContext context;
@@ -46,8 +44,9 @@ namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
             settings.LaunchOperation = DebugLaunchOperation.CreateProcess;
             settings.LaunchDebugEngineGuid = new Guid("9849C080-ECCF-46EE-9758-9F6F9ED68693");
             settings.Executable = "WebAssembly DWARF Debug";
-            responder.Arguments.Config.ConfigurationProperties["$debugServer"] = 8123;
-            settings.Options = JsonConvert.SerializeObject(responder.Arguments.Config);
+            var debugConfig = responder.Arguments.Configuration;
+            debugConfig.DebugServerPort = 8123;
+            settings.Options = JsonConvert.SerializeObject(debugConfig);
 
             ThreadHelper.JoinableTaskFactory.RunAsync(async () =>
             {
@@ -59,8 +58,14 @@ namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 
         internal class ConfigurationProperty
         {
-            [JsonExtensionData(ReadData = true, WriteData = true)]
-            public JObject ConfigurationProperties { get; set; }
+            [JsonProperty("type")]
+            public string Type { get; set; }
+            [JsonProperty("name")]
+            public string Name { get; set; }
+            [JsonProperty("__pendingTargetId")]
+            public string __PendingTargetId { get; set; }
+            [JsonProperty("$debugServer")]
+            public int DebugServerPort { get; set; }
         }
 
         internal class StartDebuggingArgs
@@ -69,7 +74,7 @@ namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
             public string Request { get; set; }
 
             [JsonProperty("configuration")]
-            public ConfigurationProperty Config { get; set; }
+            public ConfigurationProperty Configuration { get; set; }
         }
 
         internal class StartDebuggingResponse : ResponseBody
