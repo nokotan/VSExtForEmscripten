@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
-using System.IO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.ProjectSystem;

@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using System.Runtime;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using Emscripten.DebuggerLauncher;
 using Microsoft.VisualStudio.Debugger.DebugAdapterHost.Interfaces;
-using Microsoft.VisualStudio.ProjectSystem.Debug;
-using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
-using Microsoft.VisualStudio.Shell;
-using Microsoft.VisualStudio.Threading;
-using Newtonsoft.Json;
-using static System.Windows.Forms.Design.AxImporter;
 
 namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 {
@@ -38,7 +26,7 @@ namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
             {
                 // child target. ignore
             } 
-            else 
+            else if (debugServerProcess == null)
             {
                 LaunchDebugServer(launchInfo);
             }
@@ -48,8 +36,11 @@ namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
         {
             if (debugServerProcess != null && !debugServerProcess.HasExited)
             {
-                debugServerProcess.Kill();
+                debugServerProcess.Kill();  
             }
+
+            context.Logger.Log("Debug Server Ended.");
+            debugServerProcess = null;
         }
 
         private void LaunchDebugServer(IAdapterLaunchInfo launchInfo)
@@ -62,9 +53,11 @@ namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
             AdapterServerProcess.StartInfo.FileName = AdapterExecutable;
             AdapterServerProcess.StartInfo.Arguments = AdapterArguments;
             AdapterServerProcess.StartInfo.WorkingDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            // AdapterServerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            AdapterServerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
 
             AdapterServerProcess.Start();
+
+            context.Logger.Log("Debug Server Started.");
 
             debugServerProcess = AdapterServerProcess;
         }

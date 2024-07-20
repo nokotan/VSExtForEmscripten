@@ -79,23 +79,5 @@ namespace Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug
 
             return new LaunchedTarget(Process.GetProcessById((int)launchedProcess[0].dwProcessId));
         }
-
-        static public ITargetHostProcess Launch(DebugLaunchSettings setting)
-        {
-            var obj = Package.GetGlobalService(typeof(SVsShellDebugger)) as IVsDebugger4;
-            var vsDebugTargetInfo = new VsDebugTargetInfo4
-            {
-                LaunchFlags = (uint)setting.LaunchOptions,
-                dlo = (uint)setting.LaunchOperation,
-                guidLaunchDebugEngine = setting.LaunchDebugEngineGuid,
-                bstrExe = setting.Executable,
-                bstrOptions = setting.Options
-            };
-            var launchedProcess = new VsDebugTargetProcessInfo[1];
-
-            obj.LaunchDebugTargets4(1, new VsDebugTargetInfo4[1] { vsDebugTargetInfo }, launchedProcess);
-
-            return new LaunchedTarget(Process.GetProcessById((int)launchedProcess[0].dwProcessId));
-        }
     }
 }

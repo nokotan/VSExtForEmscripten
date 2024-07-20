@@ -32,7 +32,7 @@
 
 ; Launch Info 
 "Adapter"="%EMSDK_NODE%"
-"AdapterArgs"="--experimental-wasm-threads --experimental-wasm-simd "$PackageFolder$\DebugAdapter\src\dapDebugServer.js" 8123 127.0.0.1"
+"AdapterArgs"=""$PackageFolder$\DebugAdapter\src\dapDebugServer.js" 8123 127.0.0.1"
 
 "AdapterLauncher"="{89B1AE26-954B-41A1-A713-88731D9958FE}"
 "CustomProtocolExtension"="{05EFD122-20D3-4FB8-8C72-E4BBEEA19FD3}"
