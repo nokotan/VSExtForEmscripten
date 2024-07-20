@@ -198,7 +198,7 @@ jobs:
           asset_content_type: application/vsix
 
       - name: Upload Release Asset
-        id: upload-extension-pack-package
+        id: upload-vscode-debugger-package
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
