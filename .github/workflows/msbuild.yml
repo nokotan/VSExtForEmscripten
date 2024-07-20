@@ -11,7 +11,6 @@ jobs:
           - name: vs2022
             runs-on: windows-2022
             config-name: Release
-            vsix-source: source.extension.vs2022.vsixmanifest
             msbuild-path: "C:\\Program Files\\Microsoft Visual Studio\\2022\\Enterprise\\MSBuild\\Current\\bin"
 
     if: ${{ !contains(github.event.head_commit.message, '[ci skip]') }}
@@ -24,11 +23,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-
-      - name: Copy Vsix Source
-        working-directory: Emscripten.BuildSystem
-        run: |
-          cp ${{ matrix.config.vsix-source }} source.extension.vsixmanifest
 
       - name: Setup Nuget
         uses: nuget/setup-nuget@v1
@@ -43,11 +37,17 @@ jobs:
           Set-Item Env:Path "$env:MSBuild_Path;$env:Path"
           msbuild $env:Solution_Name /p:Configuration="${{ matrix.config.config-name }}"
       
-      - name: Save Build.Definition Bundles
+      - name: Save BuildSystem Bundles
         uses: actions/upload-artifact@v2
         with:
           name: VSExt-Build.Definition.${{ matrix.config.name }}
           path: .\Emscripten.BuildSystem\bin\${{ matrix.config.config-name }}\*.vsix  
+
+      - name: Save VSCode Debugger Bundles
+        uses: actions/upload-artifact@v2
+        with:
+          name: VSExt-Emscripten.VSCodeDwarfDebug.${{ matrix.config.name }}
+          path: .\Emscripten.Debugger.VSCodeDwarfDebug\bin\${{ matrix.config.config-name }}\*.vsix  
 
       - name: Save ExtensionPack Bundles
         uses: actions/upload-artifact@v2
@@ -120,6 +120,7 @@ jobs:
 
   build-dockerimage:
     runs-on: windows-latest
+    continue-on-error: true
     needs: build
 
     steps:
@@ -167,6 +168,12 @@ jobs:
       - name: Restore Bundles
         uses: actions/download-artifact@v2
         with:
+          name: VSExt-Emscripten.VSCodeDwarfDebug.vs2022
+          path: .
+
+      - name: Restore Bundles
+        uses: actions/download-artifact@v2
+        with:
           name: VSExt-Emscripten.ExtensionPack.vs2022
           path: .
 
@@ -188,6 +195,17 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: Emscripten.BuildSystem.vsix
           asset_name: Emscripten.BuildSystem.vsix
+          asset_content_type: application/vsix
+
+      - name: Upload Release Asset
+        id: upload-extension-pack-package
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: Emscripten.Debugger.VSCodeDwarfDebug.vsix
+          asset_name: Emscripten.Debugger.VSCodeDwarfDebug.vsix
           asset_content_type: application/vsix
 
       - name: Upload Release Asset
