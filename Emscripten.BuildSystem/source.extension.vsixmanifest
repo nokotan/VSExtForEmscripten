@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="Emscripten.Debugger.VSCodeDwarfDebug.4e942135-f309-41d4-8214-c2e5bd7c7ace" Version="0.1.25" Language="en-US" Publisher="KamenokoSoft" />
-        <DisplayName>VSCode WebAssembly Debugger</DisplayName>
-        <Description xml:space="preserve">This extension will provide WebAssembly debugger used in VSCode.</Description>
-        <Preview>true</Preview>
+        <Identity Id="Emscripten.Build.Definition.4e942135-f309-41d4-8214-c2e5bd7c7ace" Version="0.9.0" Language="en-US" Publisher="KamenokoSoft" />
+        <DisplayName>Emscripten Build Target</DisplayName>
+        <Description xml:space="preserve">This extension will provide project template for emscripten and property pages for compilation with emcc.</Description>
     </Metadata>
     <Installation AllUsers="true">
         <InstallationTarget Version="[15.0, 17.0)" Id="Microsoft.VisualStudio.BuildTools">
@@ -36,8 +35,10 @@
         <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
     </Dependencies>
     <Assets>
-        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="Emscripten.ProjectTemplate" Path="ProjectTemplates" d:TargetPath="|Emscripten.ProjectTemplate;TemplateProjectOutputGroup|" d:VsixSubPath="ProjectTemplates" />
+        <Asset Type="Microsoft.VisualStudio.Assembly" d:Source="Project" d:ProjectName="Emscripten.Build.CppTasks" Path="|Emscripten.Build.CppTasks|" AssemblyName="|Emscripten.Build.CppTasks;AssemblyName|" d:VsixSubPath="$MSBuild\Microsoft\VC\v170\Platforms\Emscripten" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="Emscripten.DebuggerLauncher" Path="|Emscripten.DebuggerLauncher;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="Emscripten.DebuggerLauncher" Path="|Emscripten.DebuggerLauncher|" />
     </Assets>
     <Prerequisites>
         <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0, 18.0)" DisplayName="Visual Studio core editor" />
