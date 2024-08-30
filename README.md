@@ -1,22 +1,5 @@
 # Visual Studio Project Support for emscripten
 
-## !!! IMPORTANT NOTICE !!!
-
-Breaking change is planned in v0.7.0.
-
-Extension dependency will be more simplified.
-
-### Required Actions
-
-#### Visual Studio 2017, 2019 Users
-
-- Remove **Emscripten Debugger for Visual Studio**, which will be merged into Emscripten Build Target
-- Install **Emscripten Build Target** additionaly
-
-#### Visual Studio 2022 Users
-
-- Remove **Emscripten Debugger for Visual Studio**, which will be merged into Emscripten Build Target
-
 ## Introduction
 
 This extension will provide these functionarities

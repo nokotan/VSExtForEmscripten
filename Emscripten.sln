@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.DebuggerLauncher
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1A469482-6ED9-4BC8-9E75-0936D2032548}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.AssemblyLoader", "Emscripten.AssemblyLoader\Emscripten.AssemblyLoader.csproj", "{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -58,6 +60,10 @@ Global
 		{3067B6A0-72BF-414F-B259-0838A12FFC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3067B6A0-72BF-414F-B259-0838A12FFC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3067B6A0-72BF-414F-B259-0838A12FFC55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

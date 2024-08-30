@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.Build.CppTasks",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.BuildSystem.vs2017", "Emscripten.BuildSystem.vs2017\Emscripten.BuildSystem.vs2017.csproj", "{3D9A3469-547B-45E0-BA03-210F2F8DF783}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emscripten.AssemblyLoader", "Emscripten.AssemblyLoader\Emscripten.AssemblyLoader.csproj", "{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{3D9A3469-547B-45E0-BA03-210F2F8DF783}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D9A3469-547B-45E0-BA03-210F2F8DF783}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D9A3469-547B-45E0-BA03-210F2F8DF783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E7ECE2-2740-4298-9F4B-791C8DE758CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
