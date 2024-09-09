@@ -50,6 +50,7 @@
       <HintPath Condition="Exists('C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.Build.CPPTasks.Common.dll')">C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.Build.CPPTasks.Common.dll</HintPath>
       <HintPath Condition="Exists('C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Microsoft\VC\v170\Microsoft.Build.CPPTasks.Common.dll')">C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Microsoft\VC\v170\Microsoft.Build.CPPTasks.Common.dll</HintPath>
       <HintPath Condition="Exists('C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.Build.CPPTasks.Common.dll')">C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Microsoft\VC\v170\Microsoft.Build.CPPTasks.Common.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />

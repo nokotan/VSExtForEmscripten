@@ -66,9 +66,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.Sdk.BuildTasks">
-      <HintPath>..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VisualStudio\v17.0\VSSDK\Microsoft.VisualStudio.Sdk.BuildTasks.dll</HintPath>
-    </Reference>
     <Reference Include="netstandard" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
