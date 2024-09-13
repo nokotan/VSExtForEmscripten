@@ -33,8 +33,8 @@
     <ProjectGuid>{1EDC56A6-1E63-4A9C-9220-971F8AA515A0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug</RootNamespace>
-    <AssemblyName>Kamenokosoft.Emscripten.Debugger.VSCodeDwarfDebug</AssemblyName>
+    <RootNamespace>Emscripten.Debugger.VSCodeDwarfDebug</RootNamespace>
+    <AssemblyName>Emscripten.Debugger.VSCodeDwarfDebug</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <GeneratePkgDefFile>false</GeneratePkgDefFile>
     <IncludeAssemblyInVSIXContainer>true</IncludeAssemblyInVSIXContainer>
