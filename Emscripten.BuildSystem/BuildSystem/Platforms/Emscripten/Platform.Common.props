@@ -63,7 +63,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(ConfigurationType)' == 'WebAssembly'">
     <TargetExt>.wasm</TargetExt>
-    <LibCompiled>true</LibCompiled>
+    <LinkCompiled>true</LinkCompiled>
   </PropertyGroup>
   <PropertyGroup Condition="'$(ConfigurationType)' == 'ES6JSModule'">
     <TargetExt>.mjs</TargetExt>
