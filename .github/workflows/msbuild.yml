@@ -38,19 +38,19 @@ jobs:
           msbuild $env:Solution_Name /p:Configuration="${{ matrix.config.config-name }}"
       
       - name: Save BuildSystem Bundles
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: VSExt-Build.Definition.${{ matrix.config.name }}
           path: .\Emscripten.BuildSystem\bin\${{ matrix.config.config-name }}\*.vsix  
 
       - name: Save VSCode Debugger Bundles
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: VSExt-Emscripten.VSCodeDwarfDebug.${{ matrix.config.name }}
           path: .\Emscripten.Debugger.VSCodeDwarfDebug\bin\${{ matrix.config.config-name }}\*.vsix  
 
       - name: Save ExtensionPack Bundles
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: VSExt-Emscripten.ExtensionPack.${{ matrix.config.name }}
           path: .\Emscripten.ExtensionPack\bin\${{ matrix.config.config-name }}\*.vsix  
@@ -81,7 +81,7 @@ jobs:
           echo $env:Path >> $Env:GITHUB_PATH
 
       - name: Restore Bundles
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: VSExt-Build.Definition.vs2022
           path: Test
@@ -134,7 +134,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Restore Bundles
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: VSExt-Build.Definition.vs2022
           path: Container/
@@ -160,19 +160,19 @@ jobs:
 
     steps:
       - name: Restore Bundles
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: VSExt-Build.Definition.vs2022
           path: .
 
       - name: Restore Bundles
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: VSExt-Emscripten.VSCodeDwarfDebug.vs2022
           path: .
 
       - name: Restore Bundles
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: VSExt-Emscripten.ExtensionPack.vs2022
           path: .
