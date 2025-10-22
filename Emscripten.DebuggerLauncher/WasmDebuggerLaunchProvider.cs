@@ -1,15 +1,15 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.ProjectSystem;
+using Microsoft.VisualStudio.ProjectSystem.Debug;
+using Microsoft.VisualStudio.ProjectSystem.Properties;
+using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Diagnostics;
 using System.IO;
-using Newtonsoft.Json;
+using System.Management;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.ProjectSystem;
-using Microsoft.VisualStudio.ProjectSystem.Debug;
-using Microsoft.VisualStudio.ProjectSystem.Properties;
-using Microsoft.VisualStudio.ProjectSystem.VS.Debug;
-using Microsoft.Build.Utilities;
 
 namespace Emscripten.DebuggerLauncher
 {
@@ -70,6 +70,24 @@ namespace Emscripten.DebuggerLauncher
             webServerProcess.StartInfo.Arguments = await debuggerProperties.WasmDebuggerServerArguments.GetEvaluatedValueAtEndAsync();
             webServerProcess.StartInfo.WorkingDirectory = await debuggerProperties.WasmDebuggerServerWorkingDirectory.GetEvaluatedValueAtEndAsync();
             webServerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+            webServerProcess.EnableRaisingEvents = true;
+
+            webServerProcess.Exited += (sender, e) =>
+            {
+                // Terminate child processes
+                var childProcesses = GetChildProcesses(webServerProcess.Id);
+                foreach (var child in childProcesses)
+                {
+                    try
+                    {
+                        child.Kill();
+                    }
+                    catch (Exception)
+                    {
+                        // Ignore
+                    }
+                }
+            };
 
             webServerProcess.Start();
 
@@ -81,6 +99,28 @@ namespace Emscripten.DebuggerLauncher
             webServerProcessSetting.LaunchDebugEngineGuid = DebuggerEngines.NativeOnlyEngine;
 
             return new IDebugLaunchSettings[] { debugServerSettings, webServerProcessSetting };
+        }
+
+        private List<Process> GetChildProcesses(int parentProcessId)
+        {
+            var childProcesses = new List<Process>();
+            var query = $"SELECT * FROM Win32_Process WHERE ParentProcessId = {parentProcessId}";
+            using (var searcher = new ManagementObjectSearcher(query))
+            {
+                foreach (ManagementObject obj in searcher.Get())
+                {
+                    try
+                    {
+                        var childId = (uint)obj["ProcessId"];
+                        childProcesses.Add(Process.GetProcessById((int)childId));
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Ignore
+                    }
+                }
+            }
+            return childProcesses;
         }
     }
 }
